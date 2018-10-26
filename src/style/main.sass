@@ -1,0 +1,26 @@
+@import 'reset.sass'
+@import 'font.sass'
+
+$border: #f95de661
+$img: 80px
+
+body
+	overflow: hidden
+	#root
+		&>*
+			height: 100vh
+			font-family: yasya
+		@import 'menu.sass'
+		@import 'getready.sass'
+		@import 'game.sass'
+
+.hero-photo
+	width: $img
+	border-radius: 50%
+	border: 1px solid $border
+.abs
+	position: absolute
+	width: 100vw
+	height: 100vh
+
+@import 'media.sass'
