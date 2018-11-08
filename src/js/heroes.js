@@ -19,5 +19,12 @@ export const heroes=[
 		block: 'butilka.png',
 		des: 'помоги Наташе не спиться!',
 		sound: 'nata.mp3'
+	},
+	{
+		name: 'Елена',
+		photo: 'el.png',
+		block: 'people.png',
+		des: 'помоги Елене убежать от касаний чужих людей!',
+		sound: '8bit - dnb.mp3'
 	}
 ];

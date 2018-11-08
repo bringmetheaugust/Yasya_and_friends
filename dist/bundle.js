@@ -25888,8 +25888,10 @@ module.exports = template;
 var map = {
 	"./atb.jpeg": "./src/img/atb.jpeg",
 	"./butilka.png": "./src/img/butilka.png",
+	"./el.png": "./src/img/el.png",
 	"./nata.png": "./src/img/nata.png",
 	"./niko.png": "./src/img/niko.png",
+	"./people.png": "./src/img/people.png",
 	"./tabletka.jpg": "./src/img/tabletka.jpg",
 	"./yasya.png": "./src/img/yasya.png"
 };
@@ -25939,6 +25941,17 @@ module.exports = __webpack_require__.p + "img/butilka.png";
 
 /***/ }),
 
+/***/ "./src/img/el.png":
+/*!************************!*\
+  !*** ./src/img/el.png ***!
+  \************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+module.exports = __webpack_require__.p + "img/el.png";
+
+/***/ }),
+
 /***/ "./src/img/nata.png":
 /*!**************************!*\
   !*** ./src/img/nata.png ***!
@@ -25958,6 +25971,17 @@ module.exports = __webpack_require__.p + "img/nata.png";
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports = __webpack_require__.p + "img/niko.png";
+
+/***/ }),
+
+/***/ "./src/img/people.png":
+/*!****************************!*\
+  !*** ./src/img/people.png ***!
+  \****************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+module.exports = __webpack_require__.p + "img/people.png";
 
 /***/ }),
 
@@ -25991,6 +26015,7 @@ module.exports = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADkAAAA5CAYAAACM
 /***/ (function(module, exports, __webpack_require__) {
 
 var map = {
+	"./8bit - dnb.mp3": "./src/js/8bit - dnb.mp3",
 	"./comp/App.jsx": "./src/js/comp/App.jsx",
 	"./comp/Game.jsx": "./src/js/comp/Game.jsx",
 	"./comp/GameOver.jsx": "./src/js/comp/GameOver.jsx",
@@ -26028,6 +26053,17 @@ webpackContext.keys = function webpackContextKeys() {
 webpackContext.resolve = webpackContextResolve;
 module.exports = webpackContext;
 webpackContext.id = "./src/js sync recursive ^\\.\\/.*$";
+
+/***/ }),
+
+/***/ "./src/js/8bit - dnb.mp3":
+/*!*******************************!*\
+  !*** ./src/js/8bit - dnb.mp3 ***!
+  \*******************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+module.exports = __webpack_require__.p + "257a3fb041469a749c5b783aebc915af.mp3";
 
 /***/ }),
 
@@ -26787,6 +26823,12 @@ var heroes = exports.heroes = [{
 	block: 'butilka.png',
 	des: 'помоги Наташе не спиться!',
 	sound: 'nata.mp3'
+}, {
+	name: 'Елена',
+	photo: 'el.png',
+	block: 'people.png',
+	des: 'помоги Елене убежать от касаний чужих людей!',
+	sound: '8bit - dnb.mp3'
 }];
 
 /***/ }),
