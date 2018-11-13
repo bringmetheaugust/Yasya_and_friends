@@ -26817,17 +26817,19 @@ var heroes = exports.heroes = [{
 	block: 'atb.jpeg',
 	des: 'помоги Ясе добраться до Синявки!',
 	sound: 'yasya.mp3'
-}, {
-	name: 'Наташа',
-	photo: 'nata.png',
-	block: 'butilka.png',
-	des: 'помоги Наташе не спиться!',
-	sound: 'nata.mp3'
-}, {
-	name: 'Елена',
+},
+// {
+// 	name: 'Наташа',
+// 	photo: 'nata.png',
+// 	block: 'butilka.png',
+// 	des: 'помоги Наташе не спиться!',
+// 	sound: 'nata.mp3'
+// },
+{
+	name: 'Еля',
 	photo: 'el.png',
 	block: 'people.png',
-	des: 'помоги Елене убежать от касаний чужих людей!',
+	des: 'помоги Еле убежать от касаний чужих людей!',
 	sound: '8bit - dnb.mp3'
 }];
 
