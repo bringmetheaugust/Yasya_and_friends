@@ -11,7 +11,7 @@ module.exports={
 	output: {
 		path: path.resolve(__dirname, './dist'),
 		filename: 'bundle.js',
-		publicPath: ''   //указать папку, куда пакуются файлы
+		publicPath: '/'   //указать папку, куда пакуются файлы
 	},
 	devtool: 'source-map',
 	devServer:{
@@ -25,10 +25,11 @@ module.exports={
 		rules: [
 			{
                 test: /\.jsx?$/, // определяем тип файлов
-                exclude: /(node_modules)/,  // исключаем из обработки папку node_modules
+                exclude: /(node_modules|bower_components)/,  // исключаем из обработки папку node_modules
                 loader: "babel-loader",   // определяем загрузчик
                 options:{
-                    presets:["env", "react"]    // используемые плагины
+                    presets:["@babel/preset-env", "@babel/preset-react"],    // используемые плагины
+                    plugins: [["@babel/plugin-proposal-class-properties", {loose: true}]]
                 }
             },
 			{
@@ -87,7 +88,10 @@ module.exports={
             },
             {
 			    test: /\.mp3$/,
-			    // include: SRC,
+			    loader: 'file-loader'
+			},
+			 {
+			    test: /\.mp4$/,
 			    loader: 'file-loader'
 			}
 		],
