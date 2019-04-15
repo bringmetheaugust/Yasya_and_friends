@@ -1,31 +1,29 @@
 import React from 'react';
-import {HeroContext} from './App.jsx';
+import { HeroContext } from './App.jsx';
 
-export default class GetReady extends React.Component{
-	constructor(props){
+export default class GetReady extends React.Component {
+	constructor(props) {
 		super(props);
-		this.state={
-			count: 5
-		};
+		this.state = { count: 5 };
 	}
-	componentDidMount(){
-		const count=setInterval(() =>{
-			if(this.state.count==1){
-				this.setState({count:'GO!!!'});
+	componentDidMount() {
+		const count = setInterval(() => {
+			if (this.state.count == 1) {
+				this.setState({ count: 'GO!!!' });
 				clearInterval(count);
 				this.props.changeGo();
 				return;
 			}
-			this.setState({count:--this.state.count});
+			this.setState({ count: --this.state.count });
 		}, 1000);
 	}
-	componentWillUnmount(){
+	componentWillUnmount() {
 		clearInterval(this.count);
 	}
-	render(){
+	render() {
 		return(
 			<HeroContext.Consumer>
-				{val =>(
+				{val => (
 					<div className='get-ready abs'>
 						{val.des}
 						<div className='count'>{this.state.count}</div>

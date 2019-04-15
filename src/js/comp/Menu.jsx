@@ -1,13 +1,9 @@
 import React from 'react';
 import MenuIcon from './MenuIcon.jsx';
-import {heroes} from '../heroes.js';
+import { heroes } from '../heroes.js';
 
-export default class Menu extends React.Component{
-	constructor(props){
-		super(props);
-		this.state={};
-	}
-	render(){
+export default class Menu extends React.Component {
+	render() {
 		return(
 			<section className='menu'>
 				<audio autoPlay loop>
@@ -16,7 +12,7 @@ export default class Menu extends React.Component{
 				<div className='menu-window'>
 					<div className='menu-window-select'>вибери своего героя!!</div>
 					{
-						heroes.map((i,n) =><MenuIcon selectHero={this.props.selectHero} obj={i} key={n}/>)
+						heroes.map((i,n) => <MenuIcon selectHero={this.props.selectHero} obj={i} key={n}/>)
 					}
 				</div>
 				<div className='i'>сделано Августом.В августе</div>

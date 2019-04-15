@@ -4,7 +4,7 @@
   "description": "",
   "main": "webpack.config.js",
   "scripts": {
-    "go": "webpack-dev-server --inline --mode development --open",
+    "dev": "webpack-dev-server --inline --mode development --open",
     "watch": "webpack --watch",
     "build": "webpack",
     "test": "echo \"Error: no test specified\" && exit 1"

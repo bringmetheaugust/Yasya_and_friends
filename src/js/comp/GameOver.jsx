@@ -1,12 +1,8 @@
 import React from 'react';
-import {Link} from "react-router-dom";
+import { Link } from "react-router-dom";
 
-export default class GameOver extends React.Component{
-	constructor(props){
-		super(props);
-		this.state={};
-	}
-	render(){
+export default class GameOver extends React.Component {
+	render() {
 		return(
 			<section className='game-over'>
 				<audio autoPlay loop>

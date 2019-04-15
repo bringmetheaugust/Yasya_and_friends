@@ -1,4 +1,4 @@
-export const heroes=[
+export const heroes = [
 	{
 		name: 'Коля',
 		photo: 'niko.png',
