@@ -2,25 +2,41 @@ import React, { Component } from 'react';
 import { HashRouter as Router, Switch, Route } from "react-router-dom";
 
 import Menu from './Menu/index.jsx';
+import heroesDB from '@src/constant/heroes.js';
 
-const HeroContext = React.createContext();
-export { HeroContext };
+const GameContext = React.createContext();
+export { GameContext };
+const firstHeroes = Object.values(heroesDB).filter(hero => hero.opened);
 
 export default class App extends Component {
 	constructor(props) {
 		super(props);
-		this.state = { hero: null };
+		this.state = {
+			selectedHero: null,
+			heroes: firstHeroes
+		};
 	}
-	selectHero = obj => this.setState({ hero: obj });
+	selectHero = hero => this.setState({ selectedHero: hero });
+	openHero = hero => {
+		const newHero = heroesDB[hero];
+		this.setState({
+			heroes: [
+				...this.state.heroes,
+				newHero
+			]
+		});
+	}
 	render() {
-		const context = { hero: this.state.hero };
 		return(
 			<Router>
 				<Switch>
-					<HeroContext.Provider value={context}>
-						<Route exact path='/' render={() => <Menu selectHero={this.selectHero} />} />
+					<GameContext.Provider value={this.state}>
+						<Route
+							exact path='/'
+							render={() => <Menu selectHero={this.selectHero} openHero={this.openHero} />}
+						/>
 						{/* <Route exact path='/start' render={() => <Game/>} /> */}
-					</HeroContext.Provider>
+					</GameContext.Provider>
 				</Switch>
 			</Router>
 		)

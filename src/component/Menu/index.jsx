@@ -1,13 +1,13 @@
-import React from 'react';
+import React, { Component } from 'react';
 import {Link} from "react-router-dom";
 
-import heroes from '@src/constant/heroes.js';
 import css from './index.module.sass';
 import * as SECRET_WORDS from '@src/constant/secretWords.js';
+import { GameContext } from '../App.jsx';
 
 const MENU_AUDIO = require("@src/media/menu/menu.mp3");
 
-export default class Menu extends React.Component {
+export default class Menu extends Component {
 	constructor(props) {
 		super(props);
 		this.state = { secretWord: '' };
@@ -17,10 +17,12 @@ export default class Menu extends React.Component {
 		switch (true) {
 			case (completedLetters.includes(SECRET_WORDS.NATASHA_SECRET_WORD)): {
 				this.setState({ secretWord: '' });
+				this.props.openHero('natasha');
 				return;
 			}
 			case (completedLetters.includes(SECRET_WORDS.VITYA_SECTER_WORD)): {
 				this.setState({ secretWord: '' });
+				this.props.openHero('vitya');
 				return;
 			}
 		}
@@ -36,14 +38,15 @@ export default class Menu extends React.Component {
 				</audio>
 				<div className={css.heroes}>
 					<div className={css.title}>выбери своего героя!!</div>
-					{
-						Object.values(heroes).map((hero,n) => 
-							<Link onClick={this.sendHeroObj} to='/start' className={css.hero} key={n}>
+					<GameContext.Consumer>
+					{ctx =>
+						ctx.heroes.map((hero,n) =>
+							<Link onClick={() => this.props.selectHero(hero)} to='/start' className={css.hero} key={n}>
 							 	<img className={css['hero-icon']} src={hero.img} />
 								<div className={css.name}>{hero.name}</div>
 							</Link>
-						)
-					}
+					)}
+					</GameContext.Consumer>
 				</div>
 				<div className={css.author}>сделано Августом.В августе</div>
 			</section>
