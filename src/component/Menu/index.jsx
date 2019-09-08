@@ -48,7 +48,9 @@ export default class Menu extends Component {
 					)}
 					</GameContext.Consumer>
 				</div>
-				<div className={css.author}>сделано Августом.В августе</div>
+				<div className={css.author}>
+					<Link to='/about'>сделано Августом.В августе</Link>
+				</div>
 			</section>
 		)
 	}
