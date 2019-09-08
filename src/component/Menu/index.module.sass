@@ -5,37 +5,50 @@
 	justify-content: center
 	align-items: center
 
-	.title
-		font-size: 4rem
+.title
+	font-size: 4rem
 
-	.hero
-		border-radius: 10px
-		cursor: pointer
-		display: flex
-		align-items: center
-		justify-content: space-around
-		padding: 5%
-		font-size: 3rem
-		transition: background .5s
+.heroes
+	padding: 30px 0
 
-		&:hover
-			background: radial-gradient(circle at 50%, $purpur 0%, transparent 100%)
+.hero
+	border-radius: 10px
+	cursor: pointer
+	display: flex
+	align-items: center
+	justify-content: space-around
+	padding: 5%
+	font-size: 3rem
+	transition: background .5s
 
-			& > *
-				animation: jump .6s infinite linear
+	&:hover
+		background: radial-gradient(circle at 50%, $purpur 0%, transparent 100%)
 
-			.name
-				animation-direction: reverse
+		& > *
+			animation: jump .6s infinite linear
 
-		.hero-icon
-			width: 90px
-			border-radius: 50%
-			border: 1px solid $purpur
+		.name
+			animation-direction: reverse
 
-	.author
-		position: absolute
-		bottom: 0
-		font-size: 1.2rem
+.hero-icon
+	width: 90px
+	border-radius: 50%
+	border: 1px solid $purpur
+
+.author
+	position: fixed
+	bottom: 0
+	width: 100%
+	padding: 5px 0
+	background: linear-gradient(0deg, $background 0%, transparent 100%)
+	font-size: 1.2rem
+	text-align: center
+
+	a
+		transition: text-shadow .3s
+
+	&:hover a
+		text-shadow: 8px -4px 3px $purpur
 				
 @keyframes jump
 	30%
@@ -44,3 +57,7 @@
 		transform: translateY(15px)
 	100%
 		transform: translateY(0)
+
+@media only screen and (max-width : 768px)
+	.title
+		font-size: 3rem
