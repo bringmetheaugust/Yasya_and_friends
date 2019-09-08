@@ -6,7 +6,7 @@ export default class GameOver extends React.Component {
 		return(
 			<section className='game-over'>
 				<audio autoPlay loop>
-					<source src={require("@src/media/audio/menu.mp3")} type="audio/mpeg" />
+					{/* <source src={require("@src/media/audio/menu.mp3")} type="audio/mpeg" /> */}
 				</audio>
 				<div className='lose'>вы проиграли :(</div>
 				<div className='points'>вы набрали <span>{this.props.points}</span> очков</div>

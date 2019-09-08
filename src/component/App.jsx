@@ -2,11 +2,12 @@ import React, { Component } from 'react';
 import { HashRouter as Router, Switch, Route } from "react-router-dom";
 
 import Menu from './Menu/index.jsx';
+import Game from './Game/index.jsx';
 import heroesDB from '@src/constant/heroes.js';
 
 const GameContext = React.createContext();
-export { GameContext };
 const firstHeroes = Object.values(heroesDB).filter(hero => hero.opened);
+export { GameContext };
 
 export default class App extends Component {
 	constructor(props) {
@@ -32,7 +33,7 @@ export default class App extends Component {
 							exact path='/'
 							render={() => <Menu selectHero={this.selectHero} openHero={this.openHero} />}
 						/>
-						{/* <Route exact path='/start' render={() => <Game/>} /> */}
+						<Route exact path='/start' render={() => <Game/>} />
 					</GameContext.Provider>
 				</Switch>
 			</Router>
