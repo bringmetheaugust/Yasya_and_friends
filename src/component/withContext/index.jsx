@@ -1,8 +1,13 @@
+import React from 'react';
+
 import { GameContext } from '../App.jsx';
 
-export default withContext = (Component) => {
-    return (props) =>
-        <Game.Proveder>
+const withContext = (Component) => {
+    return (props) => (
+        <GameContext.Consumer>
             {ctx => <Component {...props} ctx={ctx} />}
-        </Game.Proveder>
+        </GameContext.Consumer>
+    )
 }
+
+export default withContext;

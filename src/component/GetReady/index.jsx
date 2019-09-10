@@ -1,10 +1,10 @@
 import React, { Component } from 'react';
 import { Redirect } from 'react-router-dom';
 
-import { GameContext } from '../App.jsx';
 import css from './index.module.sass';
+import withContext from '../withContext/index.jsx';
 
-export default class GetReady extends Component {
+class GetReady extends Component {
 	constructor(props) {
 		super(props);
 		this.state = { count: 5, isShow: true };
@@ -27,20 +27,17 @@ export default class GetReady extends Component {
 	render() {
 		if (!this.state.isShow) return null;
 		return(
-			<GameContext.Consumer>
-				{ctx => (
-					<div className={`${css.ready} full-screen`}>
-						{
-							ctx.selectedHero ?
-								<div className={css.title}>{ctx.selectedHero.description}</div> :
-								<Redirect to='/' />
-						}
-						<div className={css.count}>{this.state.count}</div>
-						приготовся!!
-					</div>
-					)
+			<div className={`${css.ready} full-screen`}>
+				{
+					this.props.ctx.selectedHero ?
+						<div className={css.title}>{this.props.ctx.selectedHero.description}</div> :
+						<Redirect to='/' />
 				}
-			</GameContext.Consumer>
+				<div className={css.count}>{this.state.count}</div>
+				приготовся!!
+			</div>
 		)
 	}
 }
+
+export default withContext(GetReady);

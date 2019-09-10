@@ -1,6 +1,6 @@
 export default class GameEngine {
-    constructor() {
-
+    constructor(selectedHero) {
+        this.hero = selectedHero;
     }
     init(reactRef) {
         this.ctx = reactRef.getContext('2d');
