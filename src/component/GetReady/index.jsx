@@ -7,14 +7,17 @@ import css from './index.module.sass';
 export default class GetReady extends Component {
 	constructor(props) {
 		super(props);
-		this.state = { count: 5 };
+		this.state = { count: 5, isShow: true };
 	}
 	componentDidMount = ()  => {
 		this.count = setInterval(() => {
 			if (this.state.count === 1) {
 				this.setState({ count: 'GO!!!' });
+				setInterval(() => {
+					this.props.runGame(),
+					this.setState({ isShow: false });
+				}, 1000);
 				clearInterval(this.count);
-				setInterval(() => this.props.runGame(), 1000);
 				return;
 			}
 			this.setState({ count: --this.state.count });
@@ -22,6 +25,7 @@ export default class GetReady extends Component {
 	}
 	componentWillUnmount = () => clearInterval(this.count);
 	render() {
+		if (!this.state.isShow) return null;
 		return(
 			<GameContext.Consumer>
 				{ctx => (

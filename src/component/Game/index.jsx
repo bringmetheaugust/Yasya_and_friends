@@ -4,23 +4,28 @@ import GetReady from '../GetReady/index.jsx';
 import GameOver from '../GameOver/index.jsx';
 import { GameContext } from '../App.jsx';
 import css from './index.module.sass';
+import GameEngine from './engine/index.js';
 
 export default class Game extends React.Component {
 	constructor(props) {
 		super(props);
 		this.state = {
-			isStarted: false,
 			gameOver: false,
 			points: 0
 		};
+		this.canvas = React.createRef();
 	}
-	runGame = () => {
-		this.setState({ isStarted: true });
-	}
+	runGame = () => {}
+	componentDidMount = () => {
+		this.gameEngine = new GameEngine();
+		this.gameEngine.init(this.canvas.current);
+	};
 	render() {
+		
 		return(
 			<section className={css.game}>
-				{!this.state.isStarted && <GetReady runGame={this.runGame} />}
+				<canvas className='full-screen' ref={this.canvas}></canvas>
+				<GetReady runGame={this.runGame} />
 				{this.state.gameOver && <GameOver />}
 				<GameContext.Consumer>
 					{ctx => (
@@ -32,7 +37,6 @@ export default class Game extends React.Component {
 						)
 					}
 				</GameContext.Consumer>
-				{this.state.gameOver && <div className='points'>очки : {this.state.points}</div>}
 			</section>
 		)
 	}
