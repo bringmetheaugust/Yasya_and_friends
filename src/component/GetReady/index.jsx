@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import { Redirect } from 'react-router-dom';
 
 import css from './index.module.sass';
 import withContext from '../withContext/index.jsx';
@@ -28,11 +27,7 @@ class GetReady extends Component {
 		if (!this.state.isShow) return null;
 		return(
 			<div className={`${css.ready} full-screen`}>
-				{
-					this.props.ctx.selectedHero ?
-						<div className={css.title}>{this.props.ctx.selectedHero.description}</div> :
-						<Redirect to='/' />
-				}
+				<div className={css.title}>{this.props.ctx.selectedHero.description}</div>
 				<div className={css.count}>{this.state.count}</div>
 				приготовся!!
 			</div>
