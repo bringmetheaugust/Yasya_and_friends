@@ -4,29 +4,36 @@ import { Redirect } from 'react-router-dom';
 import GetReady from '../GetReady/index.jsx';
 import GameOver from '../GameOver/index.jsx';
 import css from './index.module.sass';
-import GameEngine from '@src/component/gameEngine/index.js';
 import withContext from '../withContext/index.jsx';
+import switcher from '../gameEngine/switcher.js';
 
 class Game extends React.Component {
 	constructor(props) {
 		super(props);
-		this.state = { gameOver: false };
+		this.state = { gameOver: false, gameStarted: false };
 		this.canvas = React.createRef();
 	}
-	runGame = () => {}
+	runGame = () => {
+		this.setState({ gameStarted: true });
+	}
 	componentDidMount = () => {
-		this.gameEngine = new GameEngine(this.props.ctx.selectedHero);
-		this.gameEngine.init(this.canvas.current);
-		// window.addEventListener('resize', () => this.gameEngine.setCanvasSize())
+		const { selectedHero } = this.props.ctx;
+		if (!selectedHero) return;
+		const classForSelectedHero = switcher(selectedHero.id);
+
+		this.game = new classForSelectedHero(selectedHero);
+		this.game.init(this.canvas.current);
 	};
 	render() {
-		if (!this.props.ctx.selectedHero) return <Redirect to='/' />
+		const { selectedHero } = this.props.ctx;
+		
+		if (!selectedHero) return <Redirect to='/' />;
 		return(
 			<section className={css.game}>
-				<GetReady runGame={this.runGame} />
+				{!this.state.gameStarted && <GetReady runGame={this.runGame} />}
 				<canvas className={css.canvas} ref={this.canvas}></canvas>
 				<audio autoPlay muted={this.state.gameOver} loop>
-					{/* <source src={require("../"+val.sound)} type="audio/mpeg"/> */}
+					<source src={selectedHero.audio} type="audio/mpeg"/>
 				</audio>
 				{this.state.gameOver && <GameOver />}
 			</section>

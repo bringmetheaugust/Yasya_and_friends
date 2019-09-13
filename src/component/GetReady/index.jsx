@@ -6,16 +6,13 @@ import withContext from '../withContext/index.jsx';
 class GetReady extends Component {
 	constructor(props) {
 		super(props);
-		this.state = { count: 5, isShow: true };
+		this.state = { count: 5 };
 	}
 	componentDidMount = ()  => {
 		this.count = setInterval(() => {
 			if (this.state.count === 1) {
 				this.setState({ count: 'GO!!!' });
-				setInterval(() => {
-					this.props.runGame(),
-					this.setState({ isShow: false });
-				}, 1000);
+				setTimeout(() => this.props.runGame(), 1000);
 				clearInterval(this.count);
 				return;
 			}
@@ -24,7 +21,6 @@ class GetReady extends Component {
 	}
 	componentWillUnmount = () => clearInterval(this.count);
 	render() {
-		if (!this.state.isShow) return null;
 		return(
 			<div className={`${css.ready} full-screen`}>
 				<div className={css.title}>{this.props.ctx.selectedHero.description}</div>

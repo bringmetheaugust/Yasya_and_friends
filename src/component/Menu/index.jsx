@@ -14,6 +14,7 @@ class Menu extends Component {
 	}
 	checkSecretWord = ({ key }) => {
 		const completedLetters = this.state.secretWord + key;
+		
 		switch (true) {
 			case (completedLetters.includes(SECRET_WORDS.NATASHA_SECRET_WORD)): {
 				this.setState({ secretWord: '' });
@@ -34,14 +35,14 @@ class Menu extends Component {
 		return(
 			<section className={css.menu}>
 				<audio autoPlay loop>
-					{/* <source src={MENU_AUDIO} type="audio/mpeg" /> */}
+					<source src={MENU_AUDIO} type="audio/mpeg" />
 				</audio>
 				<div className={css.heroes}>
 					<div className={css.title}>выбери своего героя!!</div>
 						{
 							this.props.ctx.heroes.map((hero,n) => (
 								<Link onClick={() => this.props.selectHero(hero)} to='/start' className={css.hero} key={n}>
-									<img className={css['hero-icon']} src={hero.img} />
+									<img className={css['hero-icon']} src={hero.heroImg} />
 									<div className={css.name}>{hero.name}</div>
 								</Link>
 							))
