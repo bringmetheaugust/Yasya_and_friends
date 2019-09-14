@@ -1,11 +1,10 @@
+export const DEFAULT_ENEMY = { x: null, y: null };
 const ACCELERATION = .999;
 
 export default class GameEngine {
     constructor(selectedHero) {
         this.hero = selectedHero;
-        this.enemies = [
-            { x: null, y: null }
-        ];
+        this.enemies = [ DEFAULT_ENEMY ];
         this.speed = 1;
         this.acceleration = ACCELERATION;
     }
@@ -13,8 +12,8 @@ export default class GameEngine {
         this.canvas = reactRef;
         this.ctx = this.canvas.getContext('2d');
         this.setCanvasSize();
-        this.oneGrid = Math.round(this.canvas.height / 10);
-        this.iconSize = Math.round(this.oneGrid / 1.5);
+        this.oneGrid = Math.round(this.canvas.width / 10);
+        this.iconSize = Math.round(this.oneGrid / 2);
         this.createHero();
     }
     setCanvasSize() {
