@@ -17,19 +17,20 @@ export default class GameEngine {
         this.ctx = this.canvas.getContext('2d');
         this.setCanvasSize();
         //init game settings
-        this.oneGrid = this.canvas.width / GRID_DENSITY + 1;
-        this.iconSize = this.oneGrid / 2;
         this.heroCoordinates = { x: this.canvas.width / 2, y: this.canvas.height * .8 };
         //create hero
         this.drawHero(this.heroCoordinates.x, this.heroCoordinates.y);
         //event listener for moving hero
         this.canvas.onclick = e => this.moveHero(e.clientX, e.clientY);
+        this.canvas.resize = () => this.setCanvasSize();
         //TODO: draw temporary grid
         drawGridForTesting.call(this);
     }
     setCanvasSize() {
         this.canvas.width = window.innerWidth;
         this.canvas.height = window.innerHeight;
+        this.oneGrid = this.canvas.width / GRID_DENSITY + 1;
+        this.iconSize = this.oneGrid / 2;
     }
     getDrawPosition(coordinate) {
         return coordinate - this.iconSize / 2;
