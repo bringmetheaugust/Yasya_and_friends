@@ -35,16 +35,22 @@ export default class GameEngine {
         this.canvas.height = window.innerHeight;
         this.oneGrid = this.canvas.width / GRID_DENSITY + 1;
         this.iconSize = this.oneGrid / 2;
+        this.halfOfIconSize = this.oneGrid / 4;
     }
     getDrawPosition(coordinate) {
-        return coordinate - this.iconSize / 2;
+        return coordinate - this.halfOfIconSize;
     }
     //hero methods
     drawHero(x = this.heroCoordinates.x, y = this.heroCoordinates.y) {
         const image = new Image();
 
+        this.ctx.save();
+        this.ctx.translate(x, y);
+        // this.ctx.rotate(getRadian(angle));
+        this.cutIcon();
         image.src = this.hero.heroImg;
-        this.ctx.drawImage(image, this.getDrawPosition(x), this.getDrawPosition(y), this.iconSize, this.iconSize);
+        this.ctx.drawImage(image, this.getDrawPosition(0), this.getDrawPosition(0), this.iconSize, this.iconSize);
+        this.ctx.restore();
     }
     moveHero(x, y) {
         const distance = Math.pow(Math.pow((this.heroCoordinates.x - x), 2) + Math.pow((this.heroCoordinates.y - y), 2), .5);
@@ -57,6 +63,7 @@ export default class GameEngine {
         this.ctx.save();
         this.ctx.translate(x, y);
         this.ctx.rotate(getRadian(angle));
+        this.cutIcon();
         image.src = this.hero.enemyImg;
         this.ctx.drawImage(image, this.getDrawPosition(0), this.getDrawPosition(0), this.iconSize, this.iconSize);
         this.ctx.restore();
@@ -68,5 +75,12 @@ export default class GameEngine {
     drawPoints() {
         this.ctx.font = '30px yasya';
         this.ctx.fillText(`очки : ${this.points}`, this.canvas.width / 2 - 40, 30);
+    }
+    //tools
+    cutIcon() {
+        this.ctx.beginPath();
+        this.ctx.arc(0, 0, this.halfOfIconSize, 0, Math.PI * 2, true);
+        this.ctx.closePath();
+        this.ctx.clip();
     }
 }
