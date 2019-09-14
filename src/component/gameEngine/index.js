@@ -1,13 +1,20 @@
-const ICON_SIZE = 60;
+const ACCELERATION = .999;
 
 export default class GameEngine {
     constructor(selectedHero) {
         this.hero = selectedHero;
+        this.enemies = [
+            { x: null, y: null }
+        ];
+        this.speed = 1;
+        this.acceleration = ACCELERATION;
     }
     init(reactRef) {
         this.canvas = reactRef;
         this.ctx = this.canvas.getContext('2d');
         this.setCanvasSize();
+        this.oneGrid = Math.round(this.canvas.height / 10);
+        this.iconSize = Math.round(this.oneGrid / 1.5);
         this.createHero();
     }
     setCanvasSize() {
@@ -17,18 +24,19 @@ export default class GameEngine {
     createHero() {
         const image = new Image();
 
-        image.src = this.hero.img;
+        image.src = this.hero.heroImg;
         this.ctx.save();
         this.ctx.translate(
-            (this.canvas.width - ICON_SIZE) / 2,
-            ((this.canvas.height - ICON_SIZE) / 2) + this.canvas.height / 3)
+            (this.canvas.width -  this.iconSize) / 2,
+            ((this.canvas.height -  this.iconSize) / 2) + this.canvas.height / 3)
         ;
-        this.ctx.drawImage(image, 0, 0, ICON_SIZE, ICON_SIZE);
+        this.ctx.drawImage(image, 0, 0,  this.iconSize,  this.iconSize);
         this.ctx.restore();
     }
-    createEnemy() {
+    createEnemy(x, y) {
         const image = new Image();
 
-        // image.src = this.hero.
+        image.onload = () => this.ctx.drawImage(image, x, y,  this.iconSize,  this.iconSize);
+        image.src = this.hero.enemyImg;
     }
 }

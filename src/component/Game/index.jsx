@@ -15,6 +15,7 @@ class Game extends React.Component {
 	}
 	runGame = () => {
 		this.setState({ gameStarted: true });
+		this.game.runGame();
 	}
 	componentDidMount = () => {
 		const { selectedHero } = this.props.ctx;
@@ -33,7 +34,7 @@ class Game extends React.Component {
 				{!this.state.gameStarted && <GetReady runGame={this.runGame} />}
 				<canvas className={css.canvas} ref={this.canvas}></canvas>
 				<audio autoPlay muted={this.state.gameOver} loop>
-					<source src={selectedHero.audio} type="audio/mpeg"/>
+					{/* <source src={selectedHero.audio} type="audio/mpeg"/> */}
 				</audio>
 				{this.state.gameOver && <GameOver />}
 			</section>
