@@ -1,6 +1,6 @@
 import GameEngine from '../index.js';
 import randomNumber from '@src/util/randomNumber.js';
-import { DEFAULT_ENEMY } from '../index.js';
+import { DEFAULT_COORDINATES } from '../index.js';
 
 const MAX_ENEMIES = 10;
 
@@ -20,11 +20,11 @@ export default class YasyaGame extends GameEngine {
     }
     addEnemy() {
         if (this.enemies.length >= MAX_ENEMIES) return clearInterval(this.addEnemyInterval);
-        this.enemies.push(DEFAULT_ENEMY);
+        this.enemies.push(DEFAULT_COORDINATES);
     }
     draw() {
         this.moveEnemies();
-        this.enemies.forEach(enemy => this.createEnemy(enemy.x, enemy.y));
+        this.enemies.forEach(enemy => this.drawEnemy(enemy.x, enemy.y));
         this.speed = this.speed / this.acceleration;
         requestAnimationFrame(this.draw.bind(this));
     }
