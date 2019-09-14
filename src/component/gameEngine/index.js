@@ -1,6 +1,11 @@
 import drawGridForTesting from '@src/util/drawGridForTesting.js';
+import getRadian from '@src/util/getRadian.js';
 
-export const DEFAULT_COORDINATES = { x: null, y: null };
+export const DEFAULT_COORDINATES = {
+    x: null,
+    y: null,
+    angle: 0
+};
 export const GRID_DENSITY = 10;
 const ACCELERATION = .999;
 
@@ -24,7 +29,7 @@ export default class GameEngine {
         this.canvas.onclick = e => this.moveHero(e.clientX, e.clientY);
         this.canvas.resize = () => this.setCanvasSize();
         //TODO: draw temporary grid
-        drawGridForTesting.call(this);
+        // drawGridForTesting.call(this);
     }
     setCanvasSize() {
         this.canvas.width = window.innerWidth;
@@ -47,10 +52,14 @@ export default class GameEngine {
         console.log(distance);
     }
     //enemy methods
-    drawEnemy(x, y) {
+    drawEnemy({ x, y, angle }) {
         const image = new Image();
-
+        
+        this.ctx.save();
+        this.ctx.translate(x, y);
+        this.ctx.rotate(getRadian(angle));
         image.src = this.hero.enemyImg;
-        this.ctx.drawImage(image, this.getDrawPosition(x), this.getDrawPosition(y),  this.iconSize,  this.iconSize);
+        this.ctx.drawImage(image, this.getDrawPosition(0), this.getDrawPosition(0), this.iconSize, this.iconSize);
+        this.ctx.restore();
     }
 }

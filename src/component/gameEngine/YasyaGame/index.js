@@ -4,6 +4,7 @@ import { DEFAULT_COORDINATES } from '../index.js';
 
 const MAX_ENEMIES = 10;
 const ENEMIES_ADDING_INTERVAL = 1000;
+const ROTATION_SPEED = 2;
 
 export default class YasyaGame extends GameEngine {
     constructor(selectedHero) {
@@ -13,10 +14,18 @@ export default class YasyaGame extends GameEngine {
         this.enemies = this.enemies.map(enemy => {
             //check when enemy goes throught canvas field or when enemy icon is new
             if (this.getDrawPosition(enemy.y) > this.canvas.height || enemy.x === null) {
-                return { x: randomNumber() * this.oneGrid, y: 0 - this.iconSize };
+                return {
+                    x: randomNumber() * this.oneGrid,
+                    y: 0 - this.iconSize,
+                    angle: 0
+                };
             }
             //default
-            return { x: enemy.x, y: enemy.y + this.speed };
+            return {
+                x: enemy.x,
+                y: enemy.y + this.speed,
+                angle: enemy.angle + ROTATION_SPEED
+            };
         });
     }
     addEnemy() {
@@ -27,7 +36,7 @@ export default class YasyaGame extends GameEngine {
         this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
         this.moveEnemies();
         this.drawHero();
-        this.enemies.forEach(enemy => this.drawEnemy(enemy.x, enemy.y));
+        this.enemies.forEach(enemy => this.drawEnemy(enemy));
         this.speed = this.speed / this.acceleration;
         requestAnimationFrame(this.draw.bind(this));
     }
