@@ -12,8 +12,11 @@ export default class YasyaGame extends GameEngine {
     }
     moveEnemies() {
         this.enemies = this.enemies.map(enemy => {
+            const enemyIsGone = this.getDrawPosition(enemy.y) > this.canvas.height;
+
             //check when enemy goes throught canvas field or when enemy icon is new
-            if (this.getDrawPosition(enemy.y) > this.canvas.height || enemy.x === null) {
+            if (enemyIsGone || enemy.x === null) {
+                if (enemyIsGone) this.addPoints();
                 return {
                     x: randomNumber() * this.oneGrid,
                     y: 0 - this.iconSize,
@@ -38,6 +41,7 @@ export default class YasyaGame extends GameEngine {
         this.drawHero();
         this.enemies.forEach(enemy => this.drawEnemy(enemy));
         this.speed = this.speed / this.acceleration;
+        this.drawPoints();
         requestAnimationFrame(this.draw.bind(this));
     }
     runGame() {

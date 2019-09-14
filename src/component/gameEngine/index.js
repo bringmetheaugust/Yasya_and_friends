@@ -7,7 +7,7 @@ export const DEFAULT_COORDINATES = {
     angle: 0
 };
 export const GRID_DENSITY = 10;
-const ACCELERATION = .999;
+const ACCELERATION = .9995;
 
 export default class GameEngine {
     constructor(selectedHero) {
@@ -16,16 +16,15 @@ export default class GameEngine {
         this.enemies = [ DEFAULT_COORDINATES ];
         this.speed = 1;
         this.acceleration = ACCELERATION;
+        this.points = 0;
     }
     init(reactRef) {
         this.canvas = reactRef;
         this.ctx = this.canvas.getContext('2d');
         this.setCanvasSize();
-        //init game settings
         this.heroCoordinates = { x: this.canvas.width / 2, y: this.canvas.height * .8 };
-        //create hero
         this.drawHero(this.heroCoordinates.x, this.heroCoordinates.y);
-        //event listener for moving hero
+        this.drawPoints();
         this.canvas.onclick = e => this.moveHero(e.clientX, e.clientY);
         this.canvas.resize = () => this.setCanvasSize();
         //TODO: draw temporary grid
@@ -61,5 +60,13 @@ export default class GameEngine {
         image.src = this.hero.enemyImg;
         this.ctx.drawImage(image, this.getDrawPosition(0), this.getDrawPosition(0), this.iconSize, this.iconSize);
         this.ctx.restore();
+    }
+    //points
+    addPoints(point) {
+        this.points = !point ? ++this.points : (this.points + point);
+    }
+    drawPoints() {
+        this.ctx.font = '30px yasya';
+        this.ctx.fillText(`очки : ${this.points}`, this.canvas.width / 2 - 40, 30);
     }
 }
