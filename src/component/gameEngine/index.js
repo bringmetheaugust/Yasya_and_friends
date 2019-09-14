@@ -35,7 +35,7 @@ export default class GameEngine {
         return coordinate - this.iconSize / 2;
     }
     //hero methods
-    drawHero(x, y) {
+    drawHero(x = this.heroCoordinates.x, y = this.heroCoordinates.y) {
         const image = new Image();
 
         image.src = this.hero.heroImg;
