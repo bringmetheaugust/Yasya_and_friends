@@ -26,7 +26,7 @@ export default class YasyaGame extends GameEngine {
             //default
             return {
                 x: enemy.x,
-                y: enemy.y + this.speed,
+                y: enemy.y + this.enemySpeed,
                 angle: enemy.angle + ROTATION_SPEED
             };
         });
@@ -40,7 +40,7 @@ export default class YasyaGame extends GameEngine {
         this.moveEnemies();
         this.drawHero();
         this.enemies.forEach(enemy => this.drawEnemy(enemy));
-        this.speed = this.speed / this.acceleration;
+        this.enemySpeed = this.enemySpeed / this.acceleration;
         this.drawPoints();
         requestAnimationFrame(this.draw.bind(this));
     }

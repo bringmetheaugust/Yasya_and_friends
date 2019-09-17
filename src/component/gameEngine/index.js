@@ -8,13 +8,17 @@ export const DEFAULT_COORDINATES = {
 };
 export const GRID_DENSITY = 10;
 const ACCELERATION = .9995;
+const HERO_SPEED = 100;
+const ENEMY_SPEED = 1;
 
 export default class GameEngine {
     constructor(selectedHero) {
         this.hero = selectedHero;
         this.heroCoordinates = DEFAULT_COORDINATES;
+        this.clickCoordinates = DEFAULT_COORDINATES;
         this.enemies = [ DEFAULT_COORDINATES ];
-        this.speed = 1;
+        this.enemySpeed = ENEMY_SPEED;
+        this.heroSpeed = HERO_SPEED;
         this.acceleration = ACCELERATION;
         this.points = 0;
     }
@@ -23,9 +27,10 @@ export default class GameEngine {
         this.ctx = this.canvas.getContext('2d');
         this.setCanvasSize();
         this.heroCoordinates = { x: this.canvas.width / 2, y: this.canvas.height * .8 };
+        this.clickCoordinates = { x: this.heroCoordinates.x, y: this.heroCoordinates.y };
         this.drawHero(this.heroCoordinates.x, this.heroCoordinates.y);
         this.drawPoints();
-        this.canvas.onclick = e => this.moveHero(e.clientX, e.clientY);
+        this.canvas.onclick = e => this.clickCoordinates = { x: e.clientX, y: e.clientY };
         this.canvas.resize = () => this.setCanvasSize();
         //TODO: draw temporary grid
         // drawGridForTesting.call(this);
@@ -40,9 +45,13 @@ export default class GameEngine {
     getDrawPosition(coordinate) {
         return coordinate - this.halfOfIconSize;
     }
-    //hero methods
     drawHero(x = this.heroCoordinates.x, y = this.heroCoordinates.y) {
         const image = new Image();
+
+        if (
+            this.clickCoordinates.x !== this.heroCoordinates.x &&
+            this.clickCoordinates.y !== this.heroCoordinates.y
+        ) this.moveHero();
 
         this.ctx.save();
         this.ctx.translate(x, y);
@@ -52,11 +61,17 @@ export default class GameEngine {
         this.ctx.drawImage(image, this.getDrawPosition(0), this.getDrawPosition(0), this.iconSize, this.iconSize);
         this.ctx.restore();
     }
-    moveHero(x, y) {
-        const distance = Math.pow(Math.pow((this.heroCoordinates.x - x), 2) + Math.pow((this.heroCoordinates.y - y), 2), .5);
-        console.log(distance);
+    moveHero() {
+        const firstCathet = this.heroCoordinates.y - this.clickCoordinates.y;
+        const secondCathet = this.heroCoordinates.x - this.clickCoordinates.x;
+        // const hypotenuse = Math.pow(Math.pow(firstCathet, 2) + Math.pow(secondCathet, 2), .5);
+
+        this.heroCoordinates = {
+            ... this.heroCoordinates,
+            x: this.heroCoordinates.x - secondCathet / this.heroSpeed,
+            y: this.heroCoordinates.y - firstCathet / this.heroSpeed
+        };
     }
-    //enemy methods
     drawEnemy({ x, y, angle }) {
         const image = new Image();
         
@@ -68,19 +83,17 @@ export default class GameEngine {
         this.ctx.drawImage(image, this.getDrawPosition(0), this.getDrawPosition(0), this.iconSize, this.iconSize);
         this.ctx.restore();
     }
-    //points
+    cutIcon() {
+        this.ctx.beginPath();
+        this.ctx.arc(0, 0, this.halfOfIconSize, 0, Math.PI * 2, true);
+        this.ctx.closePath();
+        this.ctx.clip();
+    }
     addPoints(point) {
         this.points = !point ? ++this.points : (this.points + point);
     }
     drawPoints() {
         this.ctx.font = '30px yasya';
         this.ctx.fillText(`очки : ${this.points}`, this.canvas.width / 2 - 40, 30);
-    }
-    //tools
-    cutIcon() {
-        this.ctx.beginPath();
-        this.ctx.arc(0, 0, this.halfOfIconSize, 0, Math.PI * 2, true);
-        this.ctx.closePath();
-        this.ctx.clip();
     }
 }
