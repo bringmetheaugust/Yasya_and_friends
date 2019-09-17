@@ -1,4 +1,4 @@
-import { GRID_DENSITY } from '@src/component/gameEngine/index.js';
+import { GRID_DENSITY } from '@src/constant/gameInitialParams.js';
 
 export default function drawGridForTesting() {
     this.ctx.save();

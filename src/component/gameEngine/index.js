@@ -1,25 +1,16 @@
 import drawGridForTesting from '@src/util/drawGridForTesting.js';
 import getRadian from '@src/util/getRadian.js';
-
-export const DEFAULT_COORDINATES = {
-    x: null,
-    y: null,
-    angle: 0
-};
-export const GRID_DENSITY = 10;
-const ACCELERATION = .9995;
-const HERO_SPEED = 100;
-const ENEMY_SPEED = 1;
+import * as GAME_PARAMS from '@src/constant/gameInitialParams.js';
 
 export default class GameEngine {
     constructor(selectedHero) {
         this.hero = selectedHero;
-        this.heroCoordinates = DEFAULT_COORDINATES;
-        this.clickCoordinates = DEFAULT_COORDINATES;
-        this.enemies = [ DEFAULT_COORDINATES ];
-        this.enemySpeed = ENEMY_SPEED;
-        this.heroSpeed = HERO_SPEED;
-        this.acceleration = ACCELERATION;
+        this.heroCoordinates = GAME_PARAMS.DEFAULT_COORDINATES;
+        this.clickCoordinates = GAME_PARAMS.DEFAULT_COORDINATES;
+        this.enemies = [ GAME_PARAMS.DEFAULT_COORDINATES ];
+        this.enemySpeed = GAME_PARAMS.ENEMY_SPEED;
+        this.heroSpeed = GAME_PARAMS.HERO_SPEED;
+        this.acceleration = GAME_PARAMS.ACCELERATION;
         this.points = 0;
     }
     init(reactRef) {
@@ -38,7 +29,7 @@ export default class GameEngine {
     setCanvasSize() {
         this.canvas.width = window.innerWidth;
         this.canvas.height = window.innerHeight;
-        this.oneGrid = this.canvas.width / GRID_DENSITY + 1;
+        this.oneGrid = this.canvas.width / GAME_PARAMS.GRID_DENSITY + 1;
         this.iconSize = this.oneGrid / 2;
         this.halfOfIconSize = this.oneGrid / 4;
     }

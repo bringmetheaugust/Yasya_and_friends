@@ -1,10 +1,7 @@
 import GameEngine from '../index.js';
 import randomNumber from '@src/util/randomNumber.js';
-import { DEFAULT_COORDINATES } from '../index.js';
-
-const MAX_ENEMIES = 10;
-const ENEMIES_ADDING_INTERVAL = 1000;
-const ROTATION_SPEED = 2;
+import { DEFAULT_COORDINATES } from '@src/constant/gameInitialParams.js';
+import * as YASYA_PARAMS from '@src/constant/hero_initial_params/yasyaParams.js';
 
 export default class YasyaGame extends GameEngine {
     constructor(selectedHero) {
@@ -27,12 +24,12 @@ export default class YasyaGame extends GameEngine {
             return {
                 x: enemy.x,
                 y: enemy.y + this.enemySpeed,
-                angle: enemy.angle + ROTATION_SPEED
+                angle: enemy.angle + YASYA_PARAMS.ROTATION_SPEED
             };
         });
     }
     addEnemy() {
-        if (this.enemies.length >= MAX_ENEMIES) return clearInterval(this.addEnemyInterval);
+        if (this.enemies.length >= YASYA_PARAMS.MAX_ENEMIES) return clearInterval(this.addEnemyInterval);
         this.enemies.push(DEFAULT_COORDINATES);
     }
     draw() {
@@ -45,7 +42,7 @@ export default class YasyaGame extends GameEngine {
         requestAnimationFrame(this.draw.bind(this));
     }
     runGame() {
-        this.addEnemyInterval = setInterval(() => this.addEnemy(), ENEMIES_ADDING_INTERVAL);
+        this.addEnemyInterval = setInterval(() => this.addEnemy(), YASYA_PARAMS.ENEMIES_ADDING_INTERVAL);
         this.draw();
     }
 }
