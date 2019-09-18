@@ -46,7 +46,18 @@ export default class GameEngine {
 
         this.ctx.save();
         this.ctx.translate(x, y);
-        // this.ctx.rotate(getRadian(angle));
+
+        switch (this.rotateHero) {
+            case true: {
+                console.log('rotation, baby!!');
+                break;
+            }
+            case false: {
+                if (this.clickCoordinates.x < this.heroCoordinates.x) this.ctx.scale(-1, 1);
+                break;
+            }
+        }
+
         this.cutIcon();
         image.src = this.hero.heroImg;
         this.ctx.drawImage(image, this.getDrawPosition(0), this.getDrawPosition(0), this.iconSize, this.iconSize);
@@ -86,5 +97,10 @@ export default class GameEngine {
     drawPoints() {
         this.ctx.font = '30px yasya';
         this.ctx.fillText(`очки : ${this.points}`, this.canvas.width / 2 - 40, 30);
+    }
+    checkTouching() {
+        this.enemies.forEach(enemy => {
+            //TODO: add method to check enemies and heroes touching
+        });
     }
 }

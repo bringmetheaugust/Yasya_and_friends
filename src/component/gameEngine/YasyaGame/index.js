@@ -6,11 +6,11 @@ import * as YASYA_PARAMS from '@src/constant/hero_initial_params/yasyaParams.js'
 export default class YasyaGame extends GameEngine {
     constructor(selectedHero) {
         super(selectedHero);
+        this.rotateHero = YASYA_PARAMS.ROTATE_HERO;
     }
     moveEnemies() {
         this.enemies = this.enemies.map(enemy => {
             const enemyIsGone = this.getDrawPosition(enemy.y) > this.canvas.height;
-
             //check when enemy goes throught canvas field or when enemy icon is new
             if (enemyIsGone || enemy.x === null) {
                 if (enemyIsGone) this.addPoints();
@@ -27,6 +27,7 @@ export default class YasyaGame extends GameEngine {
                 angle: enemy.angle + YASYA_PARAMS.ROTATION_SPEED
             };
         });
+        this.enemies.forEach(enemy => this.drawEnemy(enemy));
     }
     addEnemy() {
         if (this.enemies.length >= YASYA_PARAMS.MAX_ENEMIES) return clearInterval(this.addEnemyInterval);
@@ -34,10 +35,10 @@ export default class YasyaGame extends GameEngine {
     }
     draw() {
         this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
-        this.moveEnemies();
         this.drawHero();
-        this.enemies.forEach(enemy => this.drawEnemy(enemy));
+        this.moveEnemies();
         this.enemySpeed = this.enemySpeed / this.acceleration;
+        this.checkTouching();
         this.drawPoints();
         requestAnimationFrame(this.draw.bind(this));
     }
