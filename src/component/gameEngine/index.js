@@ -23,7 +23,6 @@ export default class GameEngine {
         this.drawPoints();
         this.canvas.onclick = e => this.clickCoordinates = { x: e.clientX, y: e.clientY };
         this.canvas.resize = () => this.setCanvasSize();
-        //TODO: draw temporary grid
         // drawGridForTesting.call(this);
     }
     setCanvasSize() {
@@ -99,8 +98,31 @@ export default class GameEngine {
         this.ctx.fillText(`очки : ${this.points}`, this.canvas.width / 2 - 40, 30);
     }
     checkTouching() {
+        const heroXOneCoordinate = this.heroCoordinates.x - this.halfOfIconSize;
+        const heroXTwoCoordinate = this.heroCoordinates.x + this.halfOfIconSize;
+        const heroYOneCoordinate = this.heroCoordinates.y - this.halfOfIconSize;
+        const heroYTwoCoordinate = this.heroCoordinates.y + this.halfOfIconSize;
+
         this.enemies.forEach(enemy => {
-            //TODO: add method to check enemies and heroes touching
+            const enemyXOneCoordinate = enemy.x - this.halfOfIconSize;
+            const enemyXTwoCoordinate = enemy.x + this.halfOfIconSize;
+            const enemyYOneCoordinate = enemy.y - this.halfOfIconSize;
+            const enemyYTwoCoordinate = enemy.y + this.halfOfIconSize;
+
+            if (
+                //check X axis touching
+                (
+                    (heroXTwoCoordinate > enemyXOneCoordinate && heroXOneCoordinate < enemyXOneCoordinate) ||
+                    (heroXOneCoordinate < enemyXTwoCoordinate && heroXTwoCoordinate > enemyXTwoCoordinate)
+                ) &&
+                //check Y axis touching
+                (
+                    (heroYTwoCoordinate > enemyYOneCoordinate && heroYOneCoordinate < enemyYOneCoordinate) ||
+                    (heroYOneCoordinate < enemyYTwoCoordinate && heroYTwoCoordinate > enemyYTwoCoordinate)
+                )
+            ) {
+                console.log('UUUUUUUUU');
+            }
         });
     }
 }
