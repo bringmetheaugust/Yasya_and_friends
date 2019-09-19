@@ -3,7 +3,7 @@ import getRadian from '@src/util/getRadian.js';
 import * as GAME_PARAMS from '@src/constant/gameInitialParams.js';
 
 export default class GameEngine {
-    constructor(selectedHero) {
+    constructor(selectedHero, closeCanvas) {
         this.hero = selectedHero;
         this.heroCoordinates = GAME_PARAMS.DEFAULT_COORDINATES;
         this.clickCoordinates = GAME_PARAMS.DEFAULT_COORDINATES;
@@ -12,6 +12,7 @@ export default class GameEngine {
         this.heroSpeed = GAME_PARAMS.HERO_SPEED;
         this.acceleration = GAME_PARAMS.ACCELERATION;
         this.points = 0;
+        this.closeCanvas = closeCanvas;
     }
     init(reactRef) {
         this.canvas = reactRef;
@@ -121,7 +122,7 @@ export default class GameEngine {
                     (heroYOneCoordinate < enemyYTwoCoordinate && heroYTwoCoordinate > enemyYTwoCoordinate)
                 )
             ) {
-                console.log('UUUUUUUUU');
+                this.closeCanvas(this.points);
             }
         });
     }

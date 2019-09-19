@@ -4,8 +4,8 @@ import { DEFAULT_COORDINATES } from '@src/constant/gameInitialParams.js';
 import * as YASYA_PARAMS from '@src/constant/hero_initial_params/yasyaParams.js';
 
 export default class YasyaGame extends GameEngine {
-    constructor(selectedHero) {
-        super(selectedHero);
+    constructor(selectedHero, closeCanvas) {
+        super(selectedHero, closeCanvas);
         this.rotateHero = YASYA_PARAMS.ROTATE_HERO;
     }
     moveEnemies() {

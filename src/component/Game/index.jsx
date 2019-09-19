@@ -17,12 +17,13 @@ class Game extends React.Component {
 		this.setState({ gameStarted: true });
 		this.game.runGame();
 	}
+	gameOver = points => this.setState({ gameOver: true, points: points });
 	componentDidMount = () => {
 		const { selectedHero } = this.props.ctx;
 		if (!selectedHero) return;
 		const classForSelectedHero = switcher(selectedHero.id);
 
-		this.game = new classForSelectedHero(selectedHero);
+		this.game = new classForSelectedHero(selectedHero, this.gameOver);
 		this.game.init(this.canvas.current);
 	};
 	render() {
@@ -36,7 +37,7 @@ class Game extends React.Component {
 				<audio autoPlay muted={this.state.gameOver} loop>
 					{/* <source src={selectedHero.audio} type="audio/mpeg"/> */}
 				</audio>
-				{this.state.gameOver && <GameOver />}
+				{this.state.gameOver && <GameOver points={this.state.points} />}
 			</section>
 		)
 	}
