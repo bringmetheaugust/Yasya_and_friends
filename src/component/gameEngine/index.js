@@ -26,7 +26,7 @@ export default class GameEngine {
         this.drawPoints();
         this.canvas.onclick = e => {
             this.clickCoordinates = { x: e.clientX, y: e.clientY };
-            if (!this.cursorCount) this.cursorCount++;
+            this.cursorCount = 1;
             this.drawCursor();
         }
         this.canvas.resize = () => this.setCanvasSize();
@@ -72,7 +72,6 @@ export default class GameEngine {
     moveHero() {
         const firstCathet = this.heroCoordinates.y - this.clickCoordinates.y;
         const secondCathet = this.heroCoordinates.x - this.clickCoordinates.x;
-        // const hypotenuse = Math.pow(Math.pow(firstCathet, 2) + Math.pow(secondCathet, 2), .5);
 
         this.heroCoordinates = {
             ... this.heroCoordinates,
@@ -133,13 +132,21 @@ export default class GameEngine {
         });
     }
     drawCursor() {
-        if (!this.cursorCount || this.cursorCount > 60) return this.cursorCount = 0;
+        if (!this.cursorCount || this.cursorCount >= this.halfOfIconSize) return this.cursorCount = 0;
+        this.ctx.save();
+        this.ctx.globalAlpha = 1 - this.cursorCount / this.halfOfIconSize;
+        this.ctx.beginPath();
+        this.ctx.strokeStyle = GAME_PARAMS.CURSOR_CLICK_COLOR;
+        this.ctx.arc(this.clickCoordinates.x, this.clickCoordinates.y, this.cursorCount, 0, Math.PI * 2, true);
+        this.ctx.stroke();
+        this.ctx.restore();
         this.cursorCount++;
     }
     startDrawCanvas() {
         this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
         this.heroPersonalMethods.forEach(method => method.call(this));
         this.drawHero();
+        this.drawCursor();
         this.enemySpeed = this.enemySpeed / this.acceleration;
         if (!this.gameOver) {
             this.checkTouching();

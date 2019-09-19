@@ -7,3 +7,4 @@ export const GRID_DENSITY = 10;
 export const ACCELERATION = .9995;
 export const HERO_SPEED = 100;
 export const ENEMY_SPEED = 1;
+export const CURSOR_CLICK_COLOR = '#f95de6';
