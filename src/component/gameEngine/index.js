@@ -12,7 +12,9 @@ export default class GameEngine {
         this.heroSpeed = GAME_PARAMS.HERO_SPEED;
         this.acceleration = GAME_PARAMS.ACCELERATION;
         this.points = 0;
+        this.cursorCount = 0;
         this.closeCanvas = closeCanvas;
+        this.gameOver = false;
     }
     init(reactRef) {
         this.canvas = reactRef;
@@ -22,7 +24,11 @@ export default class GameEngine {
         this.clickCoordinates = { x: this.heroCoordinates.x, y: this.heroCoordinates.y };
         this.drawHero(this.heroCoordinates.x, this.heroCoordinates.y);
         this.drawPoints();
-        this.canvas.onclick = e => this.clickCoordinates = { x: e.clientX, y: e.clientY };
+        this.canvas.onclick = e => {
+            this.clickCoordinates = { x: e.clientX, y: e.clientY };
+            if (!this.cursorCount) this.cursorCount++;
+            this.drawCursor();
+        }
         this.canvas.resize = () => this.setCanvasSize();
         // drawGridForTesting.call(this);
     }
@@ -92,7 +98,7 @@ export default class GameEngine {
         this.ctx.clip();
     }
     addPoints(point) {
-        this.points = !point ? ++this.points : (this.points + point);
+        if (!this.gameOver) this.points = !point ? ++this.points : (this.points + point);
     }
     drawPoints() {
         this.ctx.font = '30px yasya';
@@ -122,8 +128,27 @@ export default class GameEngine {
                     (heroYOneCoordinate < enemyYTwoCoordinate && heroYTwoCoordinate > enemyYTwoCoordinate)
                 )
             ) {
-                this.closeCanvas(this.points);
+                this.stopGame();
             }
         });
+    }
+    drawCursor() {
+        if (!this.cursorCount || this.cursorCount > 60) return this.cursorCount = 0;
+        this.cursorCount++;
+    }
+    startDrawCanvas() {
+        this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
+        this.heroPersonalMethods.forEach(method => method.call(this));
+        this.drawHero();
+        this.enemySpeed = this.enemySpeed / this.acceleration;
+        if (!this.gameOver) {
+            this.checkTouching();
+            this.drawPoints();
+        }
+        requestAnimationFrame(this.startDrawCanvas.bind(this));
+    }
+    stopGame() {
+        this.closeCanvas(this.points);
+        this.gameOver = true;
     }
 }

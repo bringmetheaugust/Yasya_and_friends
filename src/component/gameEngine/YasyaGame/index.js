@@ -7,6 +7,7 @@ export default class YasyaGame extends GameEngine {
     constructor(selectedHero, closeCanvas) {
         super(selectedHero, closeCanvas);
         this.rotateHero = YASYA_PARAMS.ROTATE_HERO;
+        this.heroPersonalMethods = [this.moveEnemies];
     }
     moveEnemies() {
         this.enemies = this.enemies.map(enemy => {
@@ -33,17 +34,8 @@ export default class YasyaGame extends GameEngine {
         if (this.enemies.length >= YASYA_PARAMS.MAX_ENEMIES) return clearInterval(this.addEnemyInterval);
         this.enemies.push(DEFAULT_COORDINATES);
     }
-    draw() {
-        this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
-        this.drawHero();
-        this.moveEnemies();
-        this.enemySpeed = this.enemySpeed / this.acceleration;
-        this.checkTouching();
-        this.drawPoints();
-        requestAnimationFrame(this.draw.bind(this));
-    }
     runGame() {
         this.addEnemyInterval = setInterval(() => this.addEnemy(), YASYA_PARAMS.ENEMIES_ADDING_INTERVAL);
-        this.draw();
+        this.startDrawCanvas(this.moveEnemies);
     }
 }
