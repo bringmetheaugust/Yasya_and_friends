@@ -1,17 +1,17 @@
 import React from 'react';
 import { Link } from "react-router-dom";
+import css from './index.module.sass';
 
-export default class GameOver extends React.Component {
-	render() {
-		return(
-			<section className='game-over'>
-				<audio autoPlay loop>
-					{/* <source src={require("@src/media/audio/menu.mp3")} type="audio/mpeg" /> */}
-				</audio>
-				<div className='lose'>вы проиграли :(</div>
-				<div className='points'>вы набрали <span>{this.props.points}</span> очков</div>
-				<Link to='/'>вернуться в меню</Link>
-			</section>
-		)
-	}
-}
+const GameOver = ({ points }) =>
+	<section className={`${css['game-over']} full-screen`}>
+		<audio autoPlay loop>
+			{/* <source src={require("@src/media/audio/menu.mp3")} type="audio/mpeg" /> */}
+		</audio>
+		<div className={css.title}>вы проиграли :(</div>
+		<div className={css.points}>вы набрали
+			<span>{points}</span> очков
+		</div>
+		<Link to='/' className={css.back}>вернуться в меню</Link>
+	</section>
+
+export default GameOver;
