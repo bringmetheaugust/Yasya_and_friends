@@ -1,5 +1,6 @@
 import GameEngine from '../index.js';
 import randomNumber from '@src/util/randomNumber.js';
+import generateId from '@src/util/generateId.js';
 import { DEFAULT_COORDINATES, SPEED_ITEM_TYPE } from '@src/constant/gameInitialParams.js';
 import * as YASYA_PARAMS from '@src/constant/hero_initial_params/yasyaParams.js';
 
@@ -19,6 +20,7 @@ export default class YasyaGame extends GameEngine {
                     ...enemy,
                     x: randomNumber() * this.oneGrid,
                     y: 0 - this.iconSize,
+                    id: generateId()
                 };
             }
             //default

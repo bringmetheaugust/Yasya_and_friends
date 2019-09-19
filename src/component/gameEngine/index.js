@@ -150,7 +150,7 @@ export default class GameEngine {
         });
     }
     catchItem(id) {
-        console.log(id);
+        this.enemies = this.enemies.filter(enemy => enemy.id !== id);
     }
     drawCursor() {
         if (!this.cursorCount || this.cursorCount >= this.halfOfIconSize) return this.cursorCount = 0;
