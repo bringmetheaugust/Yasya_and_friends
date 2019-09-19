@@ -32,12 +32,12 @@ export default class YasyaGame extends GameEngine {
         this.enemies.forEach(enemy => this.drawEnemy(enemy));
     }
     addEnemy(isItem) {
-        if (this.enemies.length >= YASYA_PARAMS.MAX_ENEMIES) return clearInterval(this.addEnemyInterval);
+        if (this.enemies.length >= YASYA_PARAMS.MAX_ENEMIES) clearInterval(this.addEnemyInterval);
         this.enemies.push(isItem ? { ...DEFAULT_COORDINATES, type: SPEED_ITEM_TYPE } : DEFAULT_COORDINATES);
     }
     runGame() {
         this.addEnemyInterval = setInterval(() => this.addEnemy(), YASYA_PARAMS.ENEMIES_ADDING_INTERVAL);
-        this.addSpeedItemInterval = setInterval(() => this.addEnemy(true), YASYA_PARAMS.SPEED_ITEM_INTERVAL);
+        this.addSpeedItemInterval = setInterval(() => {this.addEnemy(true), console.log(this.enemies)}, YASYA_PARAMS.SPEED_ITEM_INTERVAL);
         this.startDrawCanvas(this.moveEnemies);
     }
 }

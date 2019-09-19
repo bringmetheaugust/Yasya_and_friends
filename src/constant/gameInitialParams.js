@@ -2,6 +2,7 @@
 export const ENEMY_TYPE = 'enemy';
 export const SPEED_ITEM_TYPE = 'speed_item';
 export const DEFAULT_COORDINATES = {
+    id: null,
     x: null,
     y: null,
     angle: 0,

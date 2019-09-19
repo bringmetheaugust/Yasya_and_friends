@@ -84,7 +84,7 @@ export default class GameEngine {
         
         this.ctx.save();
         this.ctx.translate(x, y);
-        this.ctx.rotate(getRadian(angle));
+        this.ctx.rotate(getRadian(-angle));
         this.cutIcon();
         switch (type) {
             case GAME_PARAMS.ENEMY_TYPE: {
@@ -141,9 +141,16 @@ export default class GameEngine {
                         this.stopGame();
                         break;
                     }
+                    case GAME_PARAMS.SPEED_ITEM_TYPE: {
+                        this.catchItem(enemy.id);
+                        break;
+                    }
                 }
             }
         });
+    }
+    catchItem(id) {
+        console.log(id);
     }
     drawCursor() {
         if (!this.cursorCount || this.cursorCount >= this.halfOfIconSize) return this.cursorCount = 0;
