@@ -1,6 +1,6 @@
 import GameEngine from '../index.js';
 import randomNumber from '@src/util/randomNumber.js';
-import { DEFAULT_COORDINATES } from '@src/constant/gameInitialParams.js';
+import { DEFAULT_COORDINATES, SPEED_ITEM_TYPE } from '@src/constant/gameInitialParams.js';
 import * as YASYA_PARAMS from '@src/constant/hero_initial_params/yasyaParams.js';
 
 export default class YasyaGame extends GameEngine {
@@ -16,14 +16,14 @@ export default class YasyaGame extends GameEngine {
             if (enemyIsGone || enemy.x === null) {
                 if (enemyIsGone) this.addPoints();
                 return {
-                    ...DEFAULT_COORDINATES,
+                    ...enemy,
                     x: randomNumber() * this.oneGrid,
                     y: 0 - this.iconSize,
                 };
             }
             //default
             return {
-                ...DEFAULT_COORDINATES,
+                ...enemy,
                 x: enemy.x,
                 y: enemy.y + this.enemySpeed,
                 angle: enemy.angle + YASYA_PARAMS.ROTATION_SPEED
@@ -31,12 +31,13 @@ export default class YasyaGame extends GameEngine {
         });
         this.enemies.forEach(enemy => this.drawEnemy(enemy));
     }
-    addEnemy() {
+    addEnemy(isItem) {
         if (this.enemies.length >= YASYA_PARAMS.MAX_ENEMIES) return clearInterval(this.addEnemyInterval);
-        this.enemies.push(DEFAULT_COORDINATES);
+        this.enemies.push(isItem ? { ...DEFAULT_COORDINATES, type: SPEED_ITEM_TYPE } : DEFAULT_COORDINATES);
     }
     runGame() {
         this.addEnemyInterval = setInterval(() => this.addEnemy(), YASYA_PARAMS.ENEMIES_ADDING_INTERVAL);
+        this.addSpeedItemInterval = setInterval(() => this.addEnemy(true), YASYA_PARAMS.SPEED_ITEM_INTERVAL);
         this.startDrawCanvas(this.moveEnemies);
     }
 }

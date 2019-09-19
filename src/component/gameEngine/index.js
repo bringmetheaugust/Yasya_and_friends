@@ -79,14 +79,23 @@ export default class GameEngine {
             y: this.heroCoordinates.y - firstCathet / this.heroSpeed
         };
     }
-    drawEnemy({ x, y, angle }) {
+    drawEnemy({ x, y, angle, type }) {
         const image = new Image();
         
         this.ctx.save();
         this.ctx.translate(x, y);
         this.ctx.rotate(getRadian(angle));
         this.cutIcon();
-        image.src = this.hero.enemyImg;
+        switch (type) {
+            case GAME_PARAMS.ENEMY_TYPE: {
+                image.src = this.hero.enemyImg;
+                break;
+            }
+            case GAME_PARAMS.SPEED_ITEM_TYPE: {
+                image.src = GAME_PARAMS.SPEED_ITEM;
+                break;
+            }
+        }
         this.ctx.drawImage(image, this.getDrawPosition(0), this.getDrawPosition(0), this.iconSize, this.iconSize);
         this.ctx.restore();
     }
