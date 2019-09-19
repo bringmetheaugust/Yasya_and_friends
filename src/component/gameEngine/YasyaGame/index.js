@@ -16,13 +16,14 @@ export default class YasyaGame extends GameEngine {
             if (enemyIsGone || enemy.x === null) {
                 if (enemyIsGone) this.addPoints();
                 return {
+                    ...DEFAULT_COORDINATES,
                     x: randomNumber() * this.oneGrid,
                     y: 0 - this.iconSize,
-                    angle: 0
                 };
             }
             //default
             return {
+                ...DEFAULT_COORDINATES,
                 x: enemy.x,
                 y: enemy.y + this.enemySpeed,
                 angle: enemy.angle + YASYA_PARAMS.ROTATION_SPEED

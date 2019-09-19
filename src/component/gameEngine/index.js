@@ -127,7 +127,12 @@ export default class GameEngine {
                     (heroYOneCoordinate < enemyYTwoCoordinate && heroYTwoCoordinate > enemyYTwoCoordinate)
                 )
             ) {
-                this.stopGame();
+                switch (enemy.type) {
+                    case GAME_PARAMS.ENEMY_TYPE: {
+                        this.stopGame();
+                        break;
+                    }
+                }
             }
         });
     }
