@@ -3,7 +3,7 @@ import getRadian from '@src/util/getRadian.js';
 import * as GAME_PARAMS from '@src/constant/gameInitialParams.js';
 
 export default class GameEngine {
-    constructor(selectedHero, closeCanvas) {
+    constructor(selectedHero, closeCanvas, showItemBoard) {
         this.hero = selectedHero;
         this.heroCoordinates = GAME_PARAMS.DEFAULT_COORDINATES;
         this.clickCoordinates = GAME_PARAMS.DEFAULT_COORDINATES;
@@ -13,9 +13,11 @@ export default class GameEngine {
         this.acceleration = GAME_PARAMS.ACCELERATION;
         this.points = 0;
         this.cursorCount = 0;
+        this.showItemBoard = showItemBoard;
         this.closeCanvas = closeCanvas;
         this.gameOver = false;
     }
+
     init(reactRef) {
         this.canvas = reactRef;
         this.ctx = this.canvas.getContext('2d');
@@ -32,6 +34,7 @@ export default class GameEngine {
         this.canvas.resize = () => this.setCanvasSize();
         // drawGridForTesting.call(this);
     }
+
     setCanvasSize() {
         this.canvas.width = window.innerWidth;
         this.canvas.height = window.innerHeight;
@@ -39,9 +42,11 @@ export default class GameEngine {
         this.iconSize = this.oneGrid / 2;
         this.halfOfIconSize = this.oneGrid / 4;
     }
+
     getDrawPosition(coordinate) {
         return coordinate - this.halfOfIconSize;
     }
+
     drawHero(x = this.heroCoordinates.x, y = this.heroCoordinates.y) {
         const image = new Image();
 
@@ -69,6 +74,7 @@ export default class GameEngine {
         this.ctx.drawImage(image, this.getDrawPosition(0), this.getDrawPosition(0), this.iconSize, this.iconSize);
         this.ctx.restore();
     }
+
     moveHero() {
         const firstCathet = this.heroCoordinates.y - this.clickCoordinates.y;
         const secondCathet = this.heroCoordinates.x - this.clickCoordinates.x;
@@ -79,6 +85,7 @@ export default class GameEngine {
             y: this.heroCoordinates.y - firstCathet / this.heroSpeed
         };
     }
+
     drawEnemy({ x, y, angle, type }) {
         const image = new Image();
         
@@ -86,6 +93,7 @@ export default class GameEngine {
         this.ctx.translate(x, y);
         this.ctx.rotate(getRadian(-angle));
         this.cutIcon();
+
         switch (type) {
             case GAME_PARAMS.ENEMY_TYPE: {
                 image.src = this.hero.enemyImg;
@@ -104,22 +112,27 @@ export default class GameEngine {
                 break;
             }
         }
+        
         this.ctx.drawImage(image, this.getDrawPosition(0), this.getDrawPosition(0), this.iconSize, this.iconSize);
         this.ctx.restore();
     }
+
     cutIcon() {
         this.ctx.beginPath();
         this.ctx.arc(0, 0, this.halfOfIconSize, 0, Math.PI * 2, true);
         this.ctx.closePath();
         this.ctx.clip();
     }
+
     addPoints(point) {
         if (!this.gameOver) this.points = !point ? ++this.points : (this.points + point);
     }
+
     drawPoints() {
         this.ctx.font = '30px yasya';
         this.ctx.fillText(`очки : ${this.points}`, this.canvas.width / 2 - 40, 30);
     }
+
     checkTouching() {
         const heroXOneCoordinate = this.heroCoordinates.x - this.halfOfIconSize;
         const heroXTwoCoordinate = this.heroCoordinates.x + this.halfOfIconSize;
@@ -148,38 +161,37 @@ export default class GameEngine {
             }
         });
     }
+
     catchItem(item) {
         switch (item.type) {
             case GAME_PARAMS.SPEED_ITEM_TYPE: {
                 this.heroSpeed /= 2;
-                this.drawItemBoard(GAME_PARAMS.SPEED_ITEM_BOARD);
+                this.showItemBoard(GAME_PARAMS.SPEED_ITEM_BOARD);
                 break;
             }
             case GAME_PARAMS.DESTROY_ALL_ITEM_TYPE: {
                 this.addPoints(this.enemies.length + 1);
                 this.enemies = [];
-                this.drawItemBoard(GAME_PARAMS.DESTROT_ALL_ITEM_BOARD);
+                this.showItemBoard(GAME_PARAMS.DESTROT_ALL_ITEM_BOARD);
                 break;
             }
             case GAME_PARAMS.FROZEN_ITEM_TYPE: {
                 this.enemySpeed *= GAME_PARAMS.FROZEN_ITEM_EFFECT_COEFICIENT; 
-                this.drawItemBoard(GAME_PARAMS.FROZEN_ITEM_BOARD);
+                this.showItemBoard(GAME_PARAMS.FROZEN_ITEM_BOARD);
                 break;
             }
         }
+        
         this.deleteItem(item.id);
     }
-    drawItemBoard(itemImg) {
-        const image = new Image();
 
-        image.src = itemImg;
-        this.ctx.drawImage(image, 0, this.canvas.height - this.iconSize * 3, 50, 50);
-    }
     deleteItem(id) {
         this.enemies = this.enemies.filter(enemy => enemy.id !== id);
     }
+
     drawCursor() {
         if (!this.cursorCount || this.cursorCount >= this.halfOfIconSize) return this.cursorCount = 0;
+
         this.ctx.save();
         this.ctx.globalAlpha = 1 - this.cursorCount / this.halfOfIconSize;
         this.ctx.beginPath();
@@ -189,18 +201,22 @@ export default class GameEngine {
         this.ctx.restore();
         this.cursorCount++;
     }
+
     startDrawCanvas() {
         this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
         this.heroPersonalMethods.forEach(method => method.call(this));
         this.drawHero();
         this.drawCursor();
         this.enemySpeed = this.enemySpeed / this.acceleration;
+
         if (!this.gameOver) {
             this.checkTouching();
             this.drawPoints();
         }
+        
         requestAnimationFrame(this.startDrawCanvas.bind(this));
     }
+    
     stopGame() {
         this.closeCanvas(this.points);
         this.gameOver = true;

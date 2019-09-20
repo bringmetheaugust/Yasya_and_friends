@@ -12,6 +12,7 @@ class Menu extends Component {
 		super(props);
 		this.state = { secretWord: '' };
 	}
+
 	checkSecretWord = ({ key }) => {
 		const completedLetters = this.state.secretWord + key;
 		
@@ -32,10 +33,14 @@ class Menu extends Component {
 				return;
 			}
 		}
+
 		this.setState({ secretWord: completedLetters});
 	}
+
 	componentDidMount = () => addEventListener('keydown', this.checkSecretWord);
+
 	componentWillUnmount =() => removeEventListener('keydown', this.checkSecretWord);
+	
 	render() {
 		return(
 			<section className={css.menu}>
