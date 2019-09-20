@@ -52,8 +52,16 @@ export default class YasyaGame extends GameEngine {
     getRandomItem() {
         const num = randomNumber();
 
-        if (num >= 1 && num <= 4) return GAME_PARAMS.DESTROY_ALL_ITEM_TYPE;
-        return GAME_PARAMS.SPEED_ITEM_TYPE;
+        switch (num) {
+            case 1:
+            case 2:
+                return GAME_PARAMS.DESTROY_ALL_ITEM_TYPE;
+            case 3:
+            case 4:
+                return GAME_PARAMS.FROZEN_ITEM_TYPE;
+            default:
+                return GAME_PARAMS.SPEED_ITEM_TYPE;
+        }
     }
     runGame() {
         this.addEnemyInterval = setInterval(() => this.addEnemy(), YASYA_PARAMS.ENEMIES_ADDING_INTERVAL);

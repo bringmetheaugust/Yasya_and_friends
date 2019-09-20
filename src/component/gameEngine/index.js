@@ -99,6 +99,10 @@ export default class GameEngine {
                 image.src = GAME_PARAMS.DESTROT_ALL_ITEM;
                 break;
             }
+            case GAME_PARAMS.FROZEN_ITEM_TYPE: {
+                image.src = GAME_PARAMS.FROZEN_ITEM;
+                break;
+            }
         }
         this.ctx.drawImage(image, this.getDrawPosition(0), this.getDrawPosition(0), this.iconSize, this.iconSize);
         this.ctx.restore();
@@ -147,11 +151,16 @@ export default class GameEngine {
     catchItem(item) {
         switch (item.type) {
             case GAME_PARAMS.SPEED_ITEM_TYPE: {
+                this.heroSpeed /= 2;
                 break;
             }
             case GAME_PARAMS.DESTROY_ALL_ITEM_TYPE: {
+                this.addPoints(this.enemies.length + 1);
                 this.enemies = [];
                 break;
+            }
+            case GAME_PARAMS.FROZEN_ITEM_TYPE: {
+                this.enemySpeed = GAME_PARAMS.ENEMY_SPEED;
             }
         }
         this.deleteItem(item.id);
