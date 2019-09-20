@@ -18,7 +18,12 @@ export const HERO_SPEED = 100;
 export const ENEMY_SPEED = 1;
 export const CURSOR_CLICK_COLOR = '#f95de6';
 
-//item images
+//item's icon images
 export const SPEED_ITEM = require('@src/media/items/speedItem/item.jpg');
 export const DESTROT_ALL_ITEM = require('@src/media/items/destroyAll/item.png');
 export const FROZEN_ITEM = require('@src/media/items/frozenItem/item.jpg');
+
+//item's board images
+export const SPEED_ITEM_BOARD = require('@src/media/items/speedItem/image.jpeg');
+export const DESTROT_ALL_ITEM_BOARD = require('@src/media/items/destroyAll/image.jpg');
+export const FROZEN_ITEM_BOARD = require('@src/media/items/frozenItem/image.jpg');

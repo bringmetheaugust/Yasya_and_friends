@@ -55,9 +55,13 @@ export default class YasyaGame extends GameEngine {
         switch (num) {
             case 1:
             case 2:
-                return GAME_PARAMS.DESTROY_ALL_ITEM_TYPE;
             case 3:
             case 4:
+            case 5:
+                return GAME_PARAMS.DESTROY_ALL_ITEM_TYPE;
+            case 6:
+            case 7:
+            case 8:
                 return GAME_PARAMS.FROZEN_ITEM_TYPE;
             default:
                 return GAME_PARAMS.SPEED_ITEM_TYPE;
