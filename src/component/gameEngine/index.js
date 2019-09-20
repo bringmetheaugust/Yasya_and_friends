@@ -140,11 +140,23 @@ export default class GameEngine {
                     (heroYOneCoordinate < enemyYTwoCoordinate && heroYTwoCoordinate > enemyYTwoCoordinate)
                 )
             ) {
-                enemy.type === GAME_PARAMS.ENEMY_TYPE ? this.stopGame() : this.catchItem(enemy.id);
+                enemy.type === GAME_PARAMS.ENEMY_TYPE ? this.stopGame() : this.catchItem(enemy);
             }
         });
     }
-    catchItem(id) {
+    catchItem(item) {
+        switch (item.type) {
+            case GAME_PARAMS.SPEED_ITEM_TYPE: {
+                break;
+            }
+            case GAME_PARAMS.DESTROY_ALL_ITEM_TYPE: {
+                this.enemies = [];
+                break;
+            }
+        }
+        this.deleteItem(item.id);
+    }
+    deleteItem(id) {
         this.enemies = this.enemies.filter(enemy => enemy.id !== id);
     }
     drawCursor() {
