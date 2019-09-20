@@ -26,6 +26,11 @@ class Menu extends Component {
 				this.props.openHero('vitya');
 				return;
 			}
+			case (completedLetters.includes(SECRET_WORDS.SALIY_SECRET_WORD)): {
+				this.setState({ secretWord: '' });
+				this.props.openHero('saliy');
+				return;
+			}
 		}
 		this.setState({ secretWord: completedLetters});
 	}
@@ -35,7 +40,7 @@ class Menu extends Component {
 		return(
 			<section className={css.menu}>
 				<audio autoPlay loop>
-					<source src={MENU_AUDIO} type="audio/mpeg" />
+					{/* <source src={MENU_AUDIO} type="audio/mpeg" /> */}
 				</audio>
 				<div className={css.heroes}>
 					<div className={css.title}>выбери своего героя!!</div>

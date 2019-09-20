@@ -60,7 +60,8 @@ export const HEROES_ID= {
 	yasya: HEROES.yasya.id,
 	yelya: HEROES.yelya.id,
 	natasha: HEROES.natasha.id,
-	vitya: HEROES.vitya.id
+	vitya: HEROES.vitya.id,
+	saliy: HEROES.saliy.id
 }
 
 export default HEROES;
