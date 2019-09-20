@@ -65,7 +65,7 @@ export default class GameEngine {
         }
 
         this.cutIcon();
-        image.src = this.hero.heroImg;
+        image.src = this.gameOver ? GAME_PARAMS.DEAD_HERO : this.hero.heroImg;
         this.ctx.drawImage(image, this.getDrawPosition(0), this.getDrawPosition(0), this.iconSize, this.iconSize);
         this.ctx.restore();
     }
@@ -152,18 +152,18 @@ export default class GameEngine {
         switch (item.type) {
             case GAME_PARAMS.SPEED_ITEM_TYPE: {
                 this.heroSpeed /= 2;
-                this.drawItemBoard(GAME_PARAMS.SPEED_ITEM_TYPE);
+                this.drawItemBoard(GAME_PARAMS.SPEED_ITEM_BOARD);
                 break;
             }
             case GAME_PARAMS.DESTROY_ALL_ITEM_TYPE: {
                 this.addPoints(this.enemies.length + 1);
                 this.enemies = [];
-                this.drawItemBoard(GAME_PARAMS.DESTROY_ALL_ITEM);
+                this.drawItemBoard(GAME_PARAMS.DESTROT_ALL_ITEM_BOARD);
                 break;
             }
             case GAME_PARAMS.FROZEN_ITEM_TYPE: {
-                this.enemySpeed = GAME_PARAMS.ENEMY_SPEED; 
-                this.drawItemBoard(GAME_PARAMS.FROZEN_ITEM);
+                this.enemySpeed *= GAME_PARAMS.FROZEN_ITEM_EFFECT_COEFICIENT; 
+                this.drawItemBoard(GAME_PARAMS.FROZEN_ITEM_BOARD);
                 break;
             }
         }
