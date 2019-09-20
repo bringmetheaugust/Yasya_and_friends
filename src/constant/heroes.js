@@ -43,6 +43,15 @@ const HEROES = {
 		name: 'Витя',
 		description: 'помоги Вите не поехать в Польшу!',
 		opened: false
+	},
+	saliy: {
+		id: 6,
+		heroImg: require('@src/media/heroes/saliy/hero.png'),
+		enemyImg: require('@src/media/heroes/saliy/enemy.jpg'),
+		audio: require('@src/media/heroes/saliy/audio.mp3'),
+		name: 'Саша',
+		description: 'помогите Саше устроится на Нашу Рябу!',
+		opened: false
 	}
 };
 

@@ -35,7 +35,7 @@ class Menu extends Component {
 		return(
 			<section className={css.menu}>
 				<audio autoPlay loop>
-					{/* <source src={MENU_AUDIO} type="audio/mpeg" /> */}
+					<source src={MENU_AUDIO} type="audio/mpeg" />
 				</audio>
 				<div className={css.heroes}>
 					<div className={css.title}>выбери своего героя!!</div>
