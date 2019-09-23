@@ -122,6 +122,10 @@ export default class GameEngine {
         this.ctx.arc(0, 0, this.halfOfIconSize, 0, Math.PI * 2, true);
         this.ctx.closePath();
         this.ctx.clip();
+        this.ctx.beginPath();
+        this.ctx.strokeStyle = GAME_PARAMS.CURSOR_CLICK_COLOR;
+        this.ctx.arc(0, 0, this.halfOfIconSize, 0, Math.PI * 2, true);
+        this.ctx.stroke();
     }
 
     addPoints(point) {

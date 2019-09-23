@@ -5,7 +5,7 @@ import css from './index.module.sass';
 const GameOver = ({ points }) =>
 	<section className={`${css['game-over']} full-screen`}>
 		<audio autoPlay loop>
-			{/* <source src={require("@src/media/audio/menu.mp3")} type="audio/mpeg" /> */}
+			{/* <source src={require("@src/media/menu/menu.mp3")} type="audio/mpeg" /> */}
 		</audio>
 		<div className={css.title}>вы проиграли :(</div>
 		<div className={css.points}>вы набрали
