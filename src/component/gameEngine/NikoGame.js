@@ -2,7 +2,7 @@ import GameEngine from './index.js';
 import randomNumber from '@src/util/randomNumber.js';
 import generateId from '@src/util/generateId.js';
 import * as GAME_PARAMS from '@src/constant/gameInitialParams.js';
-import * as NIKO_PARAMS from '@src/constant/hero_initial_params/yasyaParams.js';
+import * as NIKO_PARAMS from '@src/constant/hero_initial_params/nikoParams.js';
 
 export default class NikoGame extends GameEngine {
     constructor(selectedHero, closeCanvas, showItemBoard) {

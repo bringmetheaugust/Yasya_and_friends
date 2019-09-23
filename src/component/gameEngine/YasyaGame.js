@@ -77,6 +77,6 @@ export default class YasyaGame extends GameEngine {
     runGame() {
         this.addEnemyInterval = setInterval(() => this.addEnemy(), YASYA_PARAMS.ENEMIES_ADDING_INTERVAL);
         this.addRandomItem = setInterval(() => this.addEnemy(true), YASYA_PARAMS.SPEED_ITEM_INTERVAL);
-        this.startDrawCanvas(this.moveEnemies);
+        this.startDrawCanvas();
     }
 }
