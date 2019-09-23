@@ -39,7 +39,6 @@ export default class YasyaGame extends GameEngine {
                 y: enemy.type === GAME_PARAMS.ENEMY_TYPE ?
                     enemy.y  + this.enemySpeed :
                     enemy.y + GAME_PARAMS.ENEMY_SPEED,
-                // y: enemy.y  + this.enemySpeed,
                 angle: enemy.angle + YASYA_PARAMS.ROTATION_SPEED
             };
         });

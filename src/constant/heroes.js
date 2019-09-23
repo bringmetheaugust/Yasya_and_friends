@@ -14,7 +14,7 @@ const HEROES = {
 		enemyImg: require('@src/media/heroes/niko/enemy.jpg'),
 		audio: require('@src/media/heroes/niko/audio.mp3'),
 		name: 'Коля',
-		description: 'помоги Коле убежать от санитаров!',
+		description: 'помоги Коле вылечиться от шизофрении!',
 		opened: true
 	},
 	yelya: {

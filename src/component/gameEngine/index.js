@@ -161,7 +161,26 @@ export default class GameEngine {
                     (heroYOneCoordinate < enemyYTwoCoordinate && heroYTwoCoordinate > enemyYTwoCoordinate)
                 )
             ) {
-                enemy.type === GAME_PARAMS.ENEMY_TYPE ? this.stopGame() : this.catchItem(enemy);
+                if (enemy.type !== GAME_PARAMS.ENEMY_TYPE) return this.catchItem(enemy);
+
+                switch (this.hero.id) {
+                    //Yasya and Natasha
+                    case 1:
+                    case 4:
+                    //Yelya and Vitya
+                    case 3:
+                    case 5: {
+                        this.stopGame();
+                        break;
+                    }
+                    //Niko and Saliy
+                    case 2:
+                    case 6: {
+                        this.addPoints();
+                        this.enemies = this.enemies.filter(en => en.id !== enemy.id);
+                        break;
+                    }
+                }
             }
         });
     }
