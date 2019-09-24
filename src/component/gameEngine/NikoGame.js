@@ -53,24 +53,6 @@ export default class NikoGame extends GameEngine {
         );
     }
 
-    getRandomItem() {
-        const num = randomNumber();
-
-        switch (num) {
-            case 1:
-            case 2:
-            case 3:
-            case 4:
-            case 5:
-                return GAME_PARAMS.DESTROY_ALL_ITEM_TYPE;
-            case 6:
-            case 7:
-                return GAME_PARAMS.FROZEN_ITEM_TYPE;
-            default:
-                return GAME_PARAMS.SPEED_ITEM_TYPE;
-        }
-    }
-
     runGame() {
         this.addEnemyInterval = setInterval(() => this.addEnemy(), NIKO_PARAMS.ENEMIES_ADDING_INTERVAL);
         this.addRandomItem = setInterval(() => this.addEnemy(true), NIKO_PARAMS.SPEED_ITEM_INTERVAL);

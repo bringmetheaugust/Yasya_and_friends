@@ -14,7 +14,7 @@ export default class YelyaGame extends GameEngine {
 
     moveEnemy() {
         this.enemies = this.enemies.map(enemy => {
-            //TODO: check if items
+            //check if items
             if (enemy.type !== GAME_PARAMS.ENEMY_TYPE) {
                 return {
                     ...enemy,
@@ -81,32 +81,13 @@ export default class YelyaGame extends GameEngine {
     }
 
     addEnemy(isItem) {
-        //TODO: новые враги не добавляются, когда интервал % 0
-        if (this.countForAddingNewEnemy % YELYA_PARAMS.ENEMIES_ADDING_INTERVAL) return;
+        if (this.enemies.length && this.countForAddingNewEnemy % YELYA_PARAMS.ENEMIES_ADDING_INTERVAL) return;
 
         this.enemies.push(
             isItem ?
                 { ...GAME_PARAMS.DEFAULT_COORDINATES, type: this.getRandomItem() } :
                 GAME_PARAMS.DEFAULT_COORDINATES
         );
-    }
-
-    getRandomItem() {
-        const num = randomNumber();
-
-        switch (num) {
-            case 1:
-            case 2:
-            case 3:
-            case 4:
-            case 5:
-                return GAME_PARAMS.DESTROY_ALL_ITEM_TYPE;
-            case 6:
-            case 7:
-                return GAME_PARAMS.FROZEN_ITEM_TYPE;
-            default:
-                return GAME_PARAMS.SPEED_ITEM_TYPE;
-        }
     }
 
     runGame() {

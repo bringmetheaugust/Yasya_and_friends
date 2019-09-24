@@ -1,5 +1,6 @@
 import drawGridForTesting from '@src/util/drawGridForTesting.js';
 import getRadian from '@src/util/getRadian.js';
+import randomNumber from '@src/util/randomNumber.js';
 import * as GAME_PARAMS from '@src/constant/gameInitialParams.js';
 
 export default class GameEngine {
@@ -185,6 +186,24 @@ export default class GameEngine {
         });
     }
 
+    getRandomItem() {
+        const num = randomNumber();
+
+        switch (num) {
+            case 1:
+            case 2:
+            case 3:
+            case 4:
+            case 5:
+                return GAME_PARAMS.DESTROY_ALL_ITEM_TYPE;
+            case 6:
+            case 7:
+                return GAME_PARAMS.FROZEN_ITEM_TYPE;
+            default:
+                return GAME_PARAMS.SPEED_ITEM_TYPE;
+        }
+    }
+
     catchItem(item) {
         switch (item.type) {
             case GAME_PARAMS.SPEED_ITEM_TYPE: {
@@ -237,10 +256,11 @@ export default class GameEngine {
             this.drawPoints();
         }
         
-        requestAnimationFrame(this.startDrawCanvas.bind(this));
+        this.gameAnimationFrame = requestAnimationFrame(this.startDrawCanvas.bind(this));
     }
     
     stopGame() {
+        cancelAnimationFrame(this.gameAnimationFrame);
         this.closeCanvas(this.points);
         this.gameOver = true;
     }

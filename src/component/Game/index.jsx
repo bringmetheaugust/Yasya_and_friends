@@ -26,11 +26,11 @@ class Game extends React.Component {
 	showItemBoard = img => {
 		this.setState({ itemBoard: img });
 		setTimeout(() => this.setState({ itemBoard: null }), 3000);
-	};
+	}
 
 	gameOver = points => this.setState({ gameOver: true, points: points });
 
-	componentDidMount = () => {
+	componentDidMount() {
 		const { selectedHero } = this.props.ctx;
 
 		if (!selectedHero) return;
@@ -39,7 +39,7 @@ class Game extends React.Component {
 
 		this.game = new classForSelectedHero(selectedHero, this.gameOver,this.showItemBoard);
 		this.game.init(this.canvas.current);
-	};
+	}
 
 	render() {
 		const { selectedHero } = this.props.ctx;
