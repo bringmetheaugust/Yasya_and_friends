@@ -6,6 +6,7 @@ const HEROES = {
 		audio: require('@src/media/heroes/yasya/audio.mp3'),
 		name: 'Яся',
 		description: 'помоги Ясе добраться до Синявки!',
+		about: '',
 		opened: true
 	},
 	niko: {
@@ -15,6 +16,7 @@ const HEROES = {
 		audio: require('@src/media/heroes/niko/audio.mp3'),
 		name: 'Коля',
 		description: 'помоги Коле вылечиться от шизофрении!',
+		about: '',
 		opened: true
 	},
 	yelya: {
@@ -24,6 +26,7 @@ const HEROES = {
 		audio: require('@src/media/heroes/yelya/audio.mp3'),
 		name: 'Еля',
 		description: 'помоги Еле убежать от касаний чужих людей!',
+		about: '',
 		opened: true
 	},
 	natasha: {
@@ -33,6 +36,7 @@ const HEROES = {
 		audio: require('@src/media/heroes/natasha/audio.mp3'),
 		name: 'Наташа',
 		description: 'помоги Наташе не спиться!',
+		about: '',
 		opened: false
 	},
 	vitya: {
@@ -42,6 +46,7 @@ const HEROES = {
 		audio: require('@src/media/heroes/vitya/audio.mp3'),
 		name: 'Витя',
 		description: 'помоги Вите не поехать в Польшу!',
+		about: '',
 		opened: false
 	},
 	saliy: {
@@ -51,6 +56,7 @@ const HEROES = {
 		audio: require('@src/media/heroes/saliy/audio.mp3'),
 		name: 'Саша',
 		description: 'помогите Саше устроится на Нашу Рябу!',
+		about: '',
 		opened: false
 	}
 };
