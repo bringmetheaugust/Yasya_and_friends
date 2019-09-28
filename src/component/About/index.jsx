@@ -20,7 +20,7 @@ const About = ({ ctx }) =>
             {
                 ctx.heroes.map(hero =>
                     <div className={css.hero} key={hero.id}>
-                        <div className={css.txt}>{hero.description}</div>
+                        <div className={css.txt}>{hero.about}</div>
                         <img src={hero.heroImg} />
                     </div>
                 )

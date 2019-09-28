@@ -1,13 +1,16 @@
+@import '../../style/var.sass';
+    
 .about
     margin: 0 30%
     text-align: center
 
     & > *
-        padding: 30px 0
+        padding: 50px 0
 
     .txt
         padding: 0 10%
-        font-size: 1.2rem
+        font-size: 1.5rem
+        text-shadow: 2px 2px 2px $background
 
 .me
     img
@@ -19,18 +22,17 @@
 
 .hero
     position: relative
-    margin: 20px 0
+    margin: 50px 0
     display: flex
     justify-content: center
     align-items: center
 
     img
         position: absolute
-        top: 0
         z-index: -1
         border-radius: 50%
-        height: 100%
-        opacity: .5
+        height: 80%
+        opacity: .7
 
 .bye
     font-size: 2rem
