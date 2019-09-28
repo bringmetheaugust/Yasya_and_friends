@@ -3,7 +3,7 @@ import { HashRouter as Router, Switch, Route } from "react-router-dom";
 
 import Menu from './Menu/index.jsx';
 import Game from './Game/index.jsx';
-import About from './About/index.js';
+import About from './About/index.jsx';
 import heroesDB from '@src/constant/heroes.js';
 
 const GameContext = React.createContext();
