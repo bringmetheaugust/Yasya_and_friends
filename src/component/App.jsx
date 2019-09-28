@@ -3,6 +3,7 @@ import { HashRouter as Router, Switch, Route } from "react-router-dom";
 
 import Menu from './Menu/index.jsx';
 import Game from './Game/index.jsx';
+import About from './About/index.js';
 import heroesDB from '@src/constant/heroes.js';
 
 const GameContext = React.createContext();
@@ -36,6 +37,7 @@ export default class App extends Component {
 							render={() => <Menu selectHero={this.selectHero} openHero={this.openHero} />}
 						/>
 						<Route exact path='/start' render={() => <Game/>} />
+						<Route exact path='/about' component={About} />
 					</GameContext.Provider>
 				</Switch>
 			</Router>
