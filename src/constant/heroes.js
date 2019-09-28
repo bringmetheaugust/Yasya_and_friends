@@ -43,7 +43,9 @@ const HEROES = {
 		audio: require('@src/media/heroes/yelya/audio.mp3'),
 		name: 'Еля',
 		description: 'помоги Еле убежать от касаний чужих людей!',
-		about: '',
+		about: '\
+			\
+		',
 		opened: true
 	},
 	natasha: {
