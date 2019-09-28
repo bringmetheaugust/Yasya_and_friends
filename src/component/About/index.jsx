@@ -20,8 +20,11 @@ const About = ({ ctx }) =>
             {
                 ctx.heroes.map(hero =>
                     <div className={css.hero} key={hero.id}>
+                        <div className={css.title}>
+                            <h2>{hero.name}</h2>
+                            <img src={hero.heroImg} />
+                        </div>
                         <div className={css.txt}>{hero.about}</div>
-                        <img src={hero.heroImg} />
                     </div>
                 )
             }
