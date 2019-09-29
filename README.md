@@ -5,7 +5,7 @@ Easy gameplay based on mouse clicks, but have a hard levels for reaching great g
 Each hero has a unique gameplay and history.   
 ***
 ### How can I play?
-U can play [here](https://bringmetheaugust.github.io/yasya_and_friends), or deploy this project on Your PC.
+U can play [here](https://bringmetheaugust.github.io/yasya), or deploy this project on Your PC.
 ***
 ### Who made this?
 August Luzanovsky, 2019
