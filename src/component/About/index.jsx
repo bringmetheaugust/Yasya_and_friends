@@ -9,7 +9,7 @@ const ABOUT_AUDIO = require('@src/media/about/about.mp3');
 const About = ({ ctx }) => 
     <section className={css.about}>
         <audio autoPlay>
-			{/* <source src={ABOUT_AUDIO} type="audio/mpeg" /> */}
+			<source src={ABOUT_AUDIO} type="audio/mpeg" />
 		</audio>
         <div className={css.me}>
             <img src={require('@src/media/about/me.jpg')} />
