@@ -42,7 +42,7 @@ const HEROES = {
 		enemyImg: require('@src/media/heroes/yelya/enemy.png'),
 		audio: require('@src/media/heroes/yelya/audio.mp3'),
 		name: 'Еля',
-		description: 'помоги Еле убежать от касаний чужих людей!',
+		description: 'помоги Еле убежать от негров!',
 		about: 'Итс нау о невер, кам холд ми тайт, кисс ми май дарлинг, би май\
 			тунайт. Туморол вил би тудей. Итс нау о невер май лав вил нот веит..\
 		',

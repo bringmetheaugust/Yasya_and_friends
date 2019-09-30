@@ -22,7 +22,7 @@ export const ITEM_BOARD_SIZE = 3; //3 this.iconSize;
 
 //item's icon images
 export const SPEED_ITEM = require('@src/media/items/speedItem/item.jpg');
-export const DESTROT_ALL_ITEM = require('@src/media/items/destroyAll/item.png');
+export const DESTROT_ALL_ITEM = require('@src/media/items/destroyAll/item.jpg');
 export const FROZEN_ITEM = require('@src/media/items/frozenItem/item.jpg');
 
 //item's board images
