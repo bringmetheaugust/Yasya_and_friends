@@ -16,11 +16,16 @@ export default class YelyaGame extends GameEngine {
         this.enemies = this.enemies.map(enemy => {
             //check if items
             if (enemy.type !== GAME_PARAMS.ENEMY_TYPE) {
-                return {
-                    ...enemy,
-                    x: 500,
-                    y: 500
+                //check if items is new
+                if (enemy.x === null) {
+                    return {
+                        ...enemy,
+                        x: randomNumber() * this.oneGrid,
+                        y: randomNumber() * this.canvas.height / GAME_PARAMS.GRID_DENSITY
+                    }
                 }
+
+                return enemy;
             }
 
             //check if enemy is new
