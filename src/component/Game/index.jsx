@@ -24,8 +24,10 @@ class Game extends React.Component {
 	}
 
 	showItemBoard = img => {
+		if (this.state.itemBoard) clearTimeout(this.boardTimeout);
+
 		this.setState({ itemBoard: img });
-		setTimeout(() => this.setState({ itemBoard: null }), 3000);
+		this.boardTimeout = setTimeout(() => this.setState({ itemBoard: null }), 3000);
 	}
 
 	gameOver = points => this.setState({ gameOver: true, points: points });

@@ -61,6 +61,7 @@ export default class GameEngine {
 
         switch (this.rotateHero) {
             case true: {
+                //TODO: meke rotation for hero during click events
                 console.log('rotation, baby!!');
                 break;
             }
