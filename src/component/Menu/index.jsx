@@ -11,7 +11,6 @@ class Menu extends Component {
 	constructor(props) {
 		super(props);
 		this.state = { secretWord: '' };
-		this.menuAudio = React.createRef();
 	}
 
 	checkSecretWord = ({ key }) => {
@@ -38,17 +37,14 @@ class Menu extends Component {
 		this.setState({ secretWord: completedLetters});
 	}
 
-	componentDidMount = () => {
-		addEventListener('keydown', this.checkSecretWord);
-		this.menuAudio.current.play();
-	}
+	componentDidMount = () => addEventListener('keydown', this.checkSecretWord);
 
 	componentWillUnmount =() => removeEventListener('keydown', this.checkSecretWord);
 	
 	render() {
 		return(
 			<section className={css.menu}>
-				<audio loop ref={this.menuAudio}>
+				<audio autoPlay loop>
 					<source src={MENU_AUDIO} type="audio/mpeg" />
 				</audio>
 				<div className={css.heroes}>
