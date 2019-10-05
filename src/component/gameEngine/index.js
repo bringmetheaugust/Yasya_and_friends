@@ -4,7 +4,7 @@ import randomNumber from '@src/util/randomNumber.js';
 import * as GAME_PARAMS from '@src/constant/gameInitialParams.js';
 
 export default class GameEngine {
-    constructor(selectedHero, closeCanvas, showItemBoard) {
+    constructor(selectedHero, closeCanvas, showItemBoard, addPoints) {
         this.hero = selectedHero;
         this.heroCoordinates = GAME_PARAMS.DEFAULT_COORDINATES;
         this.clickCoordinates = GAME_PARAMS.DEFAULT_COORDINATES;
@@ -15,6 +15,7 @@ export default class GameEngine {
         this.points = 0;
         this.cursorCount = 0;
         this.showItemBoard = showItemBoard;
+        this.addPoints = addPoints;
         this.closeCanvas = closeCanvas;
         this.gameOver = false;
     }
@@ -26,7 +27,6 @@ export default class GameEngine {
         this.heroCoordinates = { x: this.canvas.width / 2, y: this.canvas.height * .8 };
         this.clickCoordinates = { x: this.heroCoordinates.x, y: this.heroCoordinates.y };
         this.drawHero(this.heroCoordinates.x, this.heroCoordinates.y);
-        this.drawPoints();
         this.canvas.onclick = e => {
             this.clickCoordinates = { x: e.clientX, y: e.clientY };
             this.cursorCount = 1;
@@ -128,15 +128,6 @@ export default class GameEngine {
         this.ctx.strokeStyle = GAME_PARAMS.CURSOR_CLICK_COLOR;
         this.ctx.arc(0, 0, this.halfOfIconSize, 0, Math.PI * 2, true);
         this.ctx.stroke();
-    }
-
-    addPoints(point) {
-        if (!this.gameOver) this.points = !point ? ++this.points : (this.points + point);
-    }
-
-    drawPoints() {
-        this.ctx.font = '30px yasya';
-        this.ctx.fillText(`очки : ${this.points}`, this.canvas.width / 2 - 40, 30);
     }
 
     checkTouching() {
@@ -252,10 +243,7 @@ export default class GameEngine {
         this.drawCursor();
         this.enemySpeed = this.enemySpeed / this.acceleration;
 
-        if (!this.gameOver) {
-            this.checkTouching();
-            this.drawPoints();
-        }
+        if (!this.gameOver) this.checkTouching();
         
         this.gameAnimationFrame = requestAnimationFrame(this.startDrawCanvas.bind(this));
     }

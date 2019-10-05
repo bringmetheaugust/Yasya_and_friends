@@ -13,7 +13,8 @@ class Game extends React.Component {
 		this.state = {
 			gameOver: false,
 			gameStarted: false,
-			itemBoard: null
+			itemBoard: null,
+			points: 0
 		};
 		this.canvas = React.createRef();
 	}
@@ -30,6 +31,10 @@ class Game extends React.Component {
 		this.boardTimeout = setTimeout(() => this.setState({ itemBoard: null }), 3000);
 	}
 
+	addPoints = points => {
+		if (!this.state.gameOver) this.setState({ points: points + this.state.points || ++this.state.points });
+	}
+
 	gameOver = points => this.setState({ gameOver: true, points: points });
 
 	componentDidMount() {
@@ -39,7 +44,7 @@ class Game extends React.Component {
 
 		const classForSelectedHero = switcher(selectedHero.id);
 
-		this.game = new classForSelectedHero(selectedHero, this.gameOver,this.showItemBoard);
+		this.game = new classForSelectedHero(selectedHero, this.gameOver,this.showItemBoard, this.addPoints);
 		this.game.init(this.canvas.current);
 	}
 
@@ -53,8 +58,9 @@ class Game extends React.Component {
 				{!this.state.gameStarted && <GetReady runGame={this.runGame} />}
 				<canvas className={css.canvas} ref={this.canvas}></canvas>
 				<audio autoPlay muted={this.state.gameOver} loop>
-					<source src={selectedHero.audio} type="audio/mpeg"/>
+					<source src={selectedHero.audio} type="audio/mpeg" />
 				</audio>
+				<div className={css.points}>очки : {this.state.points}</div>
 				{this.state.itemBoard && <img className={css.item} src={this.state.itemBoard} />}
 				{this.state.gameOver && <GameOver points={this.state.points} />}
 			</section>
