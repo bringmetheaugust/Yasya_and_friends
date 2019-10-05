@@ -5,8 +5,8 @@ import * as GAME_PARAMS from '@src/constant/gameInitialParams.js';
 import * as YELYA_PARAMS from '@src/constant/hero_initial_params/yelyaParams.js';
 
 export default class YelyaGame extends GameEngine {
-    constructor(selectedHero, closeCanvas, showItemBoard, addPoints) {
-        super(selectedHero, closeCanvas, showItemBoard, addPoints);
+    constructor(...params) {
+        super(params);
         this.rotateHero = YELYA_PARAMS.ROTATE_HERO;
         this.heroPersonalMethods = [this.moveEnemy];
         this.countForAddingNewEnemy = 1;

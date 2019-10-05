@@ -5,8 +5,8 @@ import * as GAME_PARAMS from '@src/constant/gameInitialParams.js';
 import * as YASYA_PARAMS from '@src/constant/hero_initial_params/yasyaParams.js';
 
 export default class YasyaGame extends GameEngine {
-    constructor(selectedHero, closeCanvas, showItemBoard, addPoints) {
-        super(selectedHero, closeCanvas, showItemBoard, addPoints);
+    constructor(...params) {
+        super(params);
         this.rotateHero = YASYA_PARAMS.ROTATE_HERO;
         this.heroPersonalMethods = [this.moveEnemies];
     }

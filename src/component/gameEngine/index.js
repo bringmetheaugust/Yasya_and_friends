@@ -4,7 +4,7 @@ import randomNumber from '@src/util/randomNumber.js';
 import * as GAME_PARAMS from '@src/constant/gameInitialParams.js';
 
 export default class GameEngine {
-    constructor(selectedHero, closeCanvas, showItemBoard, addPoints) {
+    constructor([ selectedHero, closeCanvas, showItemBoard, addPoints ]) {
         this.hero = selectedHero;
         this.heroCoordinates = GAME_PARAMS.DEFAULT_COORDINATES;
         this.clickCoordinates = GAME_PARAMS.DEFAULT_COORDINATES;
