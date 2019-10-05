@@ -249,7 +249,7 @@ export default class GameEngine {
     }
     
     stopGame() {
-        cancelAnimationFrame(this.gameAnimationFrame);
+        this.stopHeroMethods();
         this.closeCanvas(this.points);
         this.gameOver = true;
     }

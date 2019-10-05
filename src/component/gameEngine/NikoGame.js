@@ -58,4 +58,9 @@ export default class NikoGame extends GameEngine {
         this.addRandomItem = setInterval(() => this.addEnemy(true), NIKO_PARAMS.SPEED_ITEM_INTERVAL);
         this.startDrawCanvas(this.moveEnemies);
     }
+
+    stopHeroMethods() {
+        clearInterval(this.addEnemyInterval);
+        clearInterval(this.addRandomItem);
+    }
 }

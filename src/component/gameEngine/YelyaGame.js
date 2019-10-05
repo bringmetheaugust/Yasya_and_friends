@@ -96,11 +96,16 @@ export default class YelyaGame extends GameEngine {
     }
 
     runGame() {
-        setInterval(() => this.addEnemy(true), YELYA_PARAMS.SPEED_ITEM_INTERVAL);
-        setInterval(() => {
+        this.addEnemyInterval = setInterval(() => this.addEnemy(true), YELYA_PARAMS.SPEED_ITEM_INTERVAL);
+        this.addToCountInterval = setInterval(() => {
             ++this.countForAddingNewEnemy;
             this.addEnemy();
         }, 1000);
         this.startDrawCanvas();
+    }
+
+    stopHeroMethods() {
+        clearInterval(this.addEnemyInterval);
+        clearInterval(this.addToCountInterval);
     }
 }

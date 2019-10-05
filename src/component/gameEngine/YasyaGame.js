@@ -61,4 +61,9 @@ export default class YasyaGame extends GameEngine {
         this.addRandomItem = setInterval(() => this.addEnemy(true), YASYA_PARAMS.SPEED_ITEM_INTERVAL);
         this.startDrawCanvas();
     }
+
+    stopHeroMethods() {
+        clearInterval(this.addEnemyInterval);
+        clearInterval(this.addRandomItem);
+    }
 }

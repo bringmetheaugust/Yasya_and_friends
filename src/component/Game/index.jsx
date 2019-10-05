@@ -48,6 +48,13 @@ class Game extends React.Component {
 		this.game.init(this.canvas.current);
 	}
 
+	componentWillUnmount() {
+		if (this.game === undefined) return;
+
+		cancelAnimationFrame(this.game.gameAnimationFrame);
+		this.game.stopHeroMethods();
+	}
+
 	render() {
 		const { selectedHero } = this.props.ctx;
 		
