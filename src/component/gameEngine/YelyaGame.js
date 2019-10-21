@@ -30,6 +30,8 @@ export default class YelyaGame extends GameEngine {
 
             //check if enemy is new
             if (enemy.x === null) {
+                this.addPoints();
+                
                 switch (randomNumber()) {
                     //top
                     case 1:
