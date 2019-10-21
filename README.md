@@ -1,4 +1,5 @@
 ### What is this?   
+![yasya_and_friend](./icon.png)
 This is no-intellectual web game about Yasya travel and travels of her brave friends, which
 fighting with they fears and problems.   
 Easy gameplay based on mouse clicks, but have a hard levels for reaching great game results.   
