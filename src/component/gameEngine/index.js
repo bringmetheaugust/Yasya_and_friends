@@ -40,8 +40,8 @@ export default class GameEngine {
         this.canvas.width = window.innerWidth;
         this.canvas.height = window.innerHeight;
         this.oneGrid = this.canvas.width / GAME_PARAMS.GRID_DENSITY + 1;
-        this.iconSize = this.oneGrid / 2;
-        this.halfOfIconSize = this.oneGrid / 4;
+        this.iconSize = window.innerWidth > 600 ? this.oneGrid / 2 : this.oneGrid;
+        this.halfOfIconSize = this.iconSize / 2;
     }
 
     getDrawPosition(coordinate) {
