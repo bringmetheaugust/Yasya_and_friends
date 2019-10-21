@@ -35,7 +35,7 @@ class Game extends React.Component {
 		if (!this.state.gameOver) this.setState({ points: points + this.state.points || ++this.state.points });
 	}
 
-	gameOver = points => this.setState({ gameOver: true, points: points });
+	gameOver = () => this.setState({ gameOver: true });
 
 	componentDidMount() {
 		const { selectedHero } = this.props.ctx;
@@ -67,7 +67,7 @@ class Game extends React.Component {
 				<audio autoPlay muted={this.state.gameOver} loop>
 					<source src={selectedHero.audio} type="audio/mpeg" />
 				</audio>
-				<div className={css.points}>очки : {this.state.points}</div>
+				{!this.state.gameOver && <div className={css.points}>очки : {this.state.points}</div>}
 				{this.state.itemBoard && <img className={css.item} src={this.state.itemBoard} />}
 				{this.state.gameOver && <GameOver points={this.state.points} />}
 			</section>

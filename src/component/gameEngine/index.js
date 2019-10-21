@@ -250,7 +250,7 @@ export default class GameEngine {
     
     stopGame() {
         this.stopHeroMethods();
-        this.closeCanvas(this.points);
+        this.closeCanvas();
         this.gameOver = true;
     }
 }
