@@ -1,7 +1,7 @@
 ### What is this?   
 ![yasya_and_friend](./icon.png)
-This is no-intellectual web game about Yasya travel and travels of her brave friends, which
-fighting with they fears and problems.   
+This is non-intellectual web game about Yasya travel and travels of her brave friends, which
+fight with their fears and problems.   
 Easy gameplay based on mouse clicks, but have a hard levels for reaching great game results.   
 Each hero has a unique gameplay and history.   
 ***
@@ -12,5 +12,5 @@ U can play [here](https://bringmetheaugust.github.io/yasya), or deploy this proj
 August Luzanovsky, 2019
 ***
 ### WTF?
-There are also a lot of hidden heroes, which need to type secret words on main menu for their displaying)   
+There are also a lot of hidden heroes, which need to type secret word on main menu for their displaying)   
 Good luck, cowboys!
