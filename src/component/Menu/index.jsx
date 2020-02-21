@@ -32,6 +32,11 @@ class Menu extends Component {
 				this.props.openHero('saliy');
 				return;
 			}
+			case (completedLetters.includes(SECRET_WORDS.NESTER_SECRET_WORD)): {
+				this.setState({ secretWord: '' });
+				this.props.openHero('nester');
+				return;
+			}
 		}
 
 		this.setState({ secretWord: completedLetters});

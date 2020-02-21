@@ -98,6 +98,16 @@ const HEROES = {
 			было бы что-то исправить..\
 		',
 		opened: false
+	},
+	nester: {
+		id: 7,
+		heroImg: require('@src/media/heroes/nester/hero.png'),
+		enemyImg: require('@src/media/heroes/nester/enemy.jpg'),
+		audio: require('@src/media/heroes/nester/audio.mp3'),
+		name: 'Нестер',
+		description: 'помогите Нестеру поймать все гантели и не стать дрыщем!',
+		about: 'Андрюха, я в тебя верю)',
+		opened: false
 	}
 };
 
@@ -107,7 +117,8 @@ export const HEROES_ID= {
 	yelya: HEROES.yelya.id,
 	natasha: HEROES.natasha.id,
 	vitya: HEROES.vitya.id,
-	saliy: HEROES.saliy.id
+	saliy: HEROES.saliy.id,
+	nester: HEROES.nester.id
 }
 
 export default HEROES;
