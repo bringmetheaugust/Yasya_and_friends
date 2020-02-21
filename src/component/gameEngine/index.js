@@ -166,9 +166,10 @@ export default class GameEngine {
                         this.stopGame();
                         break;
                     }
-                    //Niko and Saliy
+                    //Niko, Saliy, Nester
                     case 2:
-                    case 6: {
+                    case 6:
+                    case 7: {
                         this.addPoints();
                         this.enemies = this.enemies.filter(en => en.id !== enemy.id);
                         break;

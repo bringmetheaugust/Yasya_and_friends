@@ -36,7 +36,7 @@ export default class App extends Component {
 							exact path='/'
 							render={() => <Menu selectHero={this.selectHero} openHero={this.openHero} />}
 						/>
-						<Route exact path='/start' render={() => <Game/>} />
+						<Route exact path='/start' component={Game} />
 						<Route exact path='/about' component={About} />
 					</GameContext.Provider>
 				</Switch>
