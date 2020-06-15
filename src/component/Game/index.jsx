@@ -8,16 +8,13 @@ import withContext from '../withContext/index.jsx';
 import switcher from '../gameEngine/switcher.js';
 
 class Game extends React.Component {
-	constructor(props) {
-		super(props);
-		this.state = {
-			gameOver: false,
-			gameStarted: false,
-			itemBoard: null,
-			points: 0
-		};
-		this.canvas = React.createRef();
-	}
+	state = {
+		gameOver: false,
+		gameStarted: false,
+		itemBoard: null,
+		points: 0
+	};
+	canvas = React.createRef();
 	
 	runGame = () => {
 		this.setState({ gameStarted: true });

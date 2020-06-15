@@ -11,10 +11,7 @@ const firstHeroes = Object.values(heroesDB).filter(hero => hero.opened);
 export { GameContext };
 
 export default class App extends Component {
-	constructor(props) {
-		super(props);
-		this.state = { selectedHero: null, heroes: firstHeroes };
-	}
+	state = { selectedHero: null, heroes: firstHeroes };
 
 	selectHero = hero => this.setState({ selectedHero: hero });
 

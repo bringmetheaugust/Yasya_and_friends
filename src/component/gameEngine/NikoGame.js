@@ -15,13 +15,13 @@ export default class NikoGame extends GameEngine {
         this.enemies = this.enemies.map(enemy => {
             const enemyIsGone = this.getDrawPosition(enemy.y) > this.canvas.height;
 
-            //check when item is lost
+            // check when item is lost
             if(enemyIsGone && enemy.type === GAME_PARAMS.ENEMY_TYPE) {
                 this.stopGame();
                 return GAME_PARAMS.DEFAULT_COORDINATES;
             }
 
-            //check when enemy icon is new
+            // check when enemy icon is new
             if (enemy.x === null) {
                 return {
                     ...enemy,
@@ -31,7 +31,7 @@ export default class NikoGame extends GameEngine {
                 };
             }
 
-            //default
+            // default
             return {
                 ...enemy,
                 x: enemy.x,

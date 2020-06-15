@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import {Link} from "react-router-dom";
+import { Link } from "react-router-dom";
 
 import css from './index.module.sass';
 import * as SECRET_WORDS from '@src/constant/secretWords.js';
@@ -8,10 +8,7 @@ import withContext from '../withContext/index.jsx';
 const MENU_AUDIO = require("@src/media/menu/menu.mp3"); 
 
 class Menu extends Component {
-	constructor(props) {
-		super(props);
-		this.state = { secretWord: '' };
-	}
+	state = { secretWord: '' };
 
 	checkSecretWord = ({ key }) => {
 		const completedLetters = this.state.secretWord + key;

@@ -4,10 +4,7 @@ import css from './index.module.sass';
 import withContext from '../withContext/index.jsx';
 
 class GetReady extends Component {
-	constructor(props) {
-		super(props);
-		this.state = { count: 5 };
-	}
+	state = { count: 5 };
 
 	componentDidMount = ()  => {
 		this.count = setInterval(() => {

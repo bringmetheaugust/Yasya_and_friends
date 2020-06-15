@@ -15,13 +15,13 @@ export default class YasyaGame extends GameEngine {
         this.enemies = this.enemies.map(enemy => {
             const enemyIsGone = this.getDrawPosition(enemy.y) > this.canvas.height;
 
-            //check when item is gone
+            // check when item is gone
             if(enemyIsGone && enemy.type !== GAME_PARAMS.ENEMY_TYPE) {
                 this.deleteItem(enemy.id);
                 return enemy;
             }
 
-            //check when enemy goes throught canvas field or when enemy icon is new
+            // check when enemy goes throught canvas field or when enemy icon is new
             if (enemyIsGone || enemy.x === null) {
                 if (enemyIsGone) this.addPoints();
                 return {
@@ -32,7 +32,7 @@ export default class YasyaGame extends GameEngine {
                 };
             }
 
-            //default
+            // default
             return {
                 ...enemy,
                 x: enemy.x,

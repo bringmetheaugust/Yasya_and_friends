@@ -1,4 +1,4 @@
-import drawGridForTesting from '@src/util/drawGridForTesting.js';
+// import drawGridForTesting from '@src/util/drawGridForTesting.js';
 import getRadian from '@src/util/getRadian.js';
 import randomNumber from '@src/util/randomNumber.js';
 import * as GAME_PARAMS from '@src/constant/gameInitialParams.js';
@@ -61,7 +61,7 @@ export default class GameEngine {
 
         switch (this.rotateHero) {
             case true: {
-                //TODO: meke rotation for hero during click events
+                // TODO: make rotation for hero during click events
                 console.log('rotation, baby!!');
                 break;
             }
@@ -143,12 +143,12 @@ export default class GameEngine {
             const enemyYTwoCoordinate = enemy.y + this.halfOfIconSize;
 
             if (
-                //check X axis touching
+                // check X axis touching
                 (
                     (heroXTwoCoordinate > enemyXOneCoordinate && heroXOneCoordinate < enemyXOneCoordinate) ||
                     (heroXOneCoordinate < enemyXTwoCoordinate && heroXTwoCoordinate > enemyXTwoCoordinate)
                 ) &&
-                //check Y axis touching
+                // check Y axis touching
                 (
                     (heroYTwoCoordinate > enemyYOneCoordinate && heroYOneCoordinate < enemyYOneCoordinate) ||
                     (heroYOneCoordinate < enemyYTwoCoordinate && heroYTwoCoordinate > enemyYTwoCoordinate)
@@ -157,16 +157,16 @@ export default class GameEngine {
                 if (enemy.type !== GAME_PARAMS.ENEMY_TYPE) return this.catchItem(enemy);
 
                 switch (this.hero.id) {
-                    //Yasya and Natasha
+                    // Yasya and Natasha
                     case 1:
                     case 4:
-                    //Yelya and Vitya
+                    // Yelya and Vitya
                     case 3:
                     case 5: {
                         this.stopGame();
                         break;
                     }
-                    //Niko, Saliy, Nester, Dasha
+                    // Niko, Saliy, Nester, Dasha
                     case 2:
                     case 6:
                     case 7:

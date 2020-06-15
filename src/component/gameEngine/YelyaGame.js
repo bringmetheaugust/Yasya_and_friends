@@ -14,9 +14,9 @@ export default class YelyaGame extends GameEngine {
 
     moveEnemy() {
         this.enemies = this.enemies.map(enemy => {
-            //check if items
+            // check if items
             if (enemy.type !== GAME_PARAMS.ENEMY_TYPE) {
-                //check if items is new
+                // check if items is new
                 if (enemy.x === null) {
                     return {
                         ...enemy,
@@ -28,12 +28,12 @@ export default class YelyaGame extends GameEngine {
                 return enemy;
             }
 
-            //check if enemy is new
+            // check if enemy is new
             if (enemy.x === null) {
                 this.addPoints();
                 
                 switch (randomNumber()) {
-                    //top
+                    // top
                     case 1:
                     case 2:
                     case 3:
@@ -43,7 +43,7 @@ export default class YelyaGame extends GameEngine {
                             y: - this.iconSize,
                             id: generateId()
                         }
-                    //right
+                    // right
                     case 4:
                     case 5:
                         return {
@@ -52,7 +52,7 @@ export default class YelyaGame extends GameEngine {
                             y: randomNumber() * this.oneGrid,
                             id: generateId()
                         }
-                    //bottom
+                    // bottom
                     case 6:
                     case 7:
                         return {
@@ -61,7 +61,7 @@ export default class YelyaGame extends GameEngine {
                             y: this.canvas.height + this.iconSize,
                             id: generateId()
                         }
-                    //left
+                    // left
                     default:
                         return {
                             ...enemy,
@@ -72,13 +72,13 @@ export default class YelyaGame extends GameEngine {
                 }
             }
 
-            //move enemy
+            // move enemy
             const firstCathet = enemy.x - this.heroCoordinates.x;
             const secondCathet = enemy.y - this.heroCoordinates.y;
 
             return {
                 ...enemy,
-                //TODO: problem this enemy ecceleration
+                // TODO: problem this enemy ecceleration
                 x: enemy.x - firstCathet / GAME_PARAMS.HERO_SPEED * this.enemySpeed,
                 y: enemy.y - secondCathet / GAME_PARAMS.HERO_SPEED * this.enemySpeed
             }
