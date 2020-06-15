@@ -5,7 +5,7 @@ import css from './index.module.sass';
 import * as SECRET_WORDS from '@src/constant/secretWords.js';
 import withContext from '../withContext/index.jsx';
 
-const MENU_AUDIO = require("@src/media/menu/menu.mp3");
+const MENU_AUDIO = require("@src/media/menu/menu.mp3"); 
 
 class Menu extends Component {
 	constructor(props) {
@@ -35,6 +35,11 @@ class Menu extends Component {
 			case (completedLetters.includes(SECRET_WORDS.NESTER_SECRET_WORD)): {
 				this.setState({ secretWord: '' });
 				this.props.openHero('nester');
+				return;
+			}
+			case (completedLetters.includes(SECRET_WORDS.DASHA_SECTER_WORD)): {
+				this.setState({ secretWord: '' });
+				this.props.openHero('dasha');
 				return;
 			}
 		}

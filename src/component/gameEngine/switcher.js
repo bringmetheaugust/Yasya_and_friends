@@ -19,6 +19,8 @@ export default function switcher(heroID) {
             return NikoGame;
         case (HEROES_ID.nester):
             return NikoGame;
+        case (HEROES_ID.dasha):
+            return NikoGame;
         default:
             return null;
     }

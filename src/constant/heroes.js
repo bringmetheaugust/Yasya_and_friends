@@ -108,6 +108,18 @@ const HEROES = {
 		description: 'помогите Нестеру поймать все гантели и не стать дрыщем!',
 		about: 'Андрюха, я в тебя верю)',
 		opened: false
+	},
+	dasha: {
+		id: 8,
+		heroImg: require('@src/media/heroes/dasha/hero.png'),
+		enemyImg: require('@src/media/heroes/dasha/enemy.png'),
+		audio: require('@src/media/heroes/dasha/audio.mp3'),
+		name: 'Дашка',
+		description: 'помогите Дашке выучить Реакт!',
+		about: 'Ничто так не стремиться вырваться с плена тьмы и тщености, как \
+			глупенькая московская принцесса из отдела контент-менеджмента\
+		',
+		opened: false
 	}
 };
 
@@ -118,7 +130,8 @@ export const HEROES_ID= {
 	natasha: HEROES.natasha.id,
 	vitya: HEROES.vitya.id,
 	saliy: HEROES.saliy.id,
-	nester: HEROES.nester.id
+	nester: HEROES.nester.id,
+	dasha: HEROES.dasha.id,
 }
 
 export default HEROES;
