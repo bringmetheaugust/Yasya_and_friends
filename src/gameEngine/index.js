@@ -131,28 +131,12 @@ export default class GameEngine {
     }
 
     checkTouching() {
-        const heroXOneCoordinate = this.heroCoordinates.x - this.halfOfIconSize;
-        const heroXTwoCoordinate = this.heroCoordinates.x + this.halfOfIconSize;
-        const heroYOneCoordinate = this.heroCoordinates.y - this.halfOfIconSize;
-        const heroYTwoCoordinate = this.heroCoordinates.y + this.halfOfIconSize;
-
         this.enemies.forEach(enemy => {
-            const enemyXOneCoordinate = enemy.x - this.halfOfIconSize;
-            const enemyXTwoCoordinate = enemy.x + this.halfOfIconSize;
-            const enemyYOneCoordinate = enemy.y - this.halfOfIconSize;
-            const enemyYTwoCoordinate = enemy.y + this.halfOfIconSize;
-
             if (
-                // check X axis touching
-                (
-                    (heroXTwoCoordinate > enemyXOneCoordinate && heroXOneCoordinate < enemyXOneCoordinate) ||
-                    (heroXOneCoordinate < enemyXTwoCoordinate && heroXTwoCoordinate > enemyXTwoCoordinate)
-                ) &&
-                // check Y axis touching
-                (
-                    (heroYTwoCoordinate > enemyYOneCoordinate && heroYOneCoordinate < enemyYOneCoordinate) ||
-                    (heroYOneCoordinate < enemyYTwoCoordinate && heroYTwoCoordinate > enemyYTwoCoordinate)
-                )
+                Math.sqrt(( // Pythagorean theorem
+                   (this.heroCoordinates.x - enemy.x) ** 2 +
+                   (this.heroCoordinates.y - enemy.y) ** 2)
+                , 2) < this.iconSize
             ) {
                 if (enemy.type !== GAME_PARAMS.ENEMY_TYPE) return this.catchItem(enemy);
 
