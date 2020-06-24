@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { GameContext } from '../App.jsx';
+import { GameContext } from '@src/App.jsx';
 
 const withContext = Component => props => (
     <GameContext.Consumer>

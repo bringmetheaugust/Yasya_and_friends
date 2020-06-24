@@ -1,12 +1,13 @@
 import React from 'react';
+
 import css from './style.module.sass';
 import withContext from '../withContext/index.jsx';
 
-import ABOUT_ME from '@src/constant/aboutMe.js';
+import ABOUT_ME from '@constants/aboutMe.js';
 
 const ABOUT_AUDIO = require('@src/media/about/about.mp3');
 
-const About = ({ ctx }) => 
+const About = ({ ctx }) => (
     <section className={css.about}>
         <audio autoPlay>
 			<source src={ABOUT_AUDIO} type="audio/mpeg" />
@@ -31,5 +32,6 @@ const About = ({ ctx }) =>
         </div>
         <div className={css.bye}>до встречи в аду!</div>
     </section>
+);
 
 export default withContext(About);

@@ -1,8 +1,8 @@
-import GameEngine from './index.js';
-import randomNumber from '@src/util/randomNumber.js';
-import generateId from '@src/util/generateId.js';
-import * as GAME_PARAMS from '@src/constant/gameInitialParams.js';
-import * as NIKO_PARAMS from '@src/constant/hero_initial_params/nikoParams.js';
+import GameEngine from '@engine/index.js';
+import randomNumber from '@utils/randomNumber.js';
+import generateId from '@utils/generateId.js';
+import * as GAME_PARAMS from '@constants/gameInitialParams.js';
+import * as NIKO_PARAMS from '@constants/hero_initial_params/nikoParams.js';
 
 export default class NikoGame extends GameEngine {
     constructor(...params) {

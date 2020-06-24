@@ -1,13 +1,13 @@
-import React, { Component } from 'react';
+import React, { PureComponent } from 'react';
 import { Link } from "react-router-dom";
 
 import css from './index.module.sass';
-import * as SECRET_WORDS from '@src/constant/secretWords.js';
+import * as SECRET_WORDS from '@constants/secretWords.js';
 import withContext from '../withContext/index.jsx';
 
 const MENU_AUDIO = require("@src/media/menu/menu.mp3"); 
 
-class Menu extends Component {
+class Menu extends PureComponent {
 	state = { secretWord: '' };
 
 	checkSecretWord = ({ key }) => {

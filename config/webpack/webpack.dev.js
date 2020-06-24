@@ -24,7 +24,7 @@ config.mode = 'development';
 config.plugins.push(
 	new ExtractTextPlugin("style.css"),
 	new HtmlWebpackPlugin(
-		{ template: './src/html/index.pug' }
+		{ template: './src/index.pug' }
 	)
 );
 

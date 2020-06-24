@@ -1,13 +1,13 @@
-import React from 'react';
+import React, { PureComponent } from 'react';
 import { Redirect } from 'react-router-dom';
 
-import GetReady from '../GetReady/index.jsx';
-import GameOver from '../GameOver/index.jsx';
 import css from './index.module.sass';
-import withContext from '../withContext/index.jsx';
-import switcher from '../gameEngine/switcher.js';
+import GetReady from '@components/GetReady/index.jsx';
+import GameOver from '@components/GameOver/index.jsx';
+import withContext from '@components/withContext/index.jsx';
+import switcher from '@engine/switcher.js';
 
-class Game extends React.Component {
+class Game extends PureComponent {
 	state = {
 		gameOver: false,
 		gameStarted: false,

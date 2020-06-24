@@ -17,7 +17,7 @@ config.plugins.push(
 		allChunks: true
 	}),
 	new HtmlWebpackPlugin(
-		{ template: './src/html/index.pug' }
+		{ template: './src/index.pug' }
 	),
 	new UglifyJsPlugin(),
 	new CleanWebpackPlugin()

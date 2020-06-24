@@ -1,7 +1,7 @@
-import YasyaGame from './YasyaGame.js';
-import NikoGame from './NikoGame.js';
-import YelyaGame from './YelyaGame.js';
-import { HEROES_ID } from '@src/constant/heroes.js';
+import YasyaGame from '@engine/YasyaGame.js';
+import NikoGame from '@engine/NikoGame.js';
+import YelyaGame from '@engine/YelyaGame.js';
+import { HEROES_ID } from '@constants/heroes.js';
 
 export default function switcher(heroID) {
     switch (heroID) {

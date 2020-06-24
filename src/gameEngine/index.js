@@ -1,7 +1,7 @@
 // import drawGridForTesting from '@src/util/drawGridForTesting.js';
-import getRadian from '@src/util/getRadian.js';
-import randomNumber from '@src/util/randomNumber.js';
-import * as GAME_PARAMS from '@src/constant/gameInitialParams.js';
+import getRadian from '@utils/getRadian.js';
+import randomNumber from '@utils/randomNumber.js';
+import * as GAME_PARAMS from '@constants/gameInitialParams.js';
 
 export default class GameEngine {
     constructor([ selectedHero, closeCanvas, showItemBoard, addPoints ]) {
