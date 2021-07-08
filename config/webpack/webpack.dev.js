@@ -1,6 +1,7 @@
 const path = require('path');
 const ExtractTextPlugin = require("extract-text-webpack-plugin");
 const HtmlWebpackPlugin = require('html-webpack-plugin');
+const EnvironmentPlugin = require('webpack').EnvironmentPlugin;
 const config = require('./webpack.config.js');
 
 config.output = {
@@ -25,7 +26,8 @@ config.plugins.push(
 	new ExtractTextPlugin("style.css"),
 	new HtmlWebpackPlugin(
 		{ template: './src/index.pug' }
-	)
+	),
+	new EnvironmentPlugin({ isDev: true })
 );
 
 config.mode='development';

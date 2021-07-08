@@ -53,8 +53,8 @@ const HEROES = {
 		about: 'Итс нау о невер, кам холд ми тайт, кисс ми май дарлинг, би май\
 			тунайт. Туморол вил би тудей. Итс нау о невер май лав вил нот веит..\
 		',
-		opened: true,
-		secretWord: null
+		opened: false,
+		secretWord: 'еля'
 	},
 	natasha: {
 		id: 4,
@@ -101,7 +101,7 @@ const HEROES = {
 		audio: require('@src/media/heroes/nester/audio.mp3'),
 		name: 'Нестер',
 		description: 'помогите Нестеру поймать все гантели и не стать дрыщем!',
-		about: 'Андрюха, я в тебя верю)',
+		about: 'TODO',
 		opened: false,
 		secretWord: 'циганка'
 	},
@@ -127,7 +127,7 @@ const HEROES = {
 		audio: require('@src/media/heroes/raya/audio.mp3'),
 		name: 'Раечка',
 		description: 'помогите Раечке съесть всю Фрутоняню и не помереть с голоду!',
-		about: 'ты шо там, дрочишь???',
+		about: 'TODO',
 		opened: false,
 		secretWord: 'кабанчик'
 	}

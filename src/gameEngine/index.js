@@ -1,10 +1,12 @@
-// import drawGridForTesting from '@src/util/drawGridForTesting.js';
+import drawGrid from '@utilsDev/drawGrid.js';
 import getRadian from '@utils/getRadian.js';
 import randomNumber from '@utils/randomNumber.js';
 import * as GAME_PARAMS from '@constants/initialParams/common.js';
 import * as ITEM_TYPES from '@constants/itemTypes.js';
 import * as ICONS from '@constants/icons.js';
 import { HUNGRY_GAME_TYPE, RALLY_GAME_TYPE, RABBIT_GAME_TYPE } from '@constants/gameTypes.js';
+
+const IS_DEV = process.env.isDev;
 
 export default class GameEngine {
     constructor([ selectedHero, closeCanvas, showItemBoard, addPoints ]) {
@@ -36,7 +38,6 @@ export default class GameEngine {
             this.drawCursor();
         }
         this.canvas.resize = () => this.setCanvasSize();
-        // drawGridForTesting.call(this);
     }
 
     setCanvasSize() {
@@ -212,6 +213,7 @@ export default class GameEngine {
 
     startDrawCanvas() {
         this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
+        IS_DEV && drawGrid.call(this);
         this.heroPersonalMethods.forEach(method => method.call(this));
         this.drawHero();
         this.drawCursor();

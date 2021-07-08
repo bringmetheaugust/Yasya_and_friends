@@ -19,6 +19,7 @@
                     "@constants": "./src/constants",
                     "@style": "./src/style",
                     "@utils": "./src/utils",
+                    "@utilsDev": "./src/utilsDev",
                     "@engine": "./src/gameEngine"
                 }
             }
