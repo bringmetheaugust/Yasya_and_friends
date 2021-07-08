@@ -15,8 +15,7 @@ export default class App extends Component {
 
 	selectHero = hero => this.setState({ selectedHero: hero });
 
-	openHero = hero => {
-		const newHero = heroesDB[hero];
+	openHero = newHero => {
 		const { heroes } = this.state;
 
 		if (heroes.some(hero => hero.id === newHero.id)) return;

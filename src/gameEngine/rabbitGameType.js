@@ -1,13 +1,14 @@
 import GameEngine from '@engine/index.js';
 import randomNumber from '@utils/randomNumber.js';
 import generateId from '@utils/generateId.js';
-import * as GAME_PARAMS from '@constants/gameInitialParams.js';
-import * as YELYA_PARAMS from '@constants/hero_initial_params/yelyaParams.js';
+import * as GAME_PARAMS from '@constants/initialParams/common.js';
+import * as ITEM_TYPES from '@constants/itemTypes.js';
+import * as RABBIT_GAME_PARAMS from '@constants/initialParams/rabbitGameType.js';
 
 export default class YelyaGame extends GameEngine {
     constructor(...params) {
         super(params);
-        this.rotateHero = YELYA_PARAMS.ROTATE_HERO;
+        this.rotateHero = RABBIT_GAME_PARAMS.ROTATE_HERO;
         this.heroPersonalMethods = [this.moveEnemy];
         this.countForAddingNewEnemy = 1;
     }
@@ -15,7 +16,7 @@ export default class YelyaGame extends GameEngine {
     moveEnemy() {
         this.enemies = this.enemies.map(enemy => {
             // check if items
-            if (enemy.type !== GAME_PARAMS.ENEMY_TYPE) {
+            if (enemy.type !== ITEM_TYPES.ENEMY_TYPE) {
                 // check if items is new
                 if (enemy.x === null) {
                     return {
@@ -30,7 +31,7 @@ export default class YelyaGame extends GameEngine {
 
             // check if enemy is new
             if (enemy.x === null) {
-                this.addPoints();
+                this.addPoints(1);
                 
                 switch (randomNumber()) {
                     // top
@@ -88,7 +89,7 @@ export default class YelyaGame extends GameEngine {
     }
 
     addEnemy(isItem) {
-        if (this.enemies.length && this.countForAddingNewEnemy % YELYA_PARAMS.ENEMIES_ADDING_INTERVAL) return;
+        if (this.enemies.length && this.countForAddingNewEnemy % RABBIT_GAME_PARAMS.ENEMIES_ADDING_INTERVAL) return;
 
         this.enemies.push(
             isItem ?
@@ -98,7 +99,7 @@ export default class YelyaGame extends GameEngine {
     }
 
     runGame() {
-        this.addEnemyInterval = setInterval(() => this.addEnemy(true), YELYA_PARAMS.SPEED_ITEM_INTERVAL);
+        this.addEnemyInterval = setInterval(() => this.addEnemy(true), RABBIT_GAME_PARAMS.SPEED_ITEM_INTERVAL);
         this.addToCountInterval = setInterval(() => {
             ++this.countForAddingNewEnemy;
             this.addEnemy();

@@ -5,9 +5,9 @@ import withContext from '../withContext/index.jsx';
 
 const GetReady = props => {
 	const [count, setCount] = useState(5);
+
 	useEffect(() => {
 		const countInterval = setInterval(() => {
-			console.log(77);
 
 			if (count === 1) {
 				setCount('GO!!!' );

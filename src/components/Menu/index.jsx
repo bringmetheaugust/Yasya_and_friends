@@ -2,7 +2,7 @@ import React, { PureComponent } from 'react';
 import { Link } from "react-router-dom";
 
 import css from './index.module.sass';
-import * as SECRET_WORDS from '@constants/secretWords.js';
+import heroes from '@constants/heroes.js';
 import withContext from '../withContext/index.jsx';
 
 const MENU_AUDIO = require("@src/media/menu/menu.mp3"); 
@@ -12,41 +12,18 @@ class Menu extends PureComponent {
 
 	checkSecretWord = ({ key }) => {
 		const completedLetters = this.state.secretWord + key;
-		
-		switch (true) {
-			case (completedLetters.includes(SECRET_WORDS.NATASHA_SECRET_WORD)): {
-				this.setState({ secretWord: '' });
-				this.props.openHero('natasha');
-				return;
-			}
-			case (completedLetters.includes(SECRET_WORDS.VITYA_SECTER_WORD)): {
-				this.setState({ secretWord: '' });
-				this.props.openHero('vitya');
-				return;
-			}
-			case (completedLetters.includes(SECRET_WORDS.SALIY_SECRET_WORD)): {
-				this.setState({ secretWord: '' });
-				this.props.openHero('saliy');
-				return;
-			}
-			case (completedLetters.includes(SECRET_WORDS.NESTER_SECRET_WORD)): {
-				this.setState({ secretWord: '' });
-				this.props.openHero('nester');
-				return;
-			}
-			case (completedLetters.includes(SECRET_WORDS.DASHA_SECTER_WORD)): {
-				this.setState({ secretWord: '' });
-				this.props.openHero('dasha');
-				return;
-			}
-		}
 
-		this.setState({ secretWord: completedLetters});
+		const secretHero = Object.values(heroes).find(({ secretWord }) => completedLetters.includes(secretWord));
+		
+		if (!secretHero) return this.setState({ secretWord: completedLetters});
+
+		this.props.openHero(secretHero);
+		this.setState({ secretWord: '' });
 	}
 
 	componentDidMount = () => addEventListener('keydown', this.checkSecretWord);
 
-	componentWillUnmount =() => removeEventListener('keydown', this.checkSecretWord);
+	componentWillUnmount = () => removeEventListener('keydown', this.checkSecretWord);
 	
 	render() {
 		return(
@@ -57,8 +34,13 @@ class Menu extends PureComponent {
 				<div className={css.heroes}>
 					<div className={css.title}>выбери своего героя!!</div>
 						{
-							this.props.ctx.heroes.map((hero,n) => (
-								<Link onClick={() => this.props.selectHero(hero)} to='/start' className={css.hero} key={n}>
+							this.props.ctx.heroes.map((hero, n) => (
+								<Link
+									onClick={() => this.props.selectHero(hero)}
+									to='/start'
+									className={css.hero}
+									key={n}
+								>
 									<img className={css['hero-icon']} src={hero.heroImg} />
 									<div className={css.name}>{hero.name}</div>
 								</Link>

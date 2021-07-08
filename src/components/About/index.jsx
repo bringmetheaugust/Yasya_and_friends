@@ -3,7 +3,13 @@ import React from 'react';
 import css from './style.module.sass';
 import withContext from '../withContext/index.jsx';
 
-import ABOUT_ME from '@constants/aboutMe.js';
+const ABOUT_ME = '\
+    хочу поблагодарить всех, кто поддерживал меня в моих безнадежных начинаниях,\
+    всех, у кого были сомнения в успехе этой затеи и тех, кто ни минуты не сомневался.\
+    <br/>\
+    Так же благодарен тем, кто был рядом с самого начала моего пути, и тех, кто не сумел\
+    остаться до этого момента.\
+';
 
 const ABOUT_AUDIO = require('@src/media/about/about.mp3');
 
@@ -14,7 +20,7 @@ const About = ({ ctx }) => (
 		</audio>
         <div className={css.me}>
             <img src={require('@src/media/about/me.jpg')} />
-            <div className={css.txt} dangerouslySetInnerHTML={{ __html: ABOUT_ME }}></div>
+            <div className={css.txt} dangerouslySetInnerHTML={{ __html: ABOUT_ME }} />
         </div>
         <div className={css.heroes}>
             <h1>о наших героях</h1>

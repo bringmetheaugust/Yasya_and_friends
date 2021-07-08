@@ -1,6 +1,9 @@
+import { HUNGRY_GAME_TYPE, RALLY_GAME_TYPE, RABBIT_GAME_TYPE } from '@constants/gameTypes';
+
 const HEROES = {
 	yasya: {
 		id: 1,
+		gameType: RALLY_GAME_TYPE,
 		heroImg: require('@src/media/heroes/yasya/hero.png'),
 		enemyImg: require('@src/media/heroes/yasya/enemy.jpeg'),
 		audio: require('@src/media/heroes/yasya/audio.mp3'),
@@ -15,10 +18,12 @@ const HEROES = {
 			позволило бедняжке по-немного забыть о той боли, которая напоминала ей о своём селе,\
 			о Синявке..\
 		',
-		opened: true
+		opened: true,
+		secretWord: null
 	},
 	niko: {
 		id: 2,
+		gameType: HUNGRY_GAME_TYPE,
 		heroImg: require('@src/media/heroes/niko/hero.png'),
 		enemyImg: require('@src/media/heroes/niko/enemy.jpg'),
 		audio: require('@src/media/heroes/niko/audio.mp3'),
@@ -34,10 +39,12 @@ const HEROES = {
 			безрассудного поединка с законом Ньютона, истории и легенды о его подвигах\
 			быстро расходились по всему Каневу, часто привлекая внимание людей.\
 		',
-		opened: true
+		opened: true,
+		secretWord: null
 	},
 	yelya: {
 		id: 3,
+		gameType: RABBIT_GAME_TYPE,
 		heroImg: require('@src/media/heroes/yelya/hero.png'),
 		enemyImg: require('@src/media/heroes/yelya/enemy.png'),
 		audio: require('@src/media/heroes/yelya/audio.mp3'),
@@ -46,10 +53,12 @@ const HEROES = {
 		about: 'Итс нау о невер, кам холд ми тайт, кисс ми май дарлинг, би май\
 			тунайт. Туморол вил би тудей. Итс нау о невер май лав вил нот веит..\
 		',
-		opened: true
+		opened: true,
+		secretWord: null
 	},
 	natasha: {
 		id: 4,
+		gameType: RALLY_GAME_TYPE,
 		heroImg: require('@src/media/heroes/natasha/hero.png'),
 		enemyImg: require('@src/media/heroes/natasha/enemy.png'),
 		audio: require('@src/media/heroes/natasha/audio.mp3'),
@@ -62,10 +71,12 @@ const HEROES = {
 			растущая цена спирного значительно усложняет её цель с каждим разом,\
 			что ставит под угрозу её план - выйти из запоя..\
 		',
-		opened: false
+		opened: false,
+		secretWord : 'abubabu'
 	},
 	vitya: {
 		id: 5,
+		gameType: RABBIT_GAME_TYPE,
 		heroImg: require('@src/media/heroes/vitya/hero.png'),
 		enemyImg: require('@src/media/heroes/vitya/enemy.jpg'),
 		audio: require('@src/media/heroes/vitya/audio.mp3'),
@@ -79,38 +90,24 @@ const HEROES = {
 			и там сносить старые стены и строить новые под пыльным присмотром польского\
 			пана.\
 		',
-		opened: false
-	},
-	saliy: {
-		id: 6,
-		heroImg: require('@src/media/heroes/saliy/hero.png'),
-		enemyImg: require('@src/media/heroes/saliy/enemy.jpg'),
-		audio: require('@src/media/heroes/saliy/audio.mp3'),
-		name: 'Саша',
-		description: 'помогите Саше поймать все объявления и устроится на Нашу Рябу!',
-		about: 'Однажды легенда гласили, что на свет появиться тот, кто ниразу\
-			не покинет свою комнату и порог своего дома; тот, кто мужественно будет\
-			осуждать несовершенство этого мира и оскорблять всех, кто появиться у\
-			него на пути; тот, кто потеряет свю девственность с мамой своего соседа\
-			по дому; тот, чья спина напоминает ствол дерева, которого пытался сломать\
-			сильный ветер, но не сломал, а лишь сильно погнул; тот, кто до сих \
-			пор верит, что он не тот самый человек из этой легенды, и что можно \
-			было бы что-то исправить..\
-		',
-		opened: false
+		opened: false,
+		secretWord: 'angular'
 	},
 	nester: {
 		id: 7,
+		gameType: HUNGRY_GAME_TYPE,
 		heroImg: require('@src/media/heroes/nester/hero.png'),
 		enemyImg: require('@src/media/heroes/nester/enemy.jpg'),
 		audio: require('@src/media/heroes/nester/audio.mp3'),
 		name: 'Нестер',
 		description: 'помогите Нестеру поймать все гантели и не стать дрыщем!',
 		about: 'Андрюха, я в тебя верю)',
-		opened: false
+		opened: false,
+		secretWord: 'циганка'
 	},
 	dasha: {
 		id: 8,
+		gameType: HUNGRY_GAME_TYPE,
 		heroImg: require('@src/media/heroes/dasha/hero.png'),
 		enemyImg: require('@src/media/heroes/dasha/enemy.png'),
 		audio: require('@src/media/heroes/dasha/audio.mp3'),
@@ -119,19 +116,21 @@ const HEROES = {
 		about: 'Ничто так не стремиться вырваться с плена тьмы и тщености, как \
 			глупенькая московская принцесса из отдела контент-менеджмента\
 		',
-		opened: false
+		opened: false,
+		secretWord: 'дура'
+	},
+	raya: {
+		id: 9,
+		gameType: HUNGRY_GAME_TYPE,
+		heroImg: require('@src/media/heroes/raya/hero.jpg'),
+		enemyImg: require('@src/media/heroes/raya/enemy.jpg'),
+		audio: require('@src/media/heroes/raya/audio.mp3'),
+		name: 'Раечка',
+		description: 'помогите Раечке съесть всю Фрутоняню и не помереть с голоду!',
+		about: 'ты шо там, дрочишь???',
+		opened: false,
+		secretWord: 'кабанчик'
 	}
 };
-
-export const HEROES_ID= {
-	niko: HEROES.niko.id,
-	yasya: HEROES.yasya.id,
-	yelya: HEROES.yelya.id,
-	natasha: HEROES.natasha.id,
-	vitya: HEROES.vitya.id,
-	saliy: HEROES.saliy.id,
-	nester: HEROES.nester.id,
-	dasha: HEROES.dasha.id,
-}
 
 export default HEROES;

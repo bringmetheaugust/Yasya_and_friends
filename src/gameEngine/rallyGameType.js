@@ -1,13 +1,14 @@
 import GameEngine from '@engine/index.js';
 import randomNumber from '@utils/randomNumber.js';
 import generateId from '@utils/generateId.js';
-import * as GAME_PARAMS from '@constants/gameInitialParams.js';
-import * as NIKO_PARAMS from '@constants/hero_initial_params/nikoParams.js';
+import * as GAME_PARAMS from '@constants/initialParams/common.js';
+import * as ITEM_TYPES from '@constants/itemTypes.js';
+import * as RALLY_GAME_PARAMS from '@constants/initialParams/rallyGameType.js';
 
-export default class NikoGame extends GameEngine {
+export default class YasyaGame extends GameEngine {
     constructor(...params) {
         super(params);
-        this.rotateHero = NIKO_PARAMS.ROTATE_HERO;
+        this.rotateHero = RALLY_GAME_PARAMS.ROTATE_HERO;
         this.heroPersonalMethods = [this.moveEnemies];
     }
     
@@ -15,14 +16,17 @@ export default class NikoGame extends GameEngine {
         this.enemies = this.enemies.map(enemy => {
             const enemyIsGone = this.getDrawPosition(enemy.y) > this.canvas.height;
 
-            // check when item is lost
-            if(enemyIsGone && enemy.type === GAME_PARAMS.ENEMY_TYPE) {
-                this.stopGame();
-                return GAME_PARAMS.DEFAULT_COORDINATES;
+            // check when item is gone
+            if (enemyIsGone && enemy.type !== ITEM_TYPES.ENEMY_TYPE) {
+                this.deleteItem(enemy.id);
+
+                return enemy;
             }
 
-            // check when enemy icon is new
-            if (enemy.x === null) {
+            // check when enemy goes throught canvas field or when enemy icon is new
+            if (enemyIsGone || enemy.x === null) {
+                if (enemyIsGone) this.addPoints(1);
+
                 return {
                     ...enemy,
                     x: randomNumber() * this.oneGrid,
@@ -35,10 +39,10 @@ export default class NikoGame extends GameEngine {
             return {
                 ...enemy,
                 x: enemy.x,
-                y: enemy.type === GAME_PARAMS.ENEMY_TYPE ?
-                    enemy.y  + this.enemySpeed :
+                y: enemy.type === ITEM_TYPES.ENEMY_TYPE ?
+                    enemy.y + this.enemySpeed :
                     enemy.y + GAME_PARAMS.ENEMY_SPEED,
-                angle: enemy.angle + NIKO_PARAMS.ROTATION_SPEED
+                angle: enemy.angle + RALLY_GAME_PARAMS.ROTATION_SPEED
             };
         });
 
@@ -46,6 +50,8 @@ export default class NikoGame extends GameEngine {
     }
 
     addEnemy(isItem) {
+        if (this.enemies.length >= RALLY_GAME_PARAMS.MAX_ENEMIES && !isItem) return;
+        
         this.enemies.push(
             isItem ?
                 { ...GAME_PARAMS.DEFAULT_COORDINATES, type: this.getRandomItem() } :
@@ -54,9 +60,9 @@ export default class NikoGame extends GameEngine {
     }
 
     runGame() {
-        this.addEnemyInterval = setInterval(() => this.addEnemy(), NIKO_PARAMS.ENEMIES_ADDING_INTERVAL);
-        this.addRandomItem = setInterval(() => this.addEnemy(true), NIKO_PARAMS.SPEED_ITEM_INTERVAL);
-        this.startDrawCanvas(this.moveEnemies);
+        this.addEnemyInterval = setInterval(() => this.addEnemy(), RALLY_GAME_PARAMS.ENEMIES_ADDING_INTERVAL);
+        this.addRandomItem = setInterval(() => this.addEnemy(true), RALLY_GAME_PARAMS.SPEED_ITEM_INTERVAL);
+        this.startDrawCanvas();
     }
 
     stopHeroMethods() {

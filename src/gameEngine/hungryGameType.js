@@ -1,13 +1,14 @@
 import GameEngine from '@engine/index.js';
 import randomNumber from '@utils/randomNumber.js';
 import generateId from '@utils/generateId.js';
-import * as GAME_PARAMS from '@constants/gameInitialParams.js';
-import * as YASYA_PARAMS from '@constants/hero_initial_params/yasyaParams.js';
+import * as ITEM_TYPES from '@constants/itemTypes.js';
+import * as GAME_PARAMS from '@constants/initialParams/common.js';
+import * as HUNGRY_GAME_PARAMS from '@constants/initialParams/hungryGameType.js';
 
-export default class YasyaGame extends GameEngine {
+export default class NikoGame extends GameEngine {
     constructor(...params) {
         super(params);
-        this.rotateHero = YASYA_PARAMS.ROTATE_HERO;
+        this.rotateHero = HUNGRY_GAME_PARAMS.ROTATE_HERO;
         this.heroPersonalMethods = [this.moveEnemies];
     }
     
@@ -15,15 +16,15 @@ export default class YasyaGame extends GameEngine {
         this.enemies = this.enemies.map(enemy => {
             const enemyIsGone = this.getDrawPosition(enemy.y) > this.canvas.height;
 
-            // check when item is gone
-            if(enemyIsGone && enemy.type !== GAME_PARAMS.ENEMY_TYPE) {
-                this.deleteItem(enemy.id);
-                return enemy;
+            // check when item is lost
+            if (enemyIsGone && enemy.type === ITEM_TYPES.ENEMY_TYPE) {
+                this.stopGame();
+
+                return GAME_PARAMS.DEFAULT_COORDINATES;
             }
 
-            // check when enemy goes throught canvas field or when enemy icon is new
-            if (enemyIsGone || enemy.x === null) {
-                if (enemyIsGone) this.addPoints();
+            // check when enemy icon is new
+            if (enemy.x === null) {
                 return {
                     ...enemy,
                     x: randomNumber() * this.oneGrid,
@@ -36,10 +37,10 @@ export default class YasyaGame extends GameEngine {
             return {
                 ...enemy,
                 x: enemy.x,
-                y: enemy.type === GAME_PARAMS.ENEMY_TYPE ?
+                y: enemy.type === ITEM_TYPES.ENEMY_TYPE ?
                     enemy.y  + this.enemySpeed :
                     enemy.y + GAME_PARAMS.ENEMY_SPEED,
-                angle: enemy.angle + YASYA_PARAMS.ROTATION_SPEED
+                angle: enemy.angle + HUNGRY_GAME_PARAMS.ROTATION_SPEED
             };
         });
 
@@ -47,8 +48,6 @@ export default class YasyaGame extends GameEngine {
     }
 
     addEnemy(isItem) {
-        if (this.enemies.length >= YASYA_PARAMS.MAX_ENEMIES && !isItem) return;
-        
         this.enemies.push(
             isItem ?
                 { ...GAME_PARAMS.DEFAULT_COORDINATES, type: this.getRandomItem() } :
@@ -57,9 +56,9 @@ export default class YasyaGame extends GameEngine {
     }
 
     runGame() {
-        this.addEnemyInterval = setInterval(() => this.addEnemy(), YASYA_PARAMS.ENEMIES_ADDING_INTERVAL);
-        this.addRandomItem = setInterval(() => this.addEnemy(true), YASYA_PARAMS.SPEED_ITEM_INTERVAL);
-        this.startDrawCanvas();
+        this.addEnemyInterval = setInterval(() => this.addEnemy(), HUNGRY_GAME_PARAMS.ENEMIES_ADDING_INTERVAL);
+        this.addRandomItem = setInterval(() => this.addEnemy(true), HUNGRY_GAME_PARAMS.SPEED_ITEM_INTERVAL);
+        this.startDrawCanvas(this.moveEnemies);
     }
 
     stopHeroMethods() {
