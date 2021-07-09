@@ -4,7 +4,7 @@ import { HashRouter as Router, Switch, Route } from "react-router-dom";
 import Menu from '@components/Menu/index.jsx';
 import Game from '@components/Game/index.jsx';
 import About from '@components/About/index.jsx';
-import heroesDB from '@constants/heroes.js';
+import heroesDB from '@constants/heroes.cjs';
 
 const GameContext = React.createContext();
 const firstHeroes = Object.values(heroesDB).filter(hero => hero.opened);

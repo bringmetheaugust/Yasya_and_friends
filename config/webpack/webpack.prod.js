@@ -1,28 +1,23 @@
-const path = require('path');
-const ExtractTextPlugin = require("extract-text-webpack-plugin");
-const CleanWebpackPlugin = require('clean-webpack-plugin');
-const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
-const HtmlWebpackPlugin = require('html-webpack-plugin');
-const config = require('./webpack.config.js');
+import { resolve } from "path";
+import MiniCssExtractPlugin from 'mini-css-extract-plugin';
+import UglifyJsPlugin from 'uglifyjs-webpack-plugin';
 
-config.output = {
-	path: path.resolve(__dirname, '../../dist'),
-	filename: '[chunkhash].js',
-	publicPath: ''
+import config from './webpack.config.js';
+
+export default {
+	...config,
+	output: {
+		path: resolve(resolve(), './dist'),
+		filename: '[chunkhash].js',
+		publicPath: ''
+	},
+	plugins: [
+		...config.plugins,
+		new MiniCssExtractPlugin({
+			filename: '[name].css',
+			chunkFilename: '[name].chunk.css'
+		}),
+		new UglifyJsPlugin(),
+	],
+	mode: 'production',
 };
-
-config.plugins.push(
-	new ExtractTextPlugin({
-		filename: "[chunkhash].css",
-		allChunks: true
-	}),
-	new HtmlWebpackPlugin(
-		{ template: './src/index.pug' }
-	),
-	new UglifyJsPlugin(),
-	new CleanWebpackPlugin()
-);
-
-config.mode = 'production';
-
-module.exports = config;

@@ -1,35 +1,35 @@
-const path = require('path');
-const ExtractTextPlugin = require("extract-text-webpack-plugin");
-const HtmlWebpackPlugin = require('html-webpack-plugin');
-const EnvironmentPlugin = require('webpack').EnvironmentPlugin;
-const config = require('./webpack.config.js');
+import { resolve } from 'path';
+import MiniCssExtractPlugin from 'mini-css-extract-plugin';
+import webpack from 'webpack';
 
-config.output = {
-	path: path.resolve(__dirname, './dist'),
-	filename: 'bundle.js',
-	publicPath: '/'
+const { EnvironmentPlugin } = webpack;
+
+import config from './webpack.config.js';
+
+export default {
+	...config,
+	output: {
+		path: resolve(resolve(), './dist'),
+		filename: 'bundle.js',
+		publicPath: '/'
+	},
+	devtool: 'source-map',
+	devServer: {
+		port: 2100,
+		contentBase: './dist',
+		watchContentBase: true,
+		compress: true,
+		overlay: true,
+		historyApiFallback: true,
+	},
+	mode: 'development',
+	plugins: [
+		...config.plugins,
+		new MiniCssExtractPlugin({
+			filename: '[name].css',
+			chunkFilename: '[name].chunk.css'
+		}),
+		new EnvironmentPlugin({ isDev: true })
+	],
+	mode: 'development'
 };
-
-config.devtool = 'source-map';
-
-config.devServer = {
-	contentBase: './dist',
-	watchContentBase: true,
-	compress: true,
-	overlay: true,
-	historyApiFallback: true,
-};
-
-config.mode = 'development';
-
-config.plugins.push(
-	new ExtractTextPlugin("style.css"),
-	new HtmlWebpackPlugin(
-		{ template: './src/index.pug' }
-	),
-	new EnvironmentPlugin({ isDev: true })
-);
-
-config.mode='development';
-
-module.exports = config;

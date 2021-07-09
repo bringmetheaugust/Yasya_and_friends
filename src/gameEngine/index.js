@@ -1,12 +1,12 @@
 import drawGrid from '@utilsDev/drawGrid.js';
 import getRadian from '@utils/getRadian.js';
 import randomNumber from '@utils/randomNumber.js';
-import * as GAME_PARAMS from '@constants/initialParams/common.js';
+import * as GAME_PARAMS from '@constants/gameConfig/common.js';
 import * as ITEM_TYPES from '@constants/itemTypes.js';
-import * as ICONS from '@constants/icons.js';
+import * as ICONS from '@constants/icons.cjs';
 import { HUNGRY_GAME_TYPE, RALLY_GAME_TYPE, RABBIT_GAME_TYPE } from '@constants/gameTypes.js';
 
-const IS_DEV = process.env.isDev;
+const IS_DEV = typeof process !== 'undefined' && process.env.isDev;
 
 export default class GameEngine {
     constructor([ selectedHero, closeCanvas, showItemBoard, addPoints ]) {

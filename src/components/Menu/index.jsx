@@ -2,10 +2,8 @@ import React, { PureComponent } from 'react';
 import { Link } from "react-router-dom";
 
 import css from './index.module.sass';
-import heroes from '@constants/heroes.js';
+import heroes from '@constants/heroes.cjs';
 import withContext from '../withContext/index.jsx';
-
-const MENU_AUDIO = require("@src/media/menu/menu.mp3"); 
 
 class Menu extends PureComponent {
 	state = { secretWord: '' };
@@ -29,7 +27,7 @@ class Menu extends PureComponent {
 		return(
 			<section className={css.menu}>
 				<audio autoPlay loop>
-					<source src={MENU_AUDIO} type="audio/mpeg" />
+					<source src={require("@src/media/menu/menu.mp3").default} type="audio/mpeg" />
 				</audio>
 				<div className={css.heroes}>
 					<div className={css.title}>выбери своего героя!!</div>

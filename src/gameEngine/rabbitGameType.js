@@ -1,9 +1,9 @@
 import GameEngine from '@engine/index.js';
 import randomNumber from '@utils/randomNumber.js';
 import generateId from '@utils/generateId.js';
-import * as GAME_PARAMS from '@constants/initialParams/common.js';
+import * as GAME_PARAMS from '@constants/gameConfig/common.js';
 import * as ITEM_TYPES from '@constants/itemTypes.js';
-import * as RABBIT_GAME_PARAMS from '@constants/initialParams/rabbitGameType.js';
+import * as RABBIT_GAME_PARAMS from '@constants/gameConfig/rabbitGameType.js';
 
 export default class YelyaGame extends GameEngine {
     constructor(...params) {

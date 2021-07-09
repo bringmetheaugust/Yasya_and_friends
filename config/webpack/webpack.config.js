@@ -1,57 +1,58 @@
-const ExtractTextPlugin = require("extract-text-webpack-plugin");
+import { resolve } from 'path';
+import MiniCssExtractPlugin from 'mini-css-extract-plugin';
+import HtmlWebpackPlugin from 'html-webpack-plugin';
 
-module.exports = {
+export default {
 	entry: { name: './src/index.js' },
 	resolve: {
-        extensions: ['.ts', '.tsx', '.js', 'jsx', '.json']
+        extensions: [ '.ts', '.tsx', '.js', '.jsx', '.cjs' ,'.json' ]
     },
+	experiments: {
+		topLevelAwait: true
+	},
 	module: {
 		rules: [
 			{
-                test: /\.(ts|js)x?$/,
+                test: /\.(ts|js|cjs)x?$/,
                 exclude: /(node_modules|bower_components)/,
                 loader: "babel-loader",
 			},
 			{
 				test: /\.(module.sass|module.scss)$/,
-				use: ExtractTextPlugin.extract({
-					use: [
-						{
-							loader: 'css-loader',
-							options: {
-								modules: true,
-								localIdentName: '[local]_[hash:5]'
-							}
-						},
-						{
-							loader: 'postcss-loader'
-						},
-						{
-							loader: 'sass-loader'
+				use: [
+					MiniCssExtractPlugin.loader,
+					{
+						loader: 'css-loader',
+						options: {
+							modules: true,
 						}
-					],
-					fallback: 'style-loader'
-				})
+					},
+					{
+						loader: 'postcss-loader',
+						options: {
+							postcssOptions: {
+								config: resolve(resolve(), "./config/postcss.config.cjs"),
+							},
+						}
+					},
+					{ loader: 'sass-loader' }
+				]
 			},
 			{
 				test: /[^(.module)]\.(sass|scss)$/,
-				use: ExtractTextPlugin.extract({
-					use: [
-						{
-							loader: 'css-loader',
-							options: {
-								minimize: true,
-							}
-						},
-						{
-							loader: 'postcss-loader'
-						},
-						{
-							loader: 'sass-loader'
+				use: [
+					MiniCssExtractPlugin.loader,
+					{ loader: 'css-loader' },
+					{
+						loader: 'postcss-loader',
+						options: {
+							postcssOptions: {
+								config: resolve(resolve(), "./config/postcss.config.cjs"),
+							},
 						}
-					],
-					fallback: 'style-loader'
-				})
+					},
+					{ loader: 'sass-loader' }
+				]
 			},
 			{
 	            test: /\.pug$/,
@@ -92,5 +93,12 @@ module.exports = {
 			}
 		],
 	},
-	plugins: [],
+	plugins: [
+		new HtmlWebpackPlugin(
+			{
+				template: './src/index.pug',
+				favicon: './src/media/favicon.png'
+			}
+		)
+	],
 };

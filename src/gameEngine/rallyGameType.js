@@ -1,9 +1,9 @@
 import GameEngine from '@engine/index.js';
 import randomNumber from '@utils/randomNumber.js';
 import generateId from '@utils/generateId.js';
-import * as GAME_PARAMS from '@constants/initialParams/common.js';
+import * as GAME_PARAMS from '@constants/gameConfig/common.js';
 import * as ITEM_TYPES from '@constants/itemTypes.js';
-import * as RALLY_GAME_PARAMS from '@constants/initialParams/rallyGameType.js';
+import * as RALLY_GAME_PARAMS from '@constants/gameConfig/rallyGameType.js';
 
 export default class YasyaGame extends GameEngine {
     constructor(...params) {
