@@ -1,7 +1,7 @@
 // item's icon images
 const SPEED_ITEM_ICON = require('@src/media/items/speedItem/item.jpg').default;
 const DESTROT_ALL_ITEM_ICON = require('@src/media/items/destroyAll/item.jpg').default;
-const FROZEN_ITEM_ICON = require('@src/media/items/frozenItem/item.jpg').default;
+const FROZEN_ITEM_ICON = require('@src/media/items/frozenItem/item.png').default;
 
 // item's board images
 const SPEED_ITEM_BOARD_ICON = require('@src/media/items/speedItem/board.gif').default;

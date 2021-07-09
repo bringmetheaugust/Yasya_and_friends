@@ -25,7 +25,7 @@ class Game extends PureComponent {
 		if (this.state.itemBoard) clearTimeout(this.boardTimeout);
 
 		this.setState({ itemBoard: img });
-		this.boardTimeout = setTimeout(() => this.setState({ itemBoard: null }), 3000);
+		this.boardTimeout = setTimeout(() => this.setState({ itemBoard: null }), 4000);
 	}
 
 	addPoints = points => {
@@ -66,7 +66,12 @@ class Game extends PureComponent {
 					<source src={selectedHero.audio} type="audio/mpeg" />
 				</audio>
 				{ !gameOver && <div className={css.points}>очки : {points}</div> }
-				{ itemBoard && <img className={css.item} src={itemBoard} /> }
+				{
+					itemBoard &&
+					<div className={css.board}>
+						<img className={css.item} src={itemBoard} />
+					</div>
+				}
 				{ gameOver && <GameOver points={points} /> }
 			</section>
 		)

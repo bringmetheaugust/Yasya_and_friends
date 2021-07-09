@@ -26,7 +26,7 @@ const GetReady = props => {
 		<div className={`${css.ready} full-screen`}>
 			<div className={css.title}>{props.ctx.selectedHero.description}</div>
 			<div className={css.count}>{count}</div>
-			приготовся!!
+			приготовься!!
 		</div>
 	);
 };
