@@ -1,10 +1,12 @@
-@import 'reset.sass'
-@import 'font.sass'
-@import 'common.sass'
+@import ./_reset
+@import ./font
+@import ./common
+@import ./_var
 
 #root
 	overflow-x: hidden
 	font-family: yasya
+	text-shadow: 2px 1px 3px $purpur
 
 	& > *
 		min-height: 100vh
