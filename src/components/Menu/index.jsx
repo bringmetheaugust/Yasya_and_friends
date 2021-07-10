@@ -1,11 +1,11 @@
-import React, { PureComponent } from 'react';
+import React, { Component } from 'react';
 import { Link } from "react-router-dom";
 
 import css from './index.module.sass';
 import heroes from '@constants/heroes.cjs';
 import withContext from '../withContext/index.jsx';
 
-class Menu extends PureComponent {
+class Menu extends Component {
 	state = { secretWord: '' };
 
 	checkSecretWord = ({ key }) => {
@@ -19,9 +19,17 @@ class Menu extends PureComponent {
 		this.setState({ secretWord: '' });
 	}
 
-	componentDidMount = () => addEventListener('keydown', this.checkSecretWord);
+	shouldComponentUpdate(nextProps) {
+		return this.props.ctx.heroes.length !== nextProps.ctx.heroes.length;
+	}
 
-	componentWillUnmount = () => removeEventListener('keydown', this.checkSecretWord);
+	componentDidMount() {
+		addEventListener('keydown', this.checkSecretWord);
+	}
+
+	componentWillUnmount() {
+		removeEventListener('keydown', this.checkSecretWord);
+	}
 	
 	render() {
 		return(

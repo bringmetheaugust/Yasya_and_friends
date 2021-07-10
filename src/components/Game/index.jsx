@@ -6,6 +6,7 @@ import GetReady from '@components/GetReady/index.jsx';
 import GameOver from '@components/GameOver/index.jsx';
 import withContext from '@components/withContext/index.jsx';
 import switcher from '@engine/switcher.js';
+import * as ICONS from '@constants/icons.cjs';
 
 class Game extends PureComponent {
 	state = {
@@ -41,8 +42,13 @@ class Game extends PureComponent {
 
 		const classForSelectedHero = switcher(selectedHero.gameType);
 
-		this.game = new classForSelectedHero(selectedHero, this.gameOver,this.showItemBoard, this.addPoints);
+		this.game = new classForSelectedHero(selectedHero, this.gameOver, this.showItemBoard, this.addPoints);
 		this.game.init(this.canvas.current);
+
+		// * preload board images
+		for (let image in ICONS) {
+			new Image().src = ICONS[image];
+		}
 	}
 
 	componentWillUnmount() {
@@ -67,10 +73,11 @@ class Game extends PureComponent {
 				</audio>
 				{ !gameOver && <div className={css.points}>очки : {points}</div> }
 				{
-					itemBoard &&
-					<div className={css.board}>
-						<img className={css.item} src={itemBoard} />
-					</div>
+					itemBoard && (
+						<div className={css.board}>
+							<img className={css.item} src={itemBoard} />
+						</div>
+					)
 				}
 				{ gameOver && <GameOver points={points} /> }
 			</section>

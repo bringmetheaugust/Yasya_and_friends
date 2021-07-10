@@ -10,7 +10,7 @@ const GetReady = props => {
 		const countInterval = setInterval(() => {
 
 			if (count === 1) {
-				setCount('GO!!!' );
+				setCount('GO!!!');
 				setTimeout(() => props.runGame(), 1000);
 				clearInterval(countInterval);
 				return;
@@ -26,7 +26,7 @@ const GetReady = props => {
 		<div className={`${css.ready} full-screen`}>
 			<div className={css.title}>{props.ctx.selectedHero.description}</div>
 			<div className={css.count}>{count}</div>
-			приготовься!!
+			приготовьтесь!!
 		</div>
 	);
 };
