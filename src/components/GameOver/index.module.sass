@@ -1,10 +1,8 @@
-@import '../../style/var.sass'
+@import '../../style/_var'
+@import '../../style/_mixin'
     
 .game-over
-    display: flex
-    flex-direction: column
-    justify-content: center
-    align-items: center
+    +flex($dir: column)
     background-color: $purpur
 
 .title

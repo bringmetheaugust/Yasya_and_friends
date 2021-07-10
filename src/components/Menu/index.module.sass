@@ -1,9 +1,8 @@
-@import '../../style/var.sass'
-    
+@import '../../style/_var'
+@import '../../style/_mixin'
+
 .menu
-	display: flex
-	justify-content: center
-	align-items: center
+	+flex()
 
 .title
 	font-size: 4rem
@@ -14,9 +13,7 @@
 .hero
 	border-radius: 10px
 	cursor: pointer
-	display: flex
-	align-items: center
-	justify-content: space-around
+	+flex($jc: space-around)
 	padding: 5%
 	font-size: 3rem
 	transition: background .5s
@@ -36,8 +33,7 @@
 	border: 1px solid $purpur
 
 .author
-	position: fixed
-	bottom: 0
+	+fixed($bottom: 0)
 	width: 100%
 	padding: 5px 0
 	background: linear-gradient(0deg, $background 0%, transparent 100%)

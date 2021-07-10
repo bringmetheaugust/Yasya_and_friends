@@ -1,15 +1,33 @@
+@import '../../style/_mixin'
+    
 .canvas
-    position: absolute
-    top: 0
-    left: 0
+    +absolute($left: 0, $top: 0)
     width: 100%
 
+.board
+    overflow: hidden
+    z-index: -1
+    pointer-events: none
+    +absolute($left: 0, $top: 0)
+    +flex()
+    width: 100vw
+    height: 100vh
+    max-width: 100%
+    max-height: 100%
+
 .item
-    position: absolute
-    bottom: 0
-    left: 0
-    width: 15%
+    width: 100%
+    border-radius: 50%
+    animation: hideItem 4s both
 
 .points
     font-size: 30px
     text-align: center
+
+@keyframes hideItem
+    0%
+        transform: scale(1)
+        opacity: .5
+    100%
+        transform: scale(0)
+        opacity: .3

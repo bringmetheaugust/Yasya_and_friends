@@ -1,5 +1,6 @@
-@import '../../style/var.sass';
-    
+@import '../../style/_var'
+@import '../../style/_mixin'
+
 .about
     margin: 0 30%
     text-align: center
@@ -10,7 +11,6 @@
     .txt
         padding: 0 10%
         font-size: 1.5rem
-        text-shadow: 2px 2px 2px $background
 
 .me
     img
@@ -25,9 +25,7 @@
     margin: 100px 0
 
     .title
-        display: flex
-        justify-content: center
-        align-items: center
+        +flex()
         margin: 10px 0
 
         & > *

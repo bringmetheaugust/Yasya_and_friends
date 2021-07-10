@@ -8,6 +8,10 @@
             "@babel/plugin-proposal-class-properties",
             { "loose": true }
         ],
+        [
+            "@babel/plugin-proposal-private-methods",
+            { "loose": true }
+        ],
         "@babel/plugin-syntax-dynamic-import",
         [
             "module-resolver",
@@ -19,6 +23,7 @@
                     "@constants": "./src/constants",
                     "@style": "./src/style",
                     "@utils": "./src/utils",
+                    "@utilsDev": "./src/utilsDev",
                     "@engine": "./src/gameEngine"
                 }
             }

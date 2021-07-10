@@ -25,11 +25,11 @@ class Game extends PureComponent {
 		if (this.state.itemBoard) clearTimeout(this.boardTimeout);
 
 		this.setState({ itemBoard: img });
-		this.boardTimeout = setTimeout(() => this.setState({ itemBoard: null }), 3000);
+		this.boardTimeout = setTimeout(() => this.setState({ itemBoard: null }), 4000);
 	}
 
 	addPoints = points => {
-		if (!this.state.gameOver) this.setState({ points: points + this.state.points || ++this.state.points });
+		if (!this.state.gameOver) this.setState({ points: points + this.state.points });
 	}
 
 	gameOver = () => this.setState({ gameOver: true });
@@ -39,7 +39,7 @@ class Game extends PureComponent {
 
 		if (!selectedHero) return;
 
-		const classForSelectedHero = switcher(selectedHero.id);
+		const classForSelectedHero = switcher(selectedHero.gameType);
 
 		this.game = new classForSelectedHero(selectedHero, this.gameOver,this.showItemBoard, this.addPoints);
 		this.game.init(this.canvas.current);
@@ -54,19 +54,25 @@ class Game extends PureComponent {
 
 	render() {
 		const { selectedHero } = this.props.ctx;
+		const { gameOver, itemBoard, points } = this.state;
 		
 		if (!selectedHero) return <Redirect to='/' />;
 		
 		return(
 			<section className={css.game}>
-				{!this.state.gameStarted && <GetReady runGame={this.runGame} />}
-				<canvas className={css.canvas} ref={this.canvas}></canvas>
+				{ !this.state.gameStarted && <GetReady runGame={this.runGame} /> }
+				<canvas className={css.canvas} ref={this.canvas} />
 				<audio autoPlay muted={this.state.gameOver} loop>
 					<source src={selectedHero.audio} type="audio/mpeg" />
 				</audio>
-				{!this.state.gameOver && <div className={css.points}>очки : {this.state.points}</div>}
-				{this.state.itemBoard && <img className={css.item} src={this.state.itemBoard} />}
-				{this.state.gameOver && <GameOver points={this.state.points} />}
+				{ !gameOver && <div className={css.points}>очки : {points}</div> }
+				{
+					itemBoard &&
+					<div className={css.board}>
+						<img className={css.item} src={itemBoard} />
+					</div>
+				}
+				{ gameOver && <GameOver points={points} /> }
 			</section>
 		)
 	}

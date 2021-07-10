@@ -3,18 +3,21 @@ import React from 'react';
 import css from './style.module.sass';
 import withContext from '../withContext/index.jsx';
 
-import ABOUT_ME from '@constants/aboutMe.js';
-
-const ABOUT_AUDIO = require('@src/media/about/about.mp3');
+const ABOUT_ME = `
+    Хочу поблагодарить всех, кто поддерживал меня в моих безнадежных начинаниях,
+    всех, у кого были сомнения в успехе этой затеи и тех, кто ни минуты не сомневался.
+    <br/>
+    Так же благодарен тем, кто был рядом с самого начала, и тем, кто не сумел остаться до самого конца.
+`;
 
 const About = ({ ctx }) => (
     <section className={css.about}>
         <audio autoPlay>
-			<source src={ABOUT_AUDIO} type="audio/mpeg" />
+			<source src={require('@src/media/about/about.mp3').default} type="audio/mpeg" />
 		</audio>
         <div className={css.me}>
-            <img src={require('@src/media/about/me.jpg')} />
-            <div className={css.txt} dangerouslySetInnerHTML={{ __html: ABOUT_ME }}></div>
+            <img src={require('@src/media/about/me.jpg').default} />
+            <div className={css.txt} dangerouslySetInnerHTML={{ __html: ABOUT_ME }} />
         </div>
         <div className={css.heroes}>
             <h1>о наших героях</h1>

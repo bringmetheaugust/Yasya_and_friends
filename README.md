@@ -21,8 +21,8 @@ You can play it [here](https://bringmetheaugust.github.io/yasya)🦸
 
 ###### Required global packages:
 
- * *NodeJS v6+*
- * *yarn*
+ * *NodeJS v14.17.0*
+ * *yarn v1+*
 
 ## Who made this?
 

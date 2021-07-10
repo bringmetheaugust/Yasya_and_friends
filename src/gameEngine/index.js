@@ -1,7 +1,12 @@
-// import drawGridForTesting from '@src/util/drawGridForTesting.js';
+import drawGrid from '@utilsDev/drawGrid.js';
 import getRadian from '@utils/getRadian.js';
 import randomNumber from '@utils/randomNumber.js';
-import * as GAME_PARAMS from '@constants/gameInitialParams.js';
+import * as GAME_PARAMS from '@constants/gameConfig/common.js';
+import * as ITEM_TYPES from '@constants/itemTypes.js';
+import * as ICONS from '@constants/icons.cjs';
+import { HUNGRY_GAME_TYPE, RALLY_GAME_TYPE, RABBIT_GAME_TYPE } from '@constants/gameTypes.js';
+
+const IS_DEV = typeof process !== 'undefined' && process.env.isDev;
 
 export default class GameEngine {
     constructor([ selectedHero, closeCanvas, showItemBoard, addPoints ]) {
@@ -33,7 +38,6 @@ export default class GameEngine {
             this.drawCursor();
         }
         this.canvas.resize = () => this.setCanvasSize();
-        // drawGridForTesting.call(this);
     }
 
     setCanvasSize() {
@@ -72,7 +76,7 @@ export default class GameEngine {
         }
 
         this.cutIcon();
-        image.src = this.gameOver ? GAME_PARAMS.DEAD_HERO : this.hero.heroImg;
+        image.src = this.gameOver ? ICONS.DEAD_HERO_ICON : this.hero.heroImg;
         this.ctx.drawImage(image, this.getDrawPosition(0), this.getDrawPosition(0), this.iconSize, this.iconSize);
         this.ctx.restore();
     }
@@ -97,20 +101,20 @@ export default class GameEngine {
         this.cutIcon();
 
         switch (type) {
-            case GAME_PARAMS.ENEMY_TYPE: {
+            case ITEM_TYPES.ENEMY_TYPE: {
                 image.src = this.hero.enemyImg;
                 break;
             }
-            case GAME_PARAMS.SPEED_ITEM_TYPE: {
-                image.src = GAME_PARAMS.SPEED_ITEM;
+            case ITEM_TYPES.SPEED_ITEM_TYPE: {
+                image.src = ICONS.SPEED_ITEM_ICON;
                 break;
             }
-            case GAME_PARAMS.DESTROY_ALL_ITEM_TYPE: {
-                image.src = GAME_PARAMS.DESTROT_ALL_ITEM;
+            case ITEM_TYPES.DESTROY_ALL_ITEM_TYPE: {
+                image.src = ICONS.DESTROT_ALL_ITEM_ICON;
                 break;
             }
-            case GAME_PARAMS.FROZEN_ITEM_TYPE: {
-                image.src = GAME_PARAMS.FROZEN_ITEM;
+            case ITEM_TYPES.FROZEN_ITEM_TYPE: {
+                image.src = ICONS.FROZEN_ITEM_ICON;
                 break;
             }
         }
@@ -133,29 +137,23 @@ export default class GameEngine {
     checkTouching() {
         this.enemies.forEach(enemy => {
             if (
-                Math.sqrt(( // Pythagorean theorem
+                // * Pythagorean theorem
+                Math.sqrt((
                    (this.heroCoordinates.x - enemy.x) ** 2 +
                    (this.heroCoordinates.y - enemy.y) ** 2)
                 , 2) < this.iconSize
             ) {
-                if (enemy.type !== GAME_PARAMS.ENEMY_TYPE) return this.catchItem(enemy);
+                if (enemy.type !== ITEM_TYPES.ENEMY_TYPE) return this.catchItem(enemy);
 
-                switch (this.hero.id) {
-                    // Yasya and Natasha
-                    case 1:
-                    case 4:
-                    // Yelya and Vitya
-                    case 3:
-                    case 5: {
+                switch (this.hero.gameType) {
+                    case RALLY_GAME_TYPE:
+                    case RABBIT_GAME_TYPE: {
                         this.stopGame();
                         break;
                     }
-                    // Niko, Saliy, Nester, Dasha
-                    case 2:
-                    case 6:
-                    case 7:
-                    case 8: {
-                        this.addPoints();
+
+                    case HUNGRY_GAME_TYPE: {
+                        this.addPoints(1);
                         this.enemies = this.enemies.filter(en => en.id !== enemy.id);
                         break;
                     }
@@ -167,37 +165,28 @@ export default class GameEngine {
     getRandomItem() {
         const num = randomNumber();
 
-        switch (num) {
-            case 1:
-            case 2:
-            case 3:
-            case 4:
-            case 5:
-                return GAME_PARAMS.DESTROY_ALL_ITEM_TYPE;
-            case 6:
-            case 7:
-                return GAME_PARAMS.FROZEN_ITEM_TYPE;
-            default:
-                return GAME_PARAMS.SPEED_ITEM_TYPE;
-        }
+        if (num > 0 && num < 6) return ITEM_TYPES.DESTROY_ALL_ITEM_TYPE;
+        if (num > 5 && num < 8) return ITEM_TYPES.FROZEN_ITEM_TYPE;
+
+        return ITEM_TYPES.SPEED_ITEM_TYPE;
     }
 
     catchItem(item) {
         switch (item.type) {
-            case GAME_PARAMS.SPEED_ITEM_TYPE: {
+            case ITEM_TYPES.SPEED_ITEM_TYPE: {
                 this.heroSpeed /= 2;
-                this.showItemBoard(GAME_PARAMS.SPEED_ITEM_BOARD);
+                this.showItemBoard(ICONS.SPEED_ITEM_BOARD_ICON);
                 break;
             }
-            case GAME_PARAMS.DESTROY_ALL_ITEM_TYPE: {
+            case ITEM_TYPES.DESTROY_ALL_ITEM_TYPE: {
                 this.addPoints(this.enemies.length + 1);
                 this.enemies = [];
-                this.showItemBoard(GAME_PARAMS.DESTROT_ALL_ITEM_BOARD);
+                this.showItemBoard(ICONS.DESTROT_ALL_ITEM_BOARD_ICON);
                 break;
             }
-            case GAME_PARAMS.FROZEN_ITEM_TYPE: {
+            case ITEM_TYPES.FROZEN_ITEM_TYPE: {
                 this.enemySpeed *= GAME_PARAMS.FROZEN_ITEM_EFFECT_COEFICIENT; 
-                this.showItemBoard(GAME_PARAMS.FROZEN_ITEM_BOARD);
+                this.showItemBoard(ICONS.FROZEN_ITEM_BOARD_ICON);
                 break;
             }
         }
@@ -224,6 +213,7 @@ export default class GameEngine {
 
     startDrawCanvas() {
         this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
+        IS_DEV && drawGrid.call(this);
         this.heroPersonalMethods.forEach(method => method.call(this));
         this.drawHero();
         this.drawCursor();

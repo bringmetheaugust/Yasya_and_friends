@@ -4,7 +4,7 @@ import { HashRouter as Router, Switch, Route } from "react-router-dom";
 import Menu from '@components/Menu/index.jsx';
 import Game from '@components/Game/index.jsx';
 import About from '@components/About/index.jsx';
-import heroesDB from '@constants/heroes.js';
+import heroesDB from '@constants/heroes.cjs';
 
 const GameContext = React.createContext();
 const firstHeroes = Object.values(heroesDB).filter(hero => hero.opened);
@@ -15,8 +15,7 @@ export default class App extends Component {
 
 	selectHero = hero => this.setState({ selectedHero: hero });
 
-	openHero = hero => {
-		const newHero = heroesDB[hero];
+	openHero = newHero => {
 		const { heroes } = this.state;
 
 		if (heroes.some(hero => hero.id === newHero.id)) return;
