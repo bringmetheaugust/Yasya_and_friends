@@ -1,17 +1,18 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 
 import css from './index.module.sass';
-import withContext from '../withContext/index.jsx';
+import { GameContext } from '@src/App.jsx';
 
-const GetReady = props => {
+const GetReady = ({ runGame }) => {
 	const [count, setCount] = useState(5);
+	const context = useContext(GameContext);
 
 	useEffect(() => {
 		const countInterval = setInterval(() => {
 
 			if (count === 1) {
 				setCount('GO!!!');
-				setTimeout(() => props.runGame(), 1000);
+				setTimeout(() => runGame(), 1000);
 				clearInterval(countInterval);
 				return;
 			}
@@ -24,11 +25,11 @@ const GetReady = props => {
 
 	return(
 		<div className={`${css.ready} full-screen`}>
-			<div className={css.title}>{props.ctx.selectedHero.description}</div>
+			<div className={css.title}>{context.selectedHero.description}</div>
 			<div className={css.count}>{count}</div>
 			приготовьтесь!!
 		</div>
 	);
 };
 
-export default withContext(GetReady);
+export default GetReady;

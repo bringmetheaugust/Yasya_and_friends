@@ -165,8 +165,8 @@ export default class GameEngine {
     getRandomItem() {
         const num = randomNumber();
 
-        if (num > 0 && num < 6) return ITEM_TYPES.DESTROY_ALL_ITEM_TYPE;
-        if (num > 5 && num < 8) return ITEM_TYPES.FROZEN_ITEM_TYPE;
+        if (num >= 0 && num <= 4) return ITEM_TYPES.DESTROY_ALL_ITEM_TYPE;
+        if (num >= 5 && num <= 7) return ITEM_TYPES.FROZEN_ITEM_TYPE;
 
         return ITEM_TYPES.SPEED_ITEM_TYPE;
     }

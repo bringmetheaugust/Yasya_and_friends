@@ -2,9 +2,9 @@ import React, { PureComponent } from 'react';
 import { Redirect } from 'react-router-dom';
 
 import css from './index.module.sass';
-import GetReady from '@components/GetReady/index.jsx';
-import GameOver from '@components/GameOver/index.jsx';
-import withContext from '@components/withContext/index.jsx';
+import GetReady from '@containers/GetReady';
+import GameOver from '@containers/GameOver';
+import withContext from '@components/withContext.jsx';
 import switcher from '@engine/switcher.js';
 import * as ICONS from '@constants/icons.cjs';
 
