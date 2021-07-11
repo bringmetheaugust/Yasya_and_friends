@@ -20,6 +20,7 @@
                 "alias": {
                     "@src": "./src",
                     "@components": "./src/components",
+                    "@containers": "./src/containers",
                     "@constants": "./src/constants",
                     "@style": "./src/style",
                     "@utils": "./src/utils",

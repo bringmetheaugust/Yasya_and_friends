@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
 import { HashRouter as Router, Switch, Route } from "react-router-dom";
 
-import Menu from '@components/Menu/index.jsx';
-import Game from '@components/Game/index.jsx';
-import About from '@components/About/index.jsx';
+import Menu from '@containers/Menu/index.jsx';
+import Game from '@containers/Game/index.jsx';
+import About from '@containers/About/index.jsx';
 import heroesDB from '@constants/heroes.cjs';
 
 const GameContext = React.createContext();
@@ -17,10 +17,8 @@ export default class App extends Component {
 
 	openHero = newHero => {
 		const { heroes } = this.state;
-
-		if (heroes.some(hero => hero.id === newHero.id)) return;
 		
-		this.setState({ heroes: [ ...heroes, newHero ] });
+		this.setState({ heroes: [ newHero, ...heroes ] });
 	}
 
 	render() {
