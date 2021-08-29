@@ -129,5 +129,17 @@ module.exports = {
 		about: `Мне так и не удалось понять кто ты на самом деле.`,
 		opened: false,
 		secretWord: 'кабанчик'
+	},
+	raya: {
+		id: 10,
+		gameType: HUNGRY_GAME_TYPE,
+		heroImg: require('@src/media/heroes/megija/hero.jpg').default,
+		enemyImg: require('@src/media/heroes/megija/enemy.jpg').default,
+		audio: require('@src/media/heroes/megija/audio.mp3').default,
+		name: 'Мегия',
+		description: 'Помогите Мегии уделить Рафику больше внимания!',
+		about: `Просто спасибо за то, что ты есть.`,
+		opened: false,
+		secretWord: 'рафик'
 	}
 };

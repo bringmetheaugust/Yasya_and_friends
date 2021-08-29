@@ -10,7 +10,7 @@
     "build": "webpack --config config/webpack/webpack.prod.js"
   },
   "engines": {
-    "node": "14.17.0",
+    "node": "14.17.3",
     "yarn": "1.x"
   },
   "type": "module",
