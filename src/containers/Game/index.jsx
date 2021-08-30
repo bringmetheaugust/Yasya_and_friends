@@ -12,7 +12,7 @@ class Game extends PureComponent {
 	state = {
 		gameOver: false,
 		gameStarted: false,
-		itemBoard: null,
+		itemBoard: [],
 		points: 0
 	};
 	canvas = React.createRef();
@@ -23,10 +23,10 @@ class Game extends PureComponent {
 	}
 
 	showItemBoard = img => {
-		if (this.state.itemBoard) clearTimeout(this.boardTimeout);
+		if (!!this.state.itemBoard.length) clearTimeout(this.boardTimeout);
 
-		this.setState({ itemBoard: img });
-		this.boardTimeout = setTimeout(() => this.setState({ itemBoard: null }), 4000);
+		this.setState({ itemBoard: [ ...this.state.itemBoard, img ] });
+		this.boardTimeout = setTimeout(() => this.setState({ itemBoard: [] }), 4000);
 	}
 
 	addPoints = points => {
@@ -72,13 +72,14 @@ class Game extends PureComponent {
 					<source src={selectedHero.audio} type="audio/mpeg" />
 				</audio>
 				{ !gameOver && <div className={css.points}>очки : {points}</div> }
-				{
-					itemBoard && (
-						<div className={css.board}>
-							<img className={css.item} src={itemBoard} />
-						</div>
-					)
-				}
+				<div className={css.board}>
+					{
+						!!itemBoard.length &&
+						this.state.itemBoard.map((board, key) => (
+							<img className={css.item} src={board} key={key} />
+						))
+					}
+				</div>
 				{ gameOver && <GameOver points={points} /> }
 			</section>
 		)
