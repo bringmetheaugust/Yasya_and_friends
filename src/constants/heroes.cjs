@@ -1,4 +1,4 @@
-const { HUNGRY_GAME_TYPE, RALLY_GAME_TYPE, RABBIT_GAME_TYPE } =  require('@constants/gameTypes.js');
+const { HUNGRY_GAME_TYPE, RALLY_GAME_TYPE, RABBIT_GAME_TYPE } = require('@constants/gameTypes.js');
 
 module.exports = {
 	yasya: {
@@ -130,7 +130,7 @@ module.exports = {
 		opened: false,
 		secretWord: 'кабанчик'
 	},
-	raya: {
+	megija: {
 		id: 10,
 		gameType: HUNGRY_GAME_TYPE,
 		heroImg: require('@src/media/heroes/megija/hero.jpg').default,

@@ -10,7 +10,11 @@ const SecretWordModal = ({ successInputHandler, closeModal }) => {
     const context = useContext(GameContext);
 
     function checkSecretWord({ target: { value } }) {
-		const secretHero = Object.values(heroes).find(({ secretWord }) => value.toLowerCase().includes(secretWord));
+        console.log(Object.values(heroes));
+		const secretHero = Object.values(heroes).find(({ secretWord }) => {
+            // console.log('heroes secretWord:', secretWord, 'input :', value);
+            return value.toLowerCase().includes(secretWord)
+        });
 		
 		if (
             secretHero &&
