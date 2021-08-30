@@ -26,13 +26,13 @@ const About = () => {
                 <h1>о наших героях</h1>
                 {
                     context.heroes.map(hero =>
-                        <div className={css.hero} key={hero.id}>
-                            <div className={css.title}>
+                        <ul className={css.hero} key={hero.id}>
+                            <li className={css.title}>
                                 <h2>{hero.name}</h2>
                                 <img src={hero.heroImg} />
-                            </div>
+                            </li>
                             <div className={css.txt}>{hero.about}</div>
-                        </div>
+                        </ul>
                     )
                 }
             </div>

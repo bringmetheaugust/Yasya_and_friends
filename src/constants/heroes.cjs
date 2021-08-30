@@ -138,7 +138,7 @@ module.exports = {
 		audio: require('@src/media/heroes/megija/audio.mp3').default,
 		name: 'Мегия',
 		description: 'Помогите Мегии уделить Рафику больше внимания!',
-		about: `Просто спасибо за то, что ты есть.`,
+		about: `Просто спасибо, что ты есть.`,
 		opened: false,
 		secretWord: 'рафик'
 	}
