@@ -1,4 +1,4 @@
-import React, { PureComponent } from 'react';
+import React, { useReducer } from 'react';
 import { HashRouter as Router, Switch, Route } from "react-router-dom";
 
 import Menu from '@containers/Menu/index.jsx';
@@ -11,45 +11,62 @@ const GameContext = React.createContext();
 const firstHeroes = Object.values(heroesDB).filter(hero => hero.opened);
 export { GameContext };
 
-export default class App extends PureComponent {
-	state = {
-		selectedHero: null,
-		heroes: firstHeroes,
-		notification: null
-	};
+function stateReducer(state, action) {
+	switch(action.type) {
+		case 'OPEN_HERO': {
+			return ({
+				...state,
+				heroes: [ action.payload, ...state.heroes ],
+				notification: action.payload.notification || null
+			});
+		}
+		default:
+			return ({ ...state, ...action });
+	}
+}
 
-	selectHero = hero => this.setState({ selectedHero: hero });
+export default function App() {
+	const [ state, setState ] = useReducer(
+		stateReducer,
+		{
+			selectedHero: null,
+			heroes: firstHeroes,
+			notification: null
+		}
+	);
 
-	closeNotification = () => this.setState({ notification: null });
-
-	openHero = newHero => {
-		const { heroes } = this.state;
-		
-		this.setState({ heroes: [ newHero, ...heroes ] });
-
-		if (newHero.notification) this.setState({ notification: newHero.notification });
+	function selectHero(hero) {
+		setState({ selectedHero: hero });
 	}
 
-	render() {
-		return(
-			<>
-				{
-					this.state.notification &&
-					<Notification closeHandler={this.closeNotification} content={this.state.notification} />
-				}
-				<Router>
-					<Switch>
-						<GameContext.Provider value={this.state}>
-							<Route
-								exact path='/'
-								render={() => <Menu selectHero={this.selectHero} openHero={this.openHero} />}
-							/>
-							<Route exact path='/start' component={Game} />
-							<Route exact path='/about' component={About} />
-						</GameContext.Provider>
-					</Switch>
-				</Router>
-			</>
-		)
+	function closeNotification() {
+		setState({ notification: null });
 	}
+
+	function openHero(newHero) {
+		setState({ type: 'OPEN_HERO', payload: newHero });
+	}
+
+	const { _, ...contextState } = state; // without `notification`
+
+	return(
+		<>
+			{
+				state.notification &&
+				<Notification closeHandler={closeNotification} content={state.notification} />
+			}
+			<Router>
+				<Switch>
+					<GameContext.Provider value={contextState}>
+						<Route
+							exact path='/'
+							render={() => <Menu selectHero={selectHero} openHero={openHero} />}
+						/>
+						<Route exact path='/start' component={Game} />
+						<Route exact path='/about' component={About} />
+					</GameContext.Provider>
+				</Switch>
+			</Router>
+		</>
+	)
 }

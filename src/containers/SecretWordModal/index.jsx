@@ -10,9 +10,9 @@ const SecretWordModal = ({ successInputHandler, closeModal }) => {
     const context = useContext(GameContext);
 
     function checkSecretWord({ target: { value } }) {
-		const secretHero = Object.values(heroes).find(({ secretWord }) => {
-            return value.toLowerCase().includes(secretWord)
-        });
+		const secretHero = Object.values(heroes).find(({ secretWord }) =>
+            value.toLowerCase().includes(secretWord)
+        );
 		
 		if (
             secretHero &&
@@ -25,7 +25,7 @@ const SecretWordModal = ({ successInputHandler, closeModal }) => {
 
     return (
         <Modal closeHandler={closeModal}>
-            <div className={css.modal}>
+            <div className={css.wrap}>
                 <InputText
                     placeholder="введите секретное слово"
                     changeHandler={checkSecretWord}
