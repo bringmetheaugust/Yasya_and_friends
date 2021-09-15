@@ -2,11 +2,11 @@ import React, { forwardRef } from 'react';
 
 import css from './index.module.sass';
 
-const InputText = forwardRef(({ placeholder, changeHandler }, ref) => {
+const InputText = forwardRef(({ placeholder, changeHandler, classNames }, ref) => {
     return (
         <input
             ref={ref}
-            className={css.index}
+            className={`${css.index} ${classNames}`}
             onChange={changeHandler}
             placeholder={placeholder}
         />
@@ -15,7 +15,8 @@ const InputText = forwardRef(({ placeholder, changeHandler }, ref) => {
 
 InputText.defaultProps = {
     placeholder: '',
-    changeHandler: null
+    changeHandler: null,
+    classNames: ''
 }
 
 export default InputText;

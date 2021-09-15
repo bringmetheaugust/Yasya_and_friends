@@ -14,6 +14,7 @@ const GetReady = ({ runGame }) => {
 				setCount('GO!!!');
 				setTimeout(() => runGame(), 1000);
 				clearInterval(countInterval);
+
 				return;
 			}
 			

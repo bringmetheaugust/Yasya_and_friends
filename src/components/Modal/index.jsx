@@ -10,7 +10,7 @@ const Modal = ({ children, closeHandler, classNames }) => {
     useOutsideClick(wrapRef, closeHandler);
 
     return (
-        <div className={css.index}>
+        <div className={`${css.index} full-screen`}>
             <div ref={wrapRef} className={`${css.wrap} ${classNames}`}>
                 <div onClick={closeHandler} className={css.close} >
                     {CloseIcon}

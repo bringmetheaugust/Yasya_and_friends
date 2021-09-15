@@ -22,12 +22,12 @@ const Menu = ({ selectHero, openHero }) => {
 			<div className={css.heroes}>
 				<div className={css.title}>выбери своего героя!!</div>
 					{
-						context.heroes.map((hero, n) => (
+						context.heroes.map(hero => (
 							<Link
 								onClick={() => selectHero(hero)}
 								to='/start'
 								className={css.hero}
-								key={n}
+								key={hero.id}
 							>
 								<img className={css['hero-icon']} src={hero.heroImg} />
 								<div className={css.name}>{hero.name}</div>

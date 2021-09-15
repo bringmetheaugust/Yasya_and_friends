@@ -16,7 +16,7 @@ const SecretWordModal = ({ successInputHandler, closeModal }) => {
 		
 		if (
             secretHero &&
-            !context.heroes.some(hero => hero.id === secretHero.id)
+            !context.heroes.some(({ id }) => id === secretHero.id)
         ) {
             successInputHandler(secretHero);
             closeModal();
