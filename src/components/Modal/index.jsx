@@ -1,17 +1,26 @@
-import React from 'react';
+import React, { useRef } from 'react';
 
 import css from './index.module.sass';
 import { CloseIcon } from '@components/icons/index.jsx';
+import useOutsideClick from '@hooks/useOutsideClick.js';
 
-const Modal = ({ children, closeHandler }) => (
-    <div className={css.index}>
-        <div className={css.wrap}>
-            {children}
-            <div onClick={closeHandler} className={css.close} >
-                {CloseIcon}
+const Modal = ({ children, closeHandler, classNames }) => {
+    const wrapRef = useRef();
+
+    useOutsideClick(wrapRef, closeHandler);
+
+    return (
+        <div className={css.index}>
+            <div ref={wrapRef} className={`${css.wrap} ${classNames}`}>
+                <div onClick={closeHandler} className={css.close} >
+                    {CloseIcon}
+                </div>
+                {children}
             </div>
         </div>
-    </div>
-);
+    );
+};
+
+Modal.defaultProps = { classNames: '' };
 
 export default Modal;

@@ -1,4 +1,4 @@
-import React, { PureComponent } from 'react';
+import React, { PureComponent, createRef } from 'react';
 import { Redirect } from 'react-router-dom';
 
 import css from './index.module.sass';
@@ -15,7 +15,7 @@ class Game extends PureComponent {
 		itemBoard: [],
 		points: 0
 	};
-	canvas = React.createRef();
+	canvas = createRef();
 	
 	runGame = () => {
 		this.setState({ gameStarted: true });
