@@ -20,7 +20,7 @@ const Menu = ({ selectHero, openHero }) => {
 				<source src={require("@src/media/menu/menu.mp3").default} type="audio/mpeg" />
 			</audio>
 			<div className={css.heroes}>
-				<div className={css.title}>выбери свого героя!!</div>
+				<div className={css.title}>Обери свого героя!!</div>
 				{context.heroes.map(hero => (
 					<Link onClick={() => selectHero(hero)} to="/start" className={css.hero} key={hero.id}>
 						<img className={css["hero-icon"]} src={hero.heroImg} />
