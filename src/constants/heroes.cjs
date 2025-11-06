@@ -1,149 +1,110 @@
-const { HUNGRY_GAME_TYPE, RALLY_GAME_TYPE, RABBIT_GAME_TYPE } = require('@constants/gameTypes.js');
+const { HUNGRY_GAME_TYPE, RALLY_GAME_TYPE, RABBIT_GAME_TYPE } = require("@constants/gameTypes.js")
 
 module.exports = {
 	yasya: {
 		id: 1,
 		gameType: RALLY_GAME_TYPE,
-		heroImg: require('@src/media/heroes/yasya/hero.png').default,
-		enemyImg: require('@src/media/heroes/yasya/enemy.jpeg').default,
-		audio: require('@src/media/heroes/yasya/audio.mp3').default,
-		name: 'Яся',
-		description: 'Помогите Ясе сбежать с АТБ и добраться до Синявки!',
-		about: `Яся пережила на своём пути очень трудные моменты, которые заставляли
-			бедняжку часто менять работу и мировозрение. Судьба никак не разрешала часто ездить
-			в своё родное село и проводить время с родными, иногда просто сидя в своей
-			комнате и, смотря на сарай с курями, пускать скупую слезу. Несмотря на все трудности,
-			она нашла смелость, и, поймав удачу, сделала серьёзный шаг переехав в Киев,
-			где не так часто встретишь окна, которые открывают вид на чей-то сарай, что
-			позволило бедняжке по-немного забыть о той боли, которая напоминала ей о своём селе,
-			о Синявке..
+		heroImg: require("@src/media/heroes/yasya/hero.png").default,
+		enemyImg: require("@src/media/heroes/yasya/enemy.jpeg").default,
+		audio: require("@src/media/heroes/yasya/audio.mp3").default,
+		name: "Яся",
+		description: "Допоможіть Ясі втекти з АТБ і дістатися до Синявки!",
+		about: `Яся пережила на своєму шляху дуже важкі моменти, які змушували
+			бідолашку часто змінювати роботу і світогляд. Доля ніяк не дозволяла часто їздити
+			до свого рідного села і проводити час з рідними, іноді просто сидячи у своїй
+			кімнаті і, дивлячись на сарай з курми, пускати скупу сльозу. Незважаючи на всі труднощі,
+			вона знайшла сміливість і, зловивши удачу, зробила серйозний крок переїхавши до Києва,
+			де не так часто зустрінеш вікна, які відкривають вид на чийсь сарай, що
+			дозволило бідолашці трохи забути про той біль, який нагадував їй про своє село,
+			про Синявку..
 		`,
 		opened: true,
-		secretWord: null
+		secretWord: null,
 	},
 	niko: {
 		id: 2,
 		gameType: HUNGRY_GAME_TYPE,
-		heroImg: require('@src/media/heroes/niko/hero.png').default,
-		enemyImg: require('@src/media/heroes/niko/enemy.jpg').default,
-		audio: require('@src/media/heroes/niko/audio.mp3').default,
-		name: 'Коля',
-		description: 'Помогите Коле поймать все таблетки и вылечиться от шизофрении!',
-		about: `Не смотря на все тревоги со стороны родителей и близких,
-			Коля никогда не хотел жить по правилам и всегда давал отпор системе.
-			Вопреки своёму взрослению, он постоянно игнорировал реальность,
-			подвергая себя новыми приключениями. Однажды он даже сумел побороть законы физики,
-			которые должны были поломать его жизнь после падения с очень высокого
-			дерева, но Коля дал им отпор и остался почти здоров. После этого, казалось бы,
-			безрассудного поединка с Ньютоном, истории и легенды о его подвигах
-			быстро расходились по всему Каневу, часто привлекая внимание людей.
+		heroImg: require("@src/media/heroes/niko/hero.png").default,
+		enemyImg: require("@src/media/heroes/niko/enemy.jpg").default,
+		audio: require("@src/media/heroes/niko/audio.mp3").default,
+		name: "Коля",
+		description: "Допоможіть Колі зловити всі таблетки і вилікуватися від шизофренії!",
+		about: `Незважаючи на всі тривоги з боку батьків і близьких,
+			Коля ніколи не хотів жити за правилами і завжди давав відсіч системі.
+			Всупереч своєму дорослішанню, він постійно ігнорував реальність,
+			піддаючи себе новим пригодам. Одного разу він навіть зумів подолати закони фізики,
+			які мали б зламати його життя після падіння з дуже високого
+			дерева, але Коля дав їм відсіч і залишився майже здоровим. Після цього, здавалося б,
+			безрозсудного поєдинку з Ньютоном, історії і легенди про його подвиги
+			швидко розходилися по всьому Каневу, часто привертаючи увагу людей.
 		`,
 		opened: true,
-		secretWord: null
+		secretWord: null,
 	},
-	yelya: {
+	vitya: {
 		id: 3,
 		gameType: RABBIT_GAME_TYPE,
-		heroImg: require('@src/media/heroes/yelya/hero.png').default,
-		enemyImg: require('@src/media/heroes/yelya/enemy.png').default,
-		audio: require('@src/media/heroes/yelya/audio.mp3').default,
-		name: 'Еля',
-		description: 'Помогите Еле сбежать от негров!',
-		about: `Итс нау о невер, кам холд ми тайт, кисс ми май дарлинг, би май
-			тунайт. Туморол вил би тудей. Итс нау о невер май лав вил нот веит..
+		heroImg: require("@src/media/heroes/vitya/hero.png").default,
+		enemyImg: require("@src/media/heroes/vitya/enemy.jpg").default,
+		audio: require("@src/media/heroes/vitya/audio.mp3").default,
+		name: "Уітя",
+		description: "Допоможи Уіті втекти від польського пана і не поїхати до Польщі на будівництво!",
+		about: `Незважаючи на невиліковний логоневроз і звичку
+			кілька разів покрутитися навколо себе перед тим як увійти в якийсь дверний проєм,
+			Уітя завжди залишався темним кардиналом душі компанії, її мозком і двигуном
+			нестримного веселощів. Важко знайти людину, яка зможе покинути свій
+			дім і мрію, перетнути високі пагорби своєї рідни і залишитися там, де
+			доведеться мішати цемент під пильним наглядом польського пана і дихати
+			смородом одягу, просоченого потом, болем і зруйнованими мріями.
 		`,
-		opened: false,
-		secretWord: 'еля'
+		opened: true,
+		secretWord: null,
 	},
 	natasha: {
 		id: 4,
 		gameType: RALLY_GAME_TYPE,
-		heroImg: require('@src/media/heroes/natasha/hero.png').default,
-		enemyImg: require('@src/media/heroes/natasha/enemy.png').default,
-		audio: require('@src/media/heroes/natasha/audio.mp3').default,
-		name: 'Наташа',
-		description: 'Помогите Наташе сбежать от алкоголизма и не спиться!',
-		about: `Пока жители Канева, окутанные во тьму этого гиблого места, медленно
-			борясь против алкоголизма и быдло-популяции на улицах города, Наташа
-			пытается соблюдать баланс добра и зла, безостановочно скупая весь алкоголь
-			и уничтожая его внутри себя. Но давление со стороны близких и постоянно
-			растущая цена спиртного с каждым днём значительно усложняет ей жизнь
-			и ставит под угрозу её главный план - выйти из запоя..
+		heroImg: require("@src/media/heroes/natasha/hero.png").default,
+		enemyImg: require("@src/media/heroes/natasha/enemy.png").default,
+		audio: require("@src/media/heroes/natasha/audio.mp3").default,
+		name: "Наташа",
+		description: "Допоможіть Наташі втекти від алкоголізму і не спитися!",
+		about: `Поки жителі Канева, огорнуті у темряву цього гиблого місця, повільно
+			борються проти алкоголізму і швидко-популяції на вулицях міста, Наташа
+			намагається дотримуватися балансу добра і зла, безупинно скуповуючи весь алкоголь
+			і знищуючи його всередині себе. Але тиск з боку близьких і постійно
+			зростаюча ціна спиртного з кожним днем значно ускладнює їй життя
+			і ставить під загрозу її головний план - вийти із запою..
 		`,
 		opened: false,
-		secretWord : 'abubabu'
-	},
-	vitya: {
-		id: 5,
-		gameType: RABBIT_GAME_TYPE,
-		heroImg: require('@src/media/heroes/vitya/hero.png').default,
-		enemyImg: require('@src/media/heroes/vitya/enemy.jpg').default,
-		audio: require('@src/media/heroes/vitya/audio.mp3').default,
-		name: 'Уитя',
-		description: 'Помоги Уите сбежать от польского пана и не поехать в Польшу на стройку!',
-		about: `Не смотря на неизлечимый логоневроз и привычку
-			пару раз покрутиться вокруг себя перед тем как войти в какой-то дверной проём,
-			Уитя всегда оставался тёмным кардиналом души компании, её могзом и двигателем
-			безудержного веселья. Трудно найти человека, который сможет бросить свой
-			дом и мечту, пересечь высокие холмы своей родины и остаться там, где
-			придется мешать цемент под пыльным присмотром польского пана и дышать
-			вонью одежды, пропитанную потом, болью и разрушенными мечтами.
-		`,
-		opened: true,
-		secretWord: null
-	},
-	nester: {
-		id: 7,
-		gameType: HUNGRY_GAME_TYPE,
-		heroImg: require('@src/media/heroes/nester/hero.png').default,
-		enemyImg: require('@src/media/heroes/nester/enemy.jpg').default,
-		audio: require('@src/media/heroes/nester/audio.mp3').default,
-		name: 'Нестер',
-		description: 'Помогите Нестеру поймать все гантели и не стать дрыщем!',
-		about: 'Андрэус, я в тебя верю!!!',
-		opened: false,
-		secretWord: 'циганка'
+		secretWord: "abubabu",
 	},
 	dasha: {
-		id: 8,
+		id: 5,
 		gameType: HUNGRY_GAME_TYPE,
-		heroImg: require('@src/media/heroes/dasha/hero.png').default,
-		enemyImg: require('@src/media/heroes/dasha/enemy.png').default,
-		audio: require('@src/media/heroes/dasha/audio.mp3').default,
-		name: 'Дашка',
-		description: 'Помогите Дашке выучить Реакт!',
-		about: `Ничто так не стремиться вырваться с плена тьмы и тщености, как
-			глупенькая московская принцесса из отдела контент-менеджмента.
+		heroImg: require("@src/media/heroes/dasha/hero.png").default,
+		enemyImg: require("@src/media/heroes/dasha/enemy.png").default,
+		audio: require("@src/media/heroes/dasha/audio.mp3").default,
+		name: "Дашка",
+		description: "Допоможіть Дашці вивчити Реакт!",
+		about: `Ніщо так не прагне вирватися з полону темряви і марності, як
+			дурненька московська принцеса з відділу контент-менеджменту.
 		`,
 		opened: false,
-		secretWord: 'дура'
+		secretWord: "дура",
 	},
-	raya: {
-		id: 9,
+	jenifer: {
+		id: 6,
 		gameType: HUNGRY_GAME_TYPE,
-		heroImg: require('@src/media/heroes/raya/hero.jpg').default,
-		enemyImg: require('@src/media/heroes/raya/enemy.jpg').default,
-		audio: require('@src/media/heroes/raya/audio.mp3').default,
-		name: 'Раечка',
-		description: 'Помогите Раечке съесть всю Фрутоняню и не помереть с голоду!',
-		about: `Мне так и не удалось понять кто ты на самом деле.`,
+		heroImg: require("@src/media/heroes/jenifer/hero.jpg").default,
+		enemyImg: require("@src/media/heroes/jenifer/enemy.png").default,
+		audio: require("@src/media/heroes/jenifer/audio.mp3").default,
+		name: "Женя",
+		description: "Hilf Женя alle Gurken zu essen!",
+		about: `Ich weiß immer noch nicht, wer du bist. Ich bin mir immer noch
+            nicht sicher, ob es dich überhaupt gibt. Ich verstehe immer noch nicht,
+            warum wir noch zusammen sind, aber ich will nicht, dass es endet.
+		`,
 		opened: false,
-		secretWord: 'кабанчик',
-		notification: `Уважаемая Раиса Александровна.<br/> Мы получили Ваши замечания
-			и обязательно сосредоточим все усилия, чтобы исправить существующие неполадки.
-			<br />В качестве компенсации за неудобства, мы заменили Вам Фрутоняню.
-			<br />Спасибо, что остаетесь с нами.`,
+		secretWord: "fahrstuhl",
 	},
-	megija: {
-		id: 10,
-		gameType: HUNGRY_GAME_TYPE,
-		heroImg: require('@src/media/heroes/megija/hero.jpg').default,
-		enemyImg: require('@src/media/heroes/megija/enemy.jpg').default,
-		audio: require('@src/media/heroes/megija/audio.mp3').default,
-		name: 'Мегия',
-		description: 'Помогите Мегии уделить Рафику больше внимания!',
-		about: `Просто спасибо, что ты есть.`,
-		opened: false,
-		secretWord: 'рафик'
-	}
-};
+}

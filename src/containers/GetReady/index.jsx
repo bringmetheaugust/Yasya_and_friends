@@ -1,36 +1,35 @@
-import React, { useState, useEffect, useContext } from 'react';
+import React, { useState, useEffect, useContext } from "react"
 
-import css from './index.module.sass';
-import { GameContext } from '@src/App.jsx';
+import css from "./index.module.sass"
+import { GameContext } from "@src/App.jsx"
 
 const GetReady = ({ runGame }) => {
-	const [count, setCount] = useState(5);
-	const context = useContext(GameContext);
+	const [count, setCount] = useState(5)
+	const context = useContext(GameContext)
 
 	useEffect(() => {
 		const countInterval = setInterval(() => {
-
 			if (count === 1) {
-				setCount('GO!!!');
-				setTimeout(() => runGame(), 1000);
-				clearInterval(countInterval);
+				setCount("GO!!!")
+				setTimeout(() => runGame(), 1000)
+				clearInterval(countInterval)
 
-				return;
+				return
 			}
-			
-			setCount(count - 1);
-		}, 1000);
 
-		return () => clearInterval(countInterval);
-	});
+			setCount(count - 1)
+		}, 1000)
 
-	return(
+		return () => clearInterval(countInterval)
+	})
+
+	return (
 		<div className={`${css.ready} full-screen`}>
 			<div className={css.title}>{context.selectedHero.description}</div>
 			<div className={css.count}>{count}</div>
-			приготовьтесь!!
+			приготуйтесь!!
 		</div>
-	);
-};
+	)
+}
 
-export default GetReady;
+export default GetReady
